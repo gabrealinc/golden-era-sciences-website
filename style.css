@@ -1,0 +1,19 @@
+/*
+Theme Name: Golden Era Sciences
+Theme URI: https://goldenerasciences.com
+Author: Gab Real Inc
+Author URI: https://gabrealinc.com
+Description: Custom WooCommerce theme for Golden Era Sciences. Research-grade peptide storefront. Hand-authored CSS with no build step, so it deploys directly from GitHub to WordPress.com without a compile stage.
+Version: 1.0.5
+Requires at least: 6.4
+Tested up to: 7.0
+Requires PHP: 8.0
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: golden-era
+Tags: woocommerce, ecommerce, custom-colors, custom-menu, translation-ready
+
+This file exists because WordPress requires it to recognise the theme.
+The actual styles live in assets/css/theme.css and are enqueued from functions.php.
+Do not add styles here.
+*/
