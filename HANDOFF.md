@@ -1,96 +1,125 @@
-# Golden Era Sciences — Developer Handoff
+# Golden Era Sciences — Website Handoff
 
 Prepared by Gab Real Inc · July 2026
 
 ---
 
-## What you are inheriting
+## Summary
 
-[goldenerasciences.com](https://goldenerasciences.com) is **live and working**.
-It runs on WordPress.com with WooCommerce, using a custom theme built for this
-brand. That theme is what you have in this zip.
+[goldenerasciences.com](https://goldenerasciences.com) is **live, working, and
+fully wired up**. The code is in GitHub, GitHub is connected to the site, and
+pushing a change deploys it to production in under a minute. This has been
+tested end to end, not just configured.
 
-Everything you need is here. There is no prior repository to inherit, no legacy
-branches, and no migration to unpick. Start fresh.
+Nothing needs to be set up. It runs today.
 
 ---
 
-## The setup
+## How it is built
 
 | | |
 |---|---|
-| **Host** | WordPress.com, Commerce plan |
-| **Production** | goldenerasciences.com |
-| **Staging** | WordPress.com → Staging Site |
-| **CMS** | WordPress 7.0.2, PHP 8.4 |
-| **Store** | WooCommerce, 17 products |
-| **Theme** | Golden Era Sciences (`golden-era`) — in this zip |
-| **Deploys** | WordPress.com GitHub Deployments |
+| **Site** | goldenerasciences.com |
+| **Hosting** | WordPress.com, Commerce plan |
+| **Store** | WooCommerce — all products, pricing, inventory and orders |
+| **Theme** | Custom, hand-coded in **PHP, CSS and vanilla JavaScript** |
+| **Code** | [github.com/gabrealinc/golden-era-sciences-website](https://github.com/gabrealinc/golden-era-sciences-website) (public) |
+| **Deploys** | WordPress.com GitHub Deployments, automatic on push to `main` |
+| **Staging** | Available under WordPress.com → Staging Site |
 
-Site administrator accounts already exist for `info@goldenerasciences.com`.
+This is a **custom-coded theme**, not a page builder, not a template. Changes
+are made in code, committed to GitHub, and deployed automatically.
+
+Dan (`info@goldenerasciences.com`) is already a **collaborator** on the
+repository and an **administrator** on the WordPress site.
 
 ---
 
-## Setup: connect the code to the site
+## The deployment pipeline
 
-The theme is currently installed directly on the server. Putting it in a
-repository gives you version control and one-command deploys. Takes about ten
-minutes, once.
-
-### 1. Create a repository
-
-Create a new GitHub repository under whichever account should own this
-long-term. Private is recommended. Name it whatever you like, for example
-`golden-era-website`.
-
-### 2. Push the theme to it
-
-Unzip `golden-era-theme.zip`. Inside is a folder called `golden-era`.
-
-**Push the contents of that folder to the repository root** — so `style.css` and
-`functions.php` end up at the top level, not nested inside a subfolder. See
-"Repo layout" below for why.
-
-```bash
-unzip golden-era-theme.zip
-cd golden-era
-git init
-git add -A
-git commit -m "Golden Era Sciences WordPress theme"
-git branch -M main
-git remote add origin https://github.com/<account>/golden-era-website.git
-git push -u origin main
-```
-
-### 3. Connect it to WordPress.com
-
-Go to `wordpress.com/github-deployments/goldenerasciences.com` and click
-**Connect repository**.
+Already connected and confirmed working:
 
 | Setting | Value |
 |---|---|
-| Repository | the one you just created |
+| Repository | `gabrealinc/golden-era-sciences-website` |
 | Branch | `main` |
-| **Destination directory** | **`/wp-content/themes/golden-era`** |
-| Deployment mode | **Simple** |
-| Deploy changes on push | on |
+| Destination | `/wp-content/themes/golden-era` |
+| Mode | Simple (copy files, no build step) |
+| Deploy on push | On |
 
-Then use **⋯ → Trigger manual deployment** to confirm it works.
+Manage it at
+`wordpress.com/github-deployments/goldenerasciences.com`.
 
-That's it. From here, `git push` updates the live site in under a minute.
+**To make a change:**
+
+```bash
+git add -A
+git commit -m "Describe the change"
+git push origin main
+```
+
+That's it. The deployment runs automatically and finishes in well under a
+minute. You can watch it at the Deployments URL above.
+
+Test anything risky on the staging site first.
 
 ---
 
-## Repo layout
+## The repository is yours to keep or move
+
+Both options work. It's your call.
+
+### Option 1 — keep using the current repository
+
+`github.com/gabrealinc/golden-era-sciences-website` is public, Dan is already a
+collaborator, and it is already connected to the live site. You can start
+working immediately with no setup.
+
+Gab Real Inc will not be making changes to it.
+
+Additional developers can be added as collaborators at any time — just ask.
+
+### Option 2 — move it to your own GitHub account
+
+If you'd rather own the repository outright, that's straightforward and
+probably the tidier long-term answer.
+
+1. Create a GitHub account under Dan or the business, if there isn't one.
+2. Create a new repository. Private is fine.
+3. Clone the current repo and push its contents to the new one:
+
+   ```bash
+   git clone https://github.com/gabrealinc/golden-era-sciences-website.git
+   cd golden-era-sciences-website
+   git remote set-url origin https://github.com/<your-account>/<new-repo>.git
+   git push -u origin main
+   ```
+
+4. In WordPress.com → Deployments, disconnect the current repository, then
+   **Connect repository** and point it at the new one.
+
+   **Set the destination directory to `/wp-content/themes/golden-era`.**
+   WordPress.com will auto-fill this from your repository name, which will be
+   wrong. The folder name must stay `golden-era` because that is the theme
+   WordPress has active.
+
+5. Trigger a manual deployment to confirm, then check the site.
+
+Everything else stays the same. The site, the products, the orders and the
+WordPress account are untouched by moving the repository.
+
+---
+
+## Repository layout
 
 **The repository root is the theme root.** WordPress.com's Simple deployment
-copies the repo contents verbatim into the destination directory, so the layout
-must be:
+copies the repo contents verbatim into the theme directory, so `style.css` and
+`functions.php` have to sit at the top level.
 
 ```
-style.css              ← must be at the top level
-functions.php
-front-page.php
+style.css              Theme header. Real styles are in assets/css.
+functions.php          Setup, assets, helpers, includes.
+front-page.php         Homepage.
 header.php  footer.php  index.php  page.php  single.php  404.php
 comments.php  searchform.php  screenshot.png
 
@@ -110,31 +139,18 @@ template-parts/        hero, marquee, quality, faq, age-gate, subscribe
 woocommerce/           Template overrides, mirrors WooCommerce's own paths
 ```
 
-Commit what is *inside* the `golden-era` folder, not the folder itself.
-
 ---
 
-## Making changes
+## Two things that will save you time
 
-```bash
-git add -A
-git commit -m "Describe the change"
-git push origin main
-```
+### There is no build step, deliberately
 
-Deploys automatically, under a minute. Watch it at
-`wordpress.com/github-deployments/goldenerasciences.com`.
-
-Test anything risky on the staging site first.
-
-### No build step, deliberately
-
-Simple deployment copies files verbatim. It does not run `npm install`, Webpack,
-Sass, or anything else. So everything runs exactly as committed:
+Simple deployment copies files verbatim. It does not run `npm install`,
+Webpack, Sass, or anything else. So everything runs exactly as committed:
 
 - CSS is hand-written in `assets/css/theme.css`. No Tailwind, no preprocessor.
 - JS is plain vanilla in `assets/js/theme.js`. No bundler.
-- No `package.json`, no `node_modules`.
+- There is no `package.json` and no `node_modules`.
 
 This is why deploys are fast and never silently half-fail. If you want a build
 step later, switch the connection to **Advanced** mode and add a workflow file.
@@ -142,8 +158,8 @@ step later, switch the connection to **Advanced** mode and add a workflow file.
 ### You cannot edit theme files in wp-admin
 
 WordPress.com blocks writes through **Appearance → Theme File Editor**. It
-accepts the edit, shows no error, and silently discards it. Verified by saving a
-change and fetching the file back.
+accepts your edit, shows no error, and silently discards it. This was confirmed
+by saving a change and fetching the file back.
 
 **Git is the only way to change this site's code.** Worth knowing before you
 lose an hour to it.
@@ -171,18 +187,18 @@ from Google Fonts in `functions.php`.
 
 ---
 
-## Site configuration
+## Managed in the WordPress admin, not in code
 
-These live in the WordPress admin, not in code.
-
+- **Products, pricing, inventory, orders** — all WooCommerce. Nothing about the
+  catalog lives in the theme.
 - **Appearance → Menus.** Three locations: Primary Navigation, Footer — Explore,
   Footer — Legal. Primary is set up; the two footer menus are not yet.
 - **Settings → Reading.** Static homepage is set; `front-page.php` handles it.
 - **Appearance → Customize → Golden Era — Brand.** Instagram, TikTok, contact
   email and phone.
-- **Products.** The homepage grid shows products flagged **Featured** (the star
-  in the products list). If fewer than four are flagged it tops up with best
-  sellers, so the section is never empty.
+- **Featured products.** The homepage grid shows products flagged Featured (the
+  star in the products list). If fewer than four are flagged it tops up with
+  best sellers, so the section is never empty.
 
 ### Certificates of Analysis
 
@@ -218,7 +234,7 @@ add_filter( 'ge_age_gate_enabled', '__return_false' );  // to disable
 
 ## Deliberate decisions
 
-Worth understanding before you change them.
+Worth understanding before changing them.
 
 - **Reviews and star ratings are disabled on products.** Customer reviews on a
   research-chemical catalog invite use claims, which is a compliance risk, not
@@ -235,9 +251,11 @@ Worth understanding before you change them.
 
 ## Open items
 
+Not blockers for the site, but they are the next things to handle.
+
 1. **The store cannot take payments yet.** WooCommerce setup is at step 5 of 7
    and WooPayments is installed but not activated. Nothing can be ordered until
-   this is finished. This is the blocker for launch.
+   this is finished. **This is the blocker for launch.**
 2. **The site logo file is malformed.** `ges-logo.png` in the media library is a
    256×256 image where the artwork occupies only a 256×37 strip at the top; the
    rest is transparent. It renders as a thin smear at any size. The theme falls
@@ -257,18 +275,14 @@ Worth understanding before you change them.
   Twenty Twenty-Five to get back to a working state, then fix and redeploy.
   Pages, products and orders are never affected by a theme switch.
 - **Anything else.** WordPress.com → **Logs** shows PHP errors with file and
-  line.
+  line. Fastest way to see what actually happened.
 
 ---
 
-## In this zip
+## Documentation in the repository
 
-| File | What it is |
-|---|---|
-| `HANDOFF.md` | This document |
-| `README.md` | Theme documentation: structure, tokens, configuration |
-| `DEPLOY-STEPS.md` | Deployment reference |
-| everything else | The theme |
+- `HANDOFF.md` — this document
+- `README.md` — theme structure, design tokens, configuration reference
 
 ---
 
