@@ -1,0 +1,1493 @@
+/* ==========================================================================
+   Golden Era Sciences
+   Hand-authored CSS. No build step, no preprocessor, no Tailwind.
+   Deploys as-is from GitHub to WordPress.com.
+
+   Contents:
+     1.  Design tokens
+     2.  Reset and base
+     3.  Layout helpers
+     4.  Typography helpers
+     5.  Buttons
+     6.  Header
+     7.  Scrolling banner
+     8.  Hero
+     9.  Product cards and grids
+     10. Sections (catalog, quality, FAQ)
+     11. WooCommerce overrides
+     12. Footer
+     13. Age gate
+     14. Forms
+     15. Animations
+     16. Responsive
+   ========================================================================== */
+
+/* 1. DESIGN TOKENS ======================================================== */
+
+:root {
+  /* Darks */
+  --ge-espresso: #1a0a05;
+  --ge-charcoal: #0a1628;
+  --ge-navy-mid: #16304d;
+  --ge-stone: #5a4a35;
+
+  /* Lights */
+  --ge-parchment: #f2e8d5;
+  --ge-cream: #faf5ea;
+  --ge-sand: #e8d9c0;
+  --ge-sand-dark: #d9c9a8;
+
+  /* Golds */
+  --ge-gold: #c2a25f;
+  --ge-gold-mid: #a3823f;
+  --ge-gold-deep: #6e5526;
+  --ge-amber: #b07b3c;
+
+  /* Semantic */
+  --ge-bg: var(--ge-parchment);
+  --ge-fg: var(--ge-espresso);
+  --ge-card: var(--ge-cream);
+  --ge-border: var(--ge-sand-dark);
+  --ge-destructive: #9a2b1f;
+
+  /* Type */
+  --ge-font-display: "Playfair Display", Georgia, serif;
+  --ge-font-body: "Times New Roman", Times, serif;
+  --ge-font-elegant: "Times New Roman", Times, serif;
+  --ge-font-ui: "Copperplate Gothic Light", "Copperplate Gothic Bold", "Copperplate", "Montserrat", "Helvetica Neue", Arial, sans-serif;
+
+  /* Shape */
+  --ge-radius: 0.25rem;
+  --ge-radius-md: 0.375rem;
+  --ge-radius-lg: 0.5rem;
+
+  /* Motion */
+  --ge-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Container */
+  --ge-max: 80rem;
+  --ge-gutter: 1.5rem;
+}
+
+/* 2. RESET AND BASE ======================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-color: var(--ge-border);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--ge-bg);
+  color: var(--ge-fg);
+  font-family: var(--ge-font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ge-font-display);
+  margin: 0;
+  line-height: 1.15;
+}
+
+p { margin: 0; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+button { font-family: inherit; cursor: pointer; }
+
+:focus-visible {
+  outline: 2px solid var(--ge-gold);
+  outline-offset: 2px;
+}
+
+.ge-screen-reader-text {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+.ge-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  padding: 0.75rem 1.25rem;
+  background: var(--ge-espresso);
+  color: var(--ge-gold);
+}
+.ge-skip-link:focus { left: 0; }
+
+/* 3. LAYOUT HELPERS ======================================================= */
+
+.ge-container {
+  width: 100%;
+  max-width: var(--ge-max);
+  margin-inline: auto;
+  padding-inline: var(--ge-gutter);
+}
+
+.ge-section { padding-block: 5rem; }
+.ge-section--tight { padding-block: 3.5rem; }
+
+.ge-bg-parchment { background-color: var(--ge-parchment); }
+.ge-bg-espresso  { background-color: var(--ge-espresso); color: var(--ge-cream); }
+.ge-bg-cream     { background-color: var(--ge-cream); }
+
+.ge-center { text-align: center; }
+
+/* 4. TYPOGRAPHY HELPERS =================================================== */
+
+.ge-kicker {
+  font-family: var(--ge-font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-weight: 500;
+  font-size: 0.7rem;
+  color: var(--ge-gold-mid);
+  margin: 0;
+}
+.ge-kicker--gold { color: var(--ge-gold); }
+
+.ge-section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-top: 0.75rem;
+}
+
+.ge-hairline {
+  height: 1px;
+  width: 6rem;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--ge-gold), transparent);
+  margin: 1.25rem auto 0;
+}
+.ge-hairline--left { margin-inline: 0; }
+
+.ge-lede {
+  font-family: var(--ge-font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ge-stone);
+}
+
+/* Gold gradient text with an animated sweep */
+.ge-shimmer {
+  background: linear-gradient(100deg,
+    #a3823f 0%, #c2a25f 20%, #e8d5a0 38%, #fff8e0 50%,
+    #e8d5a0 62%, #c2a25f 80%, #a3823f 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: ge-sweep 3.5s ease-in-out infinite;
+}
+
+/* 5. BUTTONS ============================================================== */
+
+.ge-btn {
+  display: inline-block;
+  padding: 0.875rem 1.75rem;
+  border-radius: var(--ge-radius);
+  border: 1px solid transparent;
+  /* Explicit: <button> defaults to the UA buttonface grey without this. */
+  background-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: var(--ge-font-ui);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease,
+              border-color 0.3s ease, transform 0.3s var(--ge-ease);
+}
+
+.ge-btn--gold {
+  background-color: var(--ge-gold);
+  color: var(--ge-espresso);
+}
+.ge-btn--gold:hover { background-color: var(--ge-gold-mid); }
+
+.ge-btn--outline {
+  background-color: transparent;
+  border-color: rgba(194, 162, 95, 0.5);
+  color: var(--ge-gold);
+}
+.ge-btn--outline:hover {
+  border-color: var(--ge-gold);
+  background-color: rgba(194, 162, 95, 0.1);
+}
+
+.ge-btn--dark {
+  background-color: var(--ge-espresso);
+  color: var(--ge-gold);
+  padding: 1rem 2.5rem;
+  border-radius: var(--ge-radius-md);
+  box-shadow: 0 2px 4px -2px rgba(26, 10, 5, 0.12),
+              0 8px 20px -6px rgba(26, 10, 5, 0.14);
+}
+.ge-btn--dark:hover {
+  background-color: var(--ge-charcoal);
+  transform: translateY(-2px);
+}
+
+.ge-btn--shimmer {
+  color: var(--ge-espresso);
+  background: linear-gradient(100deg,
+    #c2a25f 0%, #d4b76f 20%, #f0e0a0 38%, #fff8e0 50%,
+    #f0e0a0 62%, #d4b76f 80%, #c2a25f 100%);
+  background-size: 300% 100%;
+  animation: ge-sweep-bg 3.5s ease-in-out infinite;
+}
+.ge-btn--shimmer:hover { filter: brightness(1.1); }
+
+.ge-btn--block { display: block; width: 100%; }
+
+.ge-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+/* 6. HEADER =============================================================== */
+
+.ge-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.ge-promo {
+  display: block;
+  background-color: var(--ge-espresso);
+  color: var(--ge-gold);
+  padding-block: 0.5rem;
+  text-align: center;
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+.ge-promo:hover { color: var(--ge-cream); }
+
+.ge-nav {
+  border-bottom: 1px solid rgba(217, 201, 168, 0.4);
+  background-color: rgba(250, 245, 234, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.ge-nav__inner {
+  max-width: var(--ge-max);
+  margin-inline: auto;
+  padding: 1rem var(--ge-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ge-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+.ge-brand img {
+  height: 2.5rem;
+  width: auto;
+  max-width: 11rem;
+  object-fit: contain;
+}
+.ge-brand__name {
+  font-family: var(--ge-font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ge-gold-mid);
+}
+
+.ge-menu {
+  display: none;
+  align-items: center;
+  gap: 1.75rem;
+}
+/* wp_nav_menu wraps items in its own <ul>, so lay that out too. */
+.ge-menu ul {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ge-menu li { margin: 0; }
+.ge-menu a {
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ge-stone);
+}
+.ge-menu a:hover,
+.ge-menu .current-menu-item > a,
+.ge-menu .current_page_item > a {
+  color: var(--ge-gold-mid);
+}
+
+.ge-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ge-cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  color: var(--ge-stone);
+}
+.ge-cart-link:hover { color: var(--ge-gold-mid); }
+.ge-cart-link__count[hidden] { display: none; }
+.ge-cart-link__count {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.625rem;
+  min-width: 1.125rem;
+  height: 1.125rem;
+  padding-inline: 0.25rem;
+  border-radius: 999px;
+  background: var(--ge-gold);
+  color: var(--ge-espresso);
+  font-family: var(--ge-font-ui);
+  font-size: 0.625rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.ge-burger {
+  background: none;
+  border: 0;
+  padding: 0.25rem;
+  color: var(--ge-espresso);
+  display: inline-flex;
+}
+
+.ge-mobile-menu {
+  display: none;
+  border-top: 1px solid var(--ge-sand-dark);
+  background-color: var(--ge-cream);
+  padding: 1rem var(--ge-gutter);
+}
+.ge-mobile-menu.is-open { display: block; }
+.ge-mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.ge-mobile-menu a {
+  font-family: var(--ge-font-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ge-stone);
+}
+
+/* 7. SCROLLING BANNER ===================================================== */
+
+.ge-marquee {
+  overflow: hidden;
+  border-block: 1px solid rgba(194, 162, 95, 0.2);
+  background-color: var(--ge-espresso);
+  padding-block: 1rem;
+}
+.ge-marquee__track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: ge-marquee 45s linear infinite;
+}
+.ge-marquee__item {
+  display: flex;
+  align-items: center;
+  font-family: var(--ge-font-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--ge-gold);
+}
+.ge-marquee__sep {
+  margin-inline: 1.5rem;
+  color: rgba(194, 162, 95, 0.5);
+}
+
+/* 8. HERO ================================================================= */
+
+.ge-hero {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--ge-espresso);
+}
+.ge-hero__media {
+  position: absolute;
+  inset: 0;
+}
+.ge-hero__media video,
+.ge-hero__media img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+.ge-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(26, 10, 5, 0.8), rgba(26, 10, 5, 0.6), rgba(26, 10, 5, 0.9));
+}
+.ge-hero__inner {
+  position: relative;
+  max-width: var(--ge-max);
+  margin-inline: auto;
+  padding: 3.5rem var(--ge-gutter);
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ge-hero__content {
+  max-width: 40rem;
+  animation: ge-rise-in 0.8s var(--ge-ease) both;
+}
+.ge-hero__title {
+  margin-top: 1.25rem;
+  font-size: clamp(2.25rem, 7vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--ge-cream);
+}
+.ge-hero__sub {
+  margin-top: 1.25rem;
+  max-width: 32rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ge-sand);
+}
+
+/* 9. PRODUCT CARDS AND GRIDS ============================================== */
+
+.ge-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 3rem;
+}
+
+.ge-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--ge-radius-md);
+  border: 1px solid var(--ge-sand-dark);
+  background-color: var(--ge-card);
+  box-shadow: 0 1px 2px -1px rgba(26, 10, 5, 0.10),
+              0 4px 12px -4px rgba(26, 10, 5, 0.10);
+  transition: transform 0.4s var(--ge-ease),
+              box-shadow 0.4s var(--ge-ease),
+              border-color 0.4s ease;
+}
+.ge-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--ge-gold);
+  box-shadow: 0 6px 16px -6px rgba(26, 10, 5, 0.16),
+              0 18px 40px -12px rgba(163, 130, 63, 0.26);
+}
+
+.ge-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--ge-cream);
+}
+.ge-card__media img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ge-ease);
+}
+.ge-card:hover .ge-card__media img { transform: scale(1.05); }
+
+.ge-card__badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: var(--ge-espresso);
+  color: var(--ge-gold);
+  font-family: var(--ge-font-ui);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--ge-radius);
+}
+
+.ge-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.25rem;
+}
+.ge-card__title {
+  font-family: var(--ge-font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ge-espresso);
+  margin: 0;
+}
+
+/* Stretched link: the title anchor covers the whole card, so the card stays
+   fully clickable without wrapping everything in an <a>. Anything a plugin
+   renders into the loop hooks sits above it via .ge-card > *:not(...) below. */
+.ge-card__link { display: block; }
+.ge-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+/* Interactive elements from WooCommerce loop hooks must sit above the overlay. */
+.ge-card button,
+.ge-card input,
+.ge-card select,
+.ge-card .button,
+.ge-card a:not(.ge-card__link) {
+  position: relative;
+  z-index: 2;
+}
+.ge-card__excerpt {
+  margin-top: 0.5rem;
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--ge-stone);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  overflow: hidden;
+}
+.ge-card__foot {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.ge-card__price {
+  font-family: var(--ge-font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ge-espresso);
+}
+.ge-card__price del { opacity: 0.5; margin-right: 0.375rem; font-weight: 400; }
+.ge-card__price ins { text-decoration: none; }
+.ge-card__cta {
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ge-gold-mid);
+  white-space: nowrap;
+}
+.ge-card:hover .ge-card__cta { color: var(--ge-gold-deep); }
+
+/* 10. SECTIONS ============================================================ */
+
+/* Quality / proof band */
+.ge-quality {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--ge-espresso);
+  padding-block: 5rem;
+}
+.ge-quality__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+  filter: blur(40px);
+}
+.ge-quality__scrim {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(26, 10, 5, 0.6);
+}
+.ge-quality__inner {
+  position: relative;
+  max-width: var(--ge-max);
+  margin-inline: auto;
+  padding-inline: var(--ge-gutter);
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+.ge-quality__title {
+  margin-top: 1rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--ge-cream);
+}
+.ge-quality__body {
+  margin-top: 1.5rem;
+  max-width: 28rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ge-sand);
+}
+.ge-stats {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.ge-stat { border-left: 1px solid rgba(194, 162, 95, 0.3); padding-left: 1rem; }
+.ge-stat__num {
+  font-family: var(--ge-font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ge-gold);
+}
+.ge-stat__label {
+  margin-top: 0.25rem;
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(232, 217, 192, 0.7);
+}
+.ge-pillars {
+  margin-top: 1.5rem;
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(194, 162, 95, 0.8);
+}
+.ge-quality__figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--ge-radius-lg);
+  box-shadow: 0 0 0 1px rgba(194, 162, 95, 0.2),
+              0 8px 20px -6px rgba(26, 10, 5, 0.14);
+}
+.ge-quality__figure img { transition: transform 0.7s var(--ge-ease); }
+.ge-quality__figure:hover img { transform: scale(1.05); }
+
+/* FAQ accordion */
+.ge-faq { max-width: 48rem; margin-inline: auto; margin-top: 3rem; }
+.ge-faq__item {
+  border-bottom: 1px solid var(--ge-sand-dark);
+}
+.ge-faq__q {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  font-family: var(--ge-font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--ge-espresso);
+}
+.ge-faq__q:hover { color: var(--ge-gold-mid); }
+.ge-faq__icon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+  margin-top: 0.375rem;
+}
+.ge-faq__icon::before,
+.ge-faq__icon::after {
+  content: "";
+  position: absolute;
+  background: var(--ge-gold-mid);
+  transition: transform 0.3s var(--ge-ease);
+}
+.ge-faq__icon::before { inset: 45% 0; height: 2px; }
+.ge-faq__icon::after  { inset: 0 45%; width: 2px; }
+.ge-faq__q[aria-expanded="true"] .ge-faq__icon::after { transform: scaleY(0); }
+.ge-faq__a {
+  display: none;
+  padding-bottom: 1.5rem;
+  color: var(--ge-stone);
+  line-height: 1.7;
+  max-width: 60ch;
+}
+.ge-faq__a.is-open { display: block; }
+
+/* Page header for interior pages */
+.ge-page-head {
+  background-color: var(--ge-espresso);
+  color: var(--ge-cream);
+  padding-block: 4rem;
+  text-align: center;
+}
+.ge-page-head__title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  color: var(--ge-cream);
+  margin-top: 0.75rem;
+}
+.ge-page-head__sub {
+  margin-top: 1rem;
+  color: var(--ge-sand);
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+/* Long-form content */
+.ge-prose { max-width: 46rem; margin-inline: auto; }
+.ge-prose h2 { font-size: 1.75rem; margin-top: 2.5rem; }
+.ge-prose h3 { font-size: 1.375rem; margin-top: 2rem; }
+.ge-prose p,
+.ge-prose ul,
+.ge-prose ol { margin-top: 1rem; color: var(--ge-stone); line-height: 1.75; }
+.ge-prose ul { list-style: disc; padding-left: 1.25rem; }
+.ge-prose ol { list-style: decimal; padding-left: 1.25rem; }
+.ge-prose a { color: var(--ge-gold-mid); text-decoration: underline; }
+.ge-prose img { border-radius: var(--ge-radius-md); margin-top: 1.5rem; }
+.ge-prose blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--ge-gold);
+  font-family: var(--ge-font-elegant);
+  font-size: 1.125rem;
+  color: var(--ge-stone);
+}
+
+/* 11. WOOCOMMERCE ========================================================= */
+
+.woocommerce-notices-wrapper:empty { display: none; }
+
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  background-color: var(--ge-cream);
+  border-top: 3px solid var(--ge-gold);
+  color: var(--ge-espresso);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--ge-radius);
+  list-style: none;
+}
+.woocommerce-error { border-top-color: var(--ge-destructive); }
+
+/* Breadcrumbs */
+.ge-breadcrumb {
+  font-family: var(--ge-font-ui);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ge-stone);
+  margin-bottom: 1.5rem;
+}
+.ge-breadcrumb a { color: var(--ge-gold-mid); }
+.ge-breadcrumb a:hover { color: var(--ge-gold-deep); }
+.ge-breadcrumb__sep { margin-inline: 0.5rem; opacity: 0.5; }
+.ge-page-head .ge-breadcrumb { color: rgba(232, 217, 192, 0.7); margin-bottom: 1rem; }
+.ge-page-head .ge-breadcrumb a { color: var(--ge-gold); }
+
+/* Shop layout: sidebar filters + grid */
+.ge-shop {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+.ge-shop__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--ge-sand-dark);
+}
+.ge-shop__count {
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ge-stone);
+  margin: 0;
+}
+.ge-shop__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.ge-chip {
+  display: inline-block;
+  padding: 0.4375rem 0.875rem;
+  border: 1px solid var(--ge-sand-dark);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--ge-font-ui);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ge-stone);
+  transition: all 0.25s ease;
+}
+.ge-chip:hover { border-color: var(--ge-gold); color: var(--ge-gold-mid); }
+.ge-chip.is-active {
+  background: var(--ge-espresso);
+  border-color: var(--ge-espresso);
+  color: var(--ge-gold);
+}
+
+.woocommerce-ordering select,
+.ge-select {
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--ge-sand-dark);
+  border-radius: var(--ge-radius);
+  background-color: var(--ge-cream);
+  color: var(--ge-stone);
+}
+
+/* Pagination */
+.woocommerce-pagination { margin-top: 3rem; text-align: center; }
+.woocommerce-pagination ul {
+  display: inline-flex;
+  gap: 0.375rem;
+}
+.woocommerce-pagination a,
+.woocommerce-pagination span {
+  display: grid;
+  place-items: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding-inline: 0.5rem;
+  border: 1px solid var(--ge-sand-dark);
+  border-radius: var(--ge-radius);
+  font-family: var(--ge-font-ui);
+  font-size: 0.8125rem;
+  color: var(--ge-stone);
+}
+.woocommerce-pagination .current {
+  background: var(--ge-espresso);
+  border-color: var(--ge-espresso);
+  color: var(--ge-gold);
+}
+.woocommerce-pagination a:hover { border-color: var(--ge-gold); color: var(--ge-gold-mid); }
+
+/* Single product */
+.ge-product {
+  display: grid;
+  gap: 3rem;
+  margin-top: 2.5rem;
+}
+.ge-product__gallery img { border-radius: var(--ge-radius-md); }
+.ge-product__thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+.ge-product__thumbs img {
+  border-radius: var(--ge-radius);
+  border: 1px solid var(--ge-sand-dark);
+  cursor: pointer;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+.ge-product__thumbs img.is-active { border-color: var(--ge-gold); }
+
+.ge-product__title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--ge-espresso);
+  margin-top: 0.5rem;
+}
+/* WooCommerce ships a green default for prices; override everywhere. */
+.woocommerce div.product p.price,
+.woocommerce div.product span.price,
+.woocommerce ul.products li.product .price,
+.woocommerce .price,
+.woocommerce-Price-amount {
+  color: var(--ge-espresso);
+  font-family: var(--ge-font-ui);
+  font-weight: 600;
+}
+.woocommerce div.product p.price,
+.woocommerce div.product span.price {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+.woocommerce div.product p.price del,
+.woocommerce .price del { opacity: 0.5; font-weight: 400; margin-right: 0.5rem; }
+.woocommerce div.product p.price ins,
+.woocommerce .price ins { text-decoration: none; }
+
+.ge-product__price {
+  margin-top: 1rem;
+  font-family: var(--ge-font-ui);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ge-espresso);
+}
+.ge-product__price del { opacity: 0.5; font-weight: 400; margin-right: 0.5rem; }
+.ge-product__price ins { text-decoration: none; }
+
+.ge-product__meta {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1rem;
+  border-block: 1px solid var(--ge-sand-dark);
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ge-stone);
+}
+.ge-product__meta strong { color: var(--ge-espresso); font-weight: 600; }
+
+.ge-product__desc { margin-top: 1.5rem; color: var(--ge-stone); line-height: 1.75; }
+
+.ge-coa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.125rem;
+  border: 1px solid var(--ge-gold);
+  border-radius: var(--ge-radius);
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ge-gold-deep);
+}
+.ge-coa:hover { background: rgba(194, 162, 95, 0.1); }
+
+/* Add to cart */
+.ge-product form.cart {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+.quantity input[type="number"] {
+  width: 5rem;
+  padding: 0.875rem 0.75rem;
+  border: 1px solid var(--ge-sand-dark);
+  border-radius: var(--ge-radius);
+  background: var(--ge-cream);
+  font-family: var(--ge-font-ui);
+  text-align: center;
+  color: var(--ge-espresso);
+}
+
+.woocommerce button.button,
+.woocommerce a.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.ge-product .single_add_to_cart_button {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  border: 0;
+  border-radius: var(--ge-radius);
+  background-color: var(--ge-espresso);
+  color: var(--ge-gold);
+  font-family: var(--ge-font-ui);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  transition: background-color 0.3s ease, transform 0.3s var(--ge-ease);
+}
+.woocommerce button.button:hover,
+.woocommerce a.button:hover,
+.woocommerce input.button:hover,
+.ge-product .single_add_to_cart_button:hover {
+  background-color: var(--ge-charcoal);
+  transform: translateY(-2px);
+}
+.woocommerce button.button.alt,
+.woocommerce a.button.alt,
+.woocommerce input.button.alt {
+  background-color: var(--ge-gold);
+  color: var(--ge-espresso);
+}
+.woocommerce button.button.alt:hover,
+.woocommerce a.button.alt:hover { background-color: var(--ge-gold-mid); }
+
+/* Disabled state. WooCommerce ships a lavender default here, which shows on
+   every variable product before a variation is picked. Keep it on-brand. */
+.woocommerce button.button:disabled,
+.woocommerce button.button[disabled],
+.woocommerce button.button.alt:disabled,
+.woocommerce button.button.alt[disabled],
+.woocommerce button.button.alt.disabled,
+.woocommerce .single_add_to_cart_button.disabled,
+.woocommerce .single_add_to_cart_button:disabled {
+  background-color: var(--ge-sand-dark);
+  color: rgba(90, 74, 53, 0.65);
+  cursor: not-allowed;
+  opacity: 1;
+  transform: none;
+}
+.woocommerce button.button:disabled:hover,
+.woocommerce button.button.alt.disabled:hover,
+.woocommerce .single_add_to_cart_button.disabled:hover {
+  background-color: var(--ge-sand-dark);
+  transform: none;
+}
+
+/* Variations */
+.woocommerce div.product form.cart .variations {
+  width: 100%;
+  border-collapse: collapse;
+}
+.woocommerce div.product form.cart .variations td { padding-block: 0.5rem; }
+.woocommerce div.product form.cart .variations label {
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ge-stone);
+}
+.woocommerce div.product form.cart .variations select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--ge-sand-dark);
+  border-radius: var(--ge-radius);
+  background: var(--ge-cream);
+  color: var(--ge-espresso);
+}
+
+/* Tabs */
+.woocommerce-tabs { margin-top: 4rem; }
+.woocommerce-tabs ul.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--ge-sand-dark);
+  padding: 0;
+}
+.woocommerce-tabs ul.tabs li a {
+  display: inline-block;
+  padding-block: 0.875rem;
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ge-stone);
+  border-bottom: 2px solid transparent;
+}
+.woocommerce-tabs ul.tabs li.active a {
+  color: var(--ge-espresso);
+  border-bottom-color: var(--ge-gold);
+}
+.woocommerce-tabs .panel { padding-top: 1.5rem; color: var(--ge-stone); line-height: 1.75; }
+
+/* Cart and checkout tables */
+.woocommerce table.shop_table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--ge-cream);
+  border: 1px solid var(--ge-sand-dark);
+  border-radius: var(--ge-radius-md);
+  overflow: hidden;
+}
+.woocommerce table.shop_table th {
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-align: left;
+  padding: 1rem;
+  background: var(--ge-sand);
+  color: var(--ge-espresso);
+}
+.woocommerce table.shop_table td {
+  padding: 1rem;
+  border-top: 1px solid var(--ge-sand-dark);
+  color: var(--ge-stone);
+}
+
+.woocommerce .cart-collaterals,
+.woocommerce-checkout-review-order {
+  background: var(--ge-cream);
+  border: 1px solid var(--ge-sand-dark);
+  border-radius: var(--ge-radius-md);
+  padding: 1.5rem;
+}
+
+/* Related products */
+.related.products,
+.up-sells.products,
+.cross-sells { margin-top: 4rem; }
+.related.products > h2,
+.up-sells.products > h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ge-espresso);
+  margin-bottom: 0.5rem;
+}
+
+/* Research-use-only notice */
+.ge-rou {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--ge-sand-dark);
+  border-left: 3px solid var(--ge-gold);
+  border-radius: var(--ge-radius);
+  background: rgba(232, 217, 192, 0.35);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--ge-stone);
+}
+
+/* 12. FOOTER ============================================================== */
+
+.ge-footer {
+  background-color: var(--ge-espresso);
+  color: var(--ge-cream);
+}
+.ge-footer__inner {
+  max-width: var(--ge-max);
+  margin-inline: auto;
+  padding: 4rem var(--ge-gutter);
+}
+.ge-footer__signup {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  padding-bottom: 3.5rem;
+  margin-bottom: 3.5rem;
+  border-bottom: 1px solid rgba(194, 162, 95, 0.25);
+}
+.ge-footer__signup h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ge-gold-mid);
+}
+.ge-footer__signup p {
+  margin-top: 0.75rem;
+  max-width: 28rem;
+  font-family: var(--ge-font-elegant);
+  font-size: 1.0625rem;
+  color: rgba(250, 245, 234, 0.8);
+}
+
+.ge-footer__cols {
+  display: grid;
+  gap: 3rem;
+}
+.ge-footer__brand { text-align: center; }
+.ge-footer__brand img {
+  height: 4rem;
+  width: 4rem;
+  object-fit: contain;
+  margin-inline: auto;
+}
+.ge-footer__wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  margin-top: 0.75rem;
+}
+.ge-footer__wordmark span:first-child {
+  font-family: var(--ge-font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--ge-gold-mid);
+}
+.ge-footer__wordmark span:last-child {
+  font-family: var(--ge-font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--ge-gold);
+}
+.ge-footer__tagline {
+  margin-top: 1.25rem;
+  max-width: 24rem;
+  margin-inline: auto;
+  font-family: var(--ge-font-elegant);
+  font-size: 1.0625rem;
+  color: var(--ge-cream);
+}
+
+.ge-footer__col h4 {
+  font-family: var(--ge-font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: var(--ge-gold);
+}
+.ge-footer__col ul {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.ge-footer__col a { color: var(--ge-cream); }
+.ge-footer__col a:hover { color: var(--ge-gold); }
+
+.ge-footer__legal {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(194, 162, 95, 0.25);
+}
+.ge-footer__legal p {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgba(250, 245, 234, 0.7);
+}
+.ge-footer__copy {
+  margin-top: 1rem;
+  color: rgba(250, 245, 234, 0.5) !important;
+}
+
+.ge-social {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+.ge-social a { color: var(--ge-gold); }
+.ge-social a:hover { color: var(--ge-cream); }
+
+/* 13. AGE GATE ============================================================ */
+
+.ge-agegate {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background-color: var(--ge-espresso);
+}
+.ge-agegate[hidden] { display: none; }
+.ge-agegate__panel {
+  max-width: 30rem;
+  text-align: center;
+  animation: ge-rise-in 0.8s var(--ge-ease) both;
+}
+.ge-agegate__panel img {
+  height: 5rem;
+  width: 5rem;
+  object-fit: contain;
+  margin-inline: auto;
+}
+.ge-agegate__title {
+  margin-top: 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ge-cream);
+}
+.ge-agegate__body {
+  margin-top: 1rem;
+  color: var(--ge-sand);
+  line-height: 1.7;
+}
+.ge-agegate__actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.ge-agegate__deny {
+  margin-top: 1.5rem;
+  font-size: 0.8125rem;
+  color: rgba(232, 217, 192, 0.6);
+}
+body.ge-locked { overflow: hidden; }
+
+/* 14. FORMS =============================================================== */
+
+.ge-form {
+  display: grid;
+  gap: 0.75rem;
+}
+.ge-form__row {
+  display: grid;
+  gap: 0.75rem;
+  /* Single column on phones; two columns from 640px up. */
+  grid-template-columns: 1fr;
+}
+.ge-input,
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea,
+.woocommerce form .form-row select {
+  width: 100%;
+  padding: 0.8125rem 1rem;
+  border: 1px solid rgba(217, 201, 168, 0.35);
+  border-radius: var(--ge-radius);
+  background-color: rgba(250, 245, 234, 0.06);
+  color: var(--ge-cream);
+  font-family: var(--ge-font-body);
+  font-size: 0.9375rem;
+}
+.ge-input::placeholder { color: rgba(232, 217, 192, 0.5); }
+.ge-input:focus {
+  border-color: var(--ge-gold);
+  outline: none;
+}
+
+/* Light-background form fields (checkout, contact page) */
+.ge-form--light .ge-input,
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea,
+.woocommerce form .form-row select {
+  background-color: var(--ge-cream);
+  border-color: var(--ge-sand-dark);
+  color: var(--ge-espresso);
+}
+.ge-form--light .ge-input::placeholder { color: rgba(90, 74, 53, 0.5); }
+
+.woocommerce form .form-row label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ge-stone);
+}
+
+.ge-form__note {
+  font-size: 0.75rem;
+  color: rgba(232, 217, 192, 0.6);
+  line-height: 1.5;
+}
+.ge-form__status { font-size: 0.875rem; margin-top: 0.25rem; }
+.ge-form__status.is-ok { color: var(--ge-gold); }
+.ge-form__status.is-err { color: #e08b7f; }
+
+/* 15. ANIMATIONS ========================================================== */
+
+@keyframes ge-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes ge-sweep {
+  from { background-position: 200% 0; }
+  to   { background-position: -100% 0; }
+}
+@keyframes ge-sweep-bg {
+  from { background-position: 200% 0; }
+  to   { background-position: -100% 0; }
+}
+@keyframes ge-rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ge-marquee__track { animation: none; }
+  .ge-shimmer,
+  .ge-btn--shimmer {
+    animation: none;
+    background-position: 50% 0;
+  }
+}
+
+/* 16. RESPONSIVE ========================================================== */
+
+@media (min-width: 640px) {
+  .ge-hero__inner { min-height: 88vh; padding-block: 5rem; }
+  .ge-hero__sub { font-size: 1.25rem; }
+  .ge-hero__scrim {
+    background: linear-gradient(to right,
+      rgba(26, 10, 5, 0.6), rgba(26, 10, 5, 0.4), transparent);
+  }
+  .ge-btn { padding: 1rem 2rem; }
+  .ge-stat__num { font-size: 2.25rem; }
+  .ge-form__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 768px) {
+  .ge-footer__signup { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4rem; }
+  .ge-footer__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ge-footer__col { text-align: left; }
+  .ge-footer__legal { text-align: left; }
+  .ge-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  :root { --ge-gutter: 2rem; }
+  .ge-menu { display: flex; }
+  .ge-burger { display: none; }
+  .ge-mobile-menu { display: none !important; }
+  .ge-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .ge-quality__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+  .ge-quality { padding-block: 7rem; }
+  .ge-product { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4rem; }
+  .ge-shop { grid-template-columns: 1fr; }
+}
