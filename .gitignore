@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# This theme is deliberately build-free. If you ever add a build step,
+# uncomment the following and switch WordPress.com to Advanced deploy mode.
+# node_modules/
+# vendor/
