@@ -10,11 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $items = apply_filters( 'ge_marquee_items', array(
-	__( '99%+ VERIFIED PURITY', 'golden-era' ),
-	__( 'MANUFACTURED IN THE USA', 'golden-era' ),
-	__( 'RESEARCH FIRST APPROACH', 'golden-era' ),
-	__( 'COA FOR EVERY COMPOUND', 'golden-era' ),
-	__( 'RESEARCH GRADE', 'golden-era' ),
+	__( 'RESEARCH PRODUCT CATALOG', 'golden-era' ),
+	__( 'BATCH DOCUMENTATION', 'golden-era' ),
+	__( 'OBJECTIVE PRODUCT DETAILS', 'golden-era' ),
+	__( 'LOT-BASED TRACEABILITY', 'golden-era' ),
+	__( 'LABORATORY RESEARCH USE ONLY', 'golden-era' ),
 ) );
 
 // Duplicated so the -50% translate loops seamlessly.

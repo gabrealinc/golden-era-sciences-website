@@ -20,36 +20,36 @@ $vials = ge_asset( 'images/vials.jpg' );
 	<div class="ge-quality__inner">
 
 		<div>
-			<p class="ge-kicker ge-kicker--gold"><?php esc_html_e( 'Built Different', 'golden-era' ); ?></p>
+			<p class="ge-kicker ge-kicker--gold"><?php esc_html_e( 'Documentation First', 'golden-era' ); ?></p>
 
-			<h2 class="ge-quality__title"><?php esc_html_e( 'The Golden Standard', 'golden-era' ); ?></h2>
+			<h2 class="ge-quality__title"><?php esc_html_e( 'Clear Product Records', 'golden-era' ); ?></h2>
 
 			<hr class="ge-hairline ge-hairline--left">
 
 			<p class="ge-quality__body">
-				<?php esc_html_e( 'At Golden Era Sciences, we do not guess, we verify. Every batch is synthesized under strict GMP-aligned conditions and sent to independent U.S. laboratories for HPLC and MS testing. You get the data. You get the purity. No compromises.', 'golden-era' ); ?>
+				<?php esc_html_e( 'Review objective product specifications and available batch documentation before placing an order. Certificates of Analysis are organized by product SKU and lot so the applicable record is easy to locate.', 'golden-era' ); ?>
 			</p>
 
 			<div class="ge-stats">
 				<div class="ge-stat">
-					<p class="ge-stat__num">99%+</p>
-					<p class="ge-stat__label"><?php esc_html_e( 'Purity Guaranteed', 'golden-era' ); ?></p>
+					<p class="ge-stat__num"><?php esc_html_e( 'SKU', 'golden-era' ); ?></p>
+					<p class="ge-stat__label"><?php esc_html_e( 'Product Matching', 'golden-era' ); ?></p>
 				</div>
 				<div class="ge-stat">
-					<p class="ge-stat__num">100%</p>
-					<p class="ge-stat__label"><?php esc_html_e( 'U.S. Manufactured', 'golden-era' ); ?></p>
+					<p class="ge-stat__num"><?php esc_html_e( 'LOT', 'golden-era' ); ?></p>
+					<p class="ge-stat__label"><?php esc_html_e( 'Batch Traceability', 'golden-era' ); ?></p>
 				</div>
 			</div>
 
 			<p class="ge-pillars">
-				<?php esc_html_e( 'potency | purity | stability | safety | consistency', 'golden-era' ); ?>
+				<?php esc_html_e( 'identity | specifications | documentation | handling | traceability', 'golden-era' ); ?>
 			</p>
 
 			<div class="ge-btn-row">
 				<a class="ge-btn ge-btn--outline" href="<?php echo esc_url( ge_shop_url() ); ?>">
-					<?php esc_html_e( 'Shop All', 'golden-era' ); ?>
+					<?php esc_html_e( 'View All Peptides', 'golden-era' ); ?>
 				</a>
-				<a class="ge-btn ge-btn--shimmer" href="<?php echo esc_url( ge_shop_url() ); ?>">
+				<a class="ge-btn ge-btn--shimmer" href="<?php echo esc_url( ge_coa_library_url() ); ?>" target="_blank" rel="noopener noreferrer">
 					<?php esc_html_e( 'View COAs', 'golden-era' ); ?>
 				</a>
 			</div>

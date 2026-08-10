@@ -282,6 +282,7 @@ function ge_nav( $location, $args = array() ) {
 require_once GE_DIR . '/inc/faq-data.php';
 require_once GE_DIR . '/inc/subscribe.php';
 require_once GE_DIR . '/inc/customizer.php';
+require_once GE_DIR . '/inc/coa.php';
 
 if ( class_exists( 'WooCommerce' ) ) {
 	require_once GE_DIR . '/inc/woocommerce.php';

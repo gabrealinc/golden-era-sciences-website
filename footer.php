@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="ge-footer__signup">
 			<div>
-				<h3><?php esc_html_e( 'Join the Golden Era list', 'golden-era' ); ?></h3>
+				<h3><?php esc_html_e( 'Research Catalog Updates', 'golden-era' ); ?></h3>
 				<p><?php esc_html_e( 'Get new compound drops, restock alerts, and research updates by email.', 'golden-era' ); ?></p>
 			</div>
 			<?php get_template_part( 'template-parts/subscribe' ); ?>
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</span>
 				</a>
 				<p class="ge-footer__tagline">
-					<?php esc_html_e( 'Precision-crafted, rigorously tested peptides for the researchers who refuse to compromise.', 'golden-era' ); ?>
+					<?php esc_html_e( 'Research products with clear specifications and accessible batch documentation.', 'golden-era' ); ?>
 				</p>
 
 				<?php

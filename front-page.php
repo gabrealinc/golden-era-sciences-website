@@ -27,7 +27,7 @@ get_header();
 			<div class="ge-container">
 
 				<div class="ge-center">
-					<p class="ge-kicker"><?php esc_html_e( 'Featured Compounds', 'golden-era' ); ?></p>
+					<p class="ge-kicker"><?php esc_html_e( 'Featured Research Products', 'golden-era' ); ?></p>
 					<h2 class="ge-section-title"><?php esc_html_e( 'Research-Grade Peptide Catalog', 'golden-era' ); ?></h2>
 					<hr class="ge-hairline">
 				</div>
@@ -56,7 +56,7 @@ get_header();
 
 				<div class="ge-center" style="margin-top:3rem">
 					<a class="ge-btn ge-btn--dark" href="<?php echo esc_url( ge_shop_url() ); ?>">
-						<?php esc_html_e( 'Shop All', 'golden-era' ); ?>
+						<?php esc_html_e( 'View All Peptides', 'golden-era' ); ?>
 					</a>
 				</div>
 

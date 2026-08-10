@@ -22,6 +22,10 @@ function ge_customize_register( $wp_customize ) {
 	) );
 
 	$fields = array(
+		'ge_coa_feed_url' => array(
+			'label'       => __( 'COA index feed URL', 'golden-era' ),
+			'description' => __( 'Google Apps Script JSON feed for SKU-matched Certificates of Analysis.', 'golden-era' ),
+		),
 		'ge_instagram' => array(
 			'label'       => __( 'Instagram URL', 'golden-era' ),
 			'description' => __( 'Leave blank to hide the icon.', 'golden-era' ),
@@ -39,7 +43,7 @@ function ge_customize_register( $wp_customize ) {
 	);
 
 	foreach ( $fields as $id => $field ) {
-		$is_url = in_array( $id, array( 'ge_instagram', 'ge_tiktok' ), true );
+		$is_url = in_array( $id, array( 'ge_instagram', 'ge_tiktok', 'ge_coa_feed_url' ), true );
 
 		$wp_customize->add_setting( $id, array(
 			'default'           => '',

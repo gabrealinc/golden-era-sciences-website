@@ -97,11 +97,11 @@ function ge_faqs( $limit = null ) {
 		),
 		array(
 			'q' => __( 'What does "lyophilized" mean?', 'golden-era' ),
-			'a' => __( 'Lyophilization is a freeze-drying process that removes moisture from a compound. This helps improve stability, shelf life, and long-term storage reliability.', 'golden-era' ),
+			'a' => __( 'Lyophilization is a freeze-drying process that removes moisture from a compound. Product-specific handling requirements should be confirmed from the label and available batch documentation.', 'golden-era' ),
 		),
 		array(
 			'q' => __( 'What is the difference between lyophilized and non-lyophilized materials?', 'golden-era' ),
-			'a' => __( 'Lyophilized materials are freeze-dried for enhanced stability. Non-lyophilized materials are not freeze-dried and may require different handling conditions.', 'golden-era' ),
+			'a' => __( 'Lyophilized materials are freeze-dried. Non-lyophilized materials are not freeze-dried. Follow the handling information provided for the specific product.', 'golden-era' ),
 		),
 		array(
 			'q' => __( 'Why does the vial appear vacuum sealed?', 'golden-era' ),
