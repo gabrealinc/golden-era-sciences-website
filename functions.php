@@ -13,9 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GE_VERSION', '1.0.6' );
+define( 'GE_VERSION', '1.1.0' );
 define( 'GE_DIR', get_template_directory() );
 define( 'GE_URI', get_template_directory_uri() );
+
+require_once GE_DIR . '/inc/compliance-migration.php';
 
 /* -------------------------------------------------------------------------
  * Theme supports
@@ -282,6 +284,7 @@ function ge_nav( $location, $args = array() ) {
 require_once GE_DIR . '/inc/faq-data.php';
 require_once GE_DIR . '/inc/subscribe.php';
 require_once GE_DIR . '/inc/customizer.php';
+require_once GE_DIR . '/inc/coa.php';
 
 if ( class_exists( 'WooCommerce' ) ) {
 	require_once GE_DIR . '/inc/woocommerce.php';

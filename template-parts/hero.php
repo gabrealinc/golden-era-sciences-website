@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="ge-hero__media">
 		<video autoplay loop muted playsinline
-		       poster="<?php echo ge_asset( 'images/hero.jpg' ); ?>">
+		       poster="<?php echo ge_asset( 'images/hero-fallback.jpg' ); ?>">
 			<source src="<?php echo ge_asset( 'video/hero-loop.mp4' ); ?>" type="video/mp4">
 		</video>
 		<div class="ge-hero__scrim"></div>
@@ -34,14 +34,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</h1>
 
 			<p class="ge-hero__sub">
-				<?php esc_html_e( 'Precision-crafted, rigorously tested peptides for researchers who refuse to compromise on quality.', 'golden-era' ); ?>
+				<?php esc_html_e( 'Research products presented with clear specifications and accessible batch documentation.', 'golden-era' ); ?>
 			</p>
 
 			<div class="ge-btn-row">
 				<a class="ge-btn ge-btn--gold" href="<?php echo esc_url( ge_shop_url() ); ?>">
-					<?php esc_html_e( 'Shop Now', 'golden-era' ); ?>
+					<?php esc_html_e( 'View Research Catalog', 'golden-era' ); ?>
 				</a>
-				<a class="ge-btn ge-btn--outline" href="<?php echo esc_url( ge_shop_url() ); ?>">
+				<a class="ge-btn ge-btn--outline" href="<?php echo esc_url( ge_coa_library_url() ); ?>" target="_blank" rel="noopener noreferrer">
 					<?php esc_html_e( 'View COAs', 'golden-era' ); ?>
 				</a>
 			</div>

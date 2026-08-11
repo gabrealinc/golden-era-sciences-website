@@ -202,13 +202,18 @@ from Google Fonts in `functions.php`.
 
 ### Certificates of Analysis
 
-The COA button on a product page reads a custom field. Add it in the product
-editor under Custom Fields:
+The COA button first looks up the product SKU in the Golden Era Sciences Google
+Drive COA feed. If an exact SKU match is unavailable, it opens the shared COA
+library. The legacy product custom field remains supported as a fallback:
 
 - Key: `coa_url`
 - Value: the full `https://…` link to the PDF
 
-No field, no button. `coa`, `_coa_url` and `certificate_of_analysis` also work.
+`coa`, `_coa_url` and `certificate_of_analysis` also work as legacy field names.
+
+Name PDFs `SKU__LOT-NUMBER__YYYY-MM-DD.pdf`. Adding or replacing a correctly
+named PDF in the connected Drive folder updates the website feed without a
+theme deploy once the included Apps Script has been published.
 
 ### Newsletter signups
 

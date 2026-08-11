@@ -16,8 +16,8 @@ get_header( 'shop' );
 $is_tax     = is_product_taxonomy();
 $page_title = $is_tax ? single_term_title( '', false ) : __( 'All Peptides', 'golden-era' );
 $page_desc  = $is_tax
-	? wp_strip_all_tags( term_description() )
-	: __( 'Every compound is independently tested, fully traceable, and backed by science.', 'golden-era' );
+	? ''
+	: __( 'Browse objective product specifications and available batch documentation for the Golden Era Sciences research catalog.', 'golden-era' );
 ?>
 
 <header class="ge-page-head">
@@ -50,27 +50,9 @@ $page_desc  = $is_tax
 					<?php esc_html_e( 'All Products', 'golden-era' ); ?>
 				</a>
 
-				<?php
-				$categories = get_terms( array(
-					'taxonomy'   => 'product_cat',
-					'hide_empty' => true,
-					'orderby'    => 'name',
-				) );
-
-				if ( ! is_wp_error( $categories ) ) :
-					foreach ( $categories as $category ) :
-						if ( 'uncategorized' === $category->slug ) {
-							continue;
-						}
-						?>
-						<a class="ge-chip <?php echo ( $current_cat === $category->term_id ) ? 'is-active' : ''; ?>"
-						   href="<?php echo esc_url( get_term_link( $category ) ); ?>">
-							<?php echo esc_html( $category->name ); ?>
-						</a>
-						<?php
-					endforeach;
-				endif;
-				?>
+				<a class="ge-chip" href="<?php echo esc_url( add_query_arg( 'orderby', 'popularity', $shop_url ) ); ?>">
+					<?php esc_html_e( 'Best Selling Peptides', 'golden-era' ); ?>
+				</a>
 			</div>
 
 			<div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">

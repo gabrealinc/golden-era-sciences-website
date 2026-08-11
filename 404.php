@@ -19,7 +19,7 @@ get_header();
 		<p class="ge-page-head__sub"><?php esc_html_e( 'The page you are looking for has moved or no longer exists.', 'golden-era' ); ?></p>
 		<div class="ge-btn-row" style="justify-content:center">
 			<a class="ge-btn ge-btn--gold" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Back Home', 'golden-era' ); ?></a>
-			<a class="ge-btn ge-btn--outline" href="<?php echo esc_url( ge_shop_url() ); ?>"><?php esc_html_e( 'Shop All Peptides', 'golden-era' ); ?></a>
+			<a class="ge-btn ge-btn--outline" href="<?php echo esc_url( ge_shop_url() ); ?>"><?php esc_html_e( 'View All Peptides', 'golden-era' ); ?></a>
 		</div>
 	</div>
 </main>

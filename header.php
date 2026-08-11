@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <header class="ge-header">
 
 	<a class="ge-promo" href="<?php echo esc_url( ge_shop_url() ); ?>">
-		<?php echo esc_html( apply_filters( 'ge_promo_text', '✦ SHOP NOW →' ) ); ?>
+		<?php echo esc_html( apply_filters( 'ge_promo_text', '✦ VIEW RESEARCH CATALOG →' ) ); ?>
 	</a>
 
 	<nav class="ge-nav" aria-label="<?php esc_attr_e( 'Primary', 'golden-era' ); ?>">

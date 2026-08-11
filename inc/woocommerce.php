@@ -149,11 +149,6 @@ function ge_product_meta() {
 		$rows[] = array( __( 'Purity', 'golden-era' ), $purity );
 	}
 
-	$cats = wc_get_product_category_list( $product->get_id(), ', ' );
-	if ( $cats ) {
-		$rows[] = array( __( 'Category', 'golden-era' ), wp_strip_all_tags( $cats ) );
-	}
-
 	$rows[] = array(
 		__( 'Availability', 'golden-era' ),
 		$product->is_in_stock() ? __( 'In stock', 'golden-era' ) : __( 'Out of stock', 'golden-era' ),
@@ -210,8 +205,12 @@ function ge_product_coa() {
 		return;
 	}
 
-	$url = '';
+	$url        = ge_coa_url_for_sku( $product->get_sku() );
+	$has_match  = (bool) $url;
 	foreach ( array( 'coa_url', 'coa', '_coa_url', 'certificate_of_analysis' ) as $key ) {
+		if ( $url ) {
+			break;
+		}
 		$value = get_post_meta( $product->get_id(), $key, true );
 		if ( is_string( $value ) && preg_match( '#^https?://#i', trim( $value ) ) ) {
 			$url = trim( $value );
@@ -220,13 +219,15 @@ function ge_product_coa() {
 	}
 
 	if ( ! $url ) {
-		return;
+		$url = ge_coa_library_url();
 	}
 
 	printf(
 		'<a class="ge-coa" href="%s" target="_blank" rel="noopener noreferrer">%s</a>',
 		esc_url( $url ),
-		esc_html__( 'View Certificate of Analysis', 'golden-era' )
+		$has_match
+			? esc_html__( 'View Certificate of Analysis', 'golden-era' )
+			: esc_html__( 'Browse COA Library', 'golden-era' )
 	);
 }
 
