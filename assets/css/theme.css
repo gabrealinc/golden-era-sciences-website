@@ -1198,6 +1198,51 @@ button { font-family: inherit; cursor: pointer; }
   padding: 1.5rem;
 }
 
+/* WooCommerce Cart and Checkout blocks use a separate class system from the
+   classic templates. Bring both flows into the same visual language. */
+.wc-block-cart,
+.wc-block-checkout {
+  color: var(--ge-espresso);
+  font-family: var(--ge-font-body);
+}
+.wc-block-components-sidebar,
+.wc-block-components-totals-wrapper,
+.wc-block-checkout__main,
+.wc-block-components-order-summary {
+  min-width: 0;
+}
+.wc-block-components-title,
+.wc-block-cart__totals-title,
+.wc-block-components-checkout-step__title {
+  font-family: var(--ge-font-display) !important;
+  color: var(--ge-espresso) !important;
+}
+.wc-block-components-button,
+.wc-block-cart__submit-button {
+  min-height: 3.25rem;
+  border-radius: var(--ge-radius) !important;
+  background: var(--ge-espresso) !important;
+  color: var(--ge-gold) !important;
+  font-family: var(--ge-font-ui) !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.wc-block-components-text-input input,
+.wc-block-components-combobox .components-combobox-control__input,
+.wc-block-components-textarea {
+  border-color: var(--ge-sand-dark) !important;
+  border-radius: var(--ge-radius) !important;
+  background: var(--ge-cream) !important;
+  color: var(--ge-espresso) !important;
+}
+.wc-block-components-product-name,
+.wc-block-components-totals-item__value,
+.wc-block-components-formatted-money-amount {
+  color: var(--ge-espresso) !important;
+}
+
 /* Related products */
 .related.products,
 .up-sells.products,
@@ -1294,6 +1339,13 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--ge-font-elegant);
   font-size: 1.0625rem;
   color: var(--ge-cream);
+}
+.ge-footer__contact {
+  margin-top: 0.75rem;
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--ge-gold);
 }
 
 .ge-footer__col h4 {
@@ -1453,6 +1505,12 @@ body.ge-locked { overflow: hidden; }
   width: 100%;
   max-width: 52rem;
   margin-inline: auto;
+}
+.ge-prose .ges-contact-wrap {
+  width: 100%;
+  max-width: 52rem !important;
+  margin-inline: auto !important;
+  padding: 0 !important;
 }
 .jetpack-contact-form-container form {
   display: grid;

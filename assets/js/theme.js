@@ -203,6 +203,33 @@
     });
   }
 
+  /* --- Product variations ----------------------------------------------
+   * Imported products often have attributes with only one valid choice.
+   * Select those automatically so the customer only makes real decisions.
+   */
+  function initSingleChoiceVariations() {
+    var forms = document.querySelectorAll('form.variations_form');
+    Array.prototype.forEach.call(forms, function (form) {
+      var selects = form.querySelectorAll('select');
+      Array.prototype.forEach.call(selects, function (select) {
+        var choices = Array.prototype.filter.call(select.options, function (option) {
+          return option.value !== '' && !option.disabled;
+        });
+        if (!select.value && choices.length === 1) {
+          select.value = choices[0].value;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
+  }
+
+  function initAccessibilityDetails() {
+    var galleryTrigger = document.querySelector('.woocommerce-product-gallery__trigger');
+    if (galleryTrigger && !galleryTrigger.getAttribute('aria-label')) {
+      galleryTrigger.setAttribute('aria-label', 'Open full-size product image');
+    }
+  }
+
   /* --- Init -------------------------------------------------------------- */
   function ready(fn) {
     if (document.readyState !== 'loading') {
@@ -217,5 +244,7 @@
     initMobileMenu();
     initFaq();
     initSubscribe();
+    initSingleChoiceVariations();
+    initAccessibilityDetails();
   });
 })();

@@ -57,7 +57,7 @@ if ( ! $faqs ) {
 		</div>
 
 		<?php if ( $show_all ) : ?>
-			<?php $faqs_page = ! empty( $args['faqs_url'] ) ? $args['faqs_url'] : home_url( '/faqs/' ); ?>
+			<?php $faqs_page = ! empty( $args['faqs_url'] ) ? $args['faqs_url'] : home_url( '/faq/' ); ?>
 			<div class="ge-center" style="margin-top:2.5rem">
 				<a class="ge-btn ge-btn--outline" style="color:var(--ge-espresso)"
 				   href="<?php echo esc_url( $faqs_page ); ?>">
