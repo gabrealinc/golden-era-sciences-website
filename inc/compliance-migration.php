@@ -175,12 +175,11 @@ function ge_compliance_contact_render_guard( $content ) {
 	if ( ! is_page( 'contact' ) ) {
 		return ge_remove_booking_links( $content );
 	}
-	$intro = '<p class="ges-contact-sub">Questions about products, orders, COAs, or wholesale? Reach out and we will get back to you within 24 to 48 hours.</p><p class="ges-contact-sub"><a href="mailto:info@goldenerasciences.com">info@goldenerasciences.com</a></p><p class="ges-contact-sub">Fill out the form below and our team will follow up by email.</p>';
-	$content = preg_replace(
-		'#(?:<p class="ges-contact-sub">Questions about products, orders, COAs, or wholesale\?.*?follow up by email\.</p>)+#s',
-		$intro,
-		$content
-	);
+	// The legacy editor saved its inline CSS as visible text after WordPress
+	// sanitized the style tag. page.php already supplies the approved header,
+	// so remove that entire duplicate legacy header before the form.
+	$content = preg_replace( '#^\s*(?:<style[^>]*>)?\s*\.ges-contact-wrap\{.*?\.ges-contact-sub\{.*?\}\s*(?:</style>)?\s*#s', '', $content, 1 );
+	$content = preg_replace( '#<div class="ges-contact-wrap">.*?</div>\s*#s', '', $content, 1 );
 	$content = preg_replace(
 		'#(<div class="jetpack_forms_contact-form-custom-success-message">).*?(</div>)#s',
 		'$1Thank you. Your inquiry has been received, and our team will follow up by email.$2',

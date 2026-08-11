@@ -28,6 +28,12 @@ while ( have_posts() ) :
 	<main id="main" tabindex="-1" class="ge-section">
 		<div class="ge-container">
 			<div class="ge-prose">
+				<?php if ( is_page( 'contact' ) ) : ?>
+					<div class="ge-contact-lead">
+						<a href="mailto:info@goldenerasciences.com">info@goldenerasciences.com</a>
+						<p><?php esc_html_e( 'Fill out the form below and our team will follow up by email within 24 to 48 hours.', 'golden-era' ); ?></p>
+					</div>
+				<?php endif; ?>
 				<?php
 				the_content();
 				wp_link_pages( array( 'before' => '<nav class="ge-center">', 'after' => '</nav>' ) );
