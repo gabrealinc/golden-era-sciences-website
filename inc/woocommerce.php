@@ -49,6 +49,22 @@ function ge_breadcrumb() {
 	) );
 }
 
+// Product categories are intentionally not part of the public information
+// architecture. Keep the breadcrumb useful without exposing "Uncategorized".
+add_filter( 'woocommerce_get_breadcrumb', 'ge_product_breadcrumbs' );
+function ge_product_breadcrumbs( $crumbs ) {
+	if ( ! is_product() ) {
+		return $crumbs;
+	}
+	$product = end( $crumbs );
+	$home    = reset( $crumbs );
+	return array(
+		$home,
+		array( __( 'All Peptides', 'golden-era' ), ge_shop_url() ),
+		$product,
+	);
+}
+
 /* -------------------------------------------------------------------------
  * Grid
  * ---------------------------------------------------------------------- */

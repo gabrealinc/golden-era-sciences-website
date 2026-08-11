@@ -297,6 +297,34 @@ if ( class_exists( 'WooCommerce' ) ) {
 add_filter( 'excerpt_more', function () { return '…'; } );
 add_filter( 'excerpt_length', function () { return 22; }, 999 );
 
+add_filter( 'document_title_parts', 'ge_page_title_consistency' );
+function ge_page_title_consistency( $title ) {
+	if ( function_exists( 'is_checkout' ) && is_checkout() && ! is_order_received_page() ) {
+		$title['title'] = __( 'Checkout', 'golden-era' );
+	} elseif ( function_exists( 'is_shop' ) && is_shop() ) {
+		$title['title'] = __( 'All Peptides', 'golden-era' );
+	}
+	return $title;
+}
+
+// Product categories and tags are not public browsing structures on this
+// research catalog, so do not advertise them in XML sitemaps.
+add_filter( 'wp_sitemaps_taxonomies', 'ge_public_sitemap_taxonomies' );
+function ge_public_sitemap_taxonomies( $taxonomies ) {
+	unset( $taxonomies['product_cat'], $taxonomies['product_tag'] );
+	return $taxonomies;
+}
+
+// page.php already renders the page's primary heading. Preserve authored
+// headings as section headings so every standard page has one clear H1.
+add_filter( 'the_content', 'ge_normalize_page_heading_hierarchy', 5 );
+function ge_normalize_page_heading_hierarchy( $content ) {
+	if ( ! is_page() || is_front_page() ) {
+		return $content;
+	}
+	return preg_replace( '#<h1(\s[^>]*)?>(.*?)</h1>#is', '<h2$1>$2</h2>', $content );
+}
+
 // Strip the WordPress admin bar margin that offsets the sticky header.
 add_action( 'wp_head', function () {
 	if ( is_admin_bar_showing() ) {

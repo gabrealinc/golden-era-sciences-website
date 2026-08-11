@@ -173,13 +173,43 @@ function ge_migrate_contact_page( &$backup ) {
 add_filter( 'the_content', 'ge_compliance_contact_render_guard', 99 );
 function ge_compliance_contact_render_guard( $content ) {
 	if ( ! is_page( 'contact' ) ) {
-		return $content;
+		return ge_remove_booking_links( $content );
 	}
-	return preg_replace(
+	// The legacy editor saved its inline CSS as visible text after WordPress
+	// sanitized the style tag. page.php already supplies the approved header,
+	// so remove that entire duplicate legacy header before the form.
+	$content = preg_replace( '#^\s*(?:<style[^>]*>)?\s*\.ges-contact-wrap\{.*?\.ges-contact-sub\{.*?\}\s*(?:</style>)?\s*#s', '', $content, 1 );
+	$content = preg_replace( '#<div class="ges-contact-wrap">.*?</div>\s*#s', '', $content, 1 );
+	$content = preg_replace(
 		'#(<div class="jetpack_forms_contact-form-custom-success-message">).*?(</div>)#s',
 		'$1Thank you. Your inquiry has been received, and our team will follow up by email.$2',
 		$content
 	);
+	$content = preg_replace( '#<button\b[^>]*class=["\'][^"\']*pushbutton-wide[^"\']*["\'][^>]*>.*?</button>#is', '', $content );
+	return ge_remove_booking_links( $content );
+}
+
+function ge_remove_booking_links( $content ) {
+	return preg_replace( '#<a\b[^>]*href=["\'][^"\']*(?:calendar\.google\.com/calendar/.*/appointments|calendly\.com)[^"\']*["\'][^>]*>.*?</a>#is', '', $content );
+}
+
+add_filter( 'wp_nav_menu_objects', 'ge_remove_booking_menu_items' );
+function ge_remove_booking_menu_items( $items ) {
+	return array_values( array_filter( $items, function ( $item ) {
+		$url = isset( $item->url ) ? $item->url : '';
+		return ! preg_match( '#(?:calendar\.google\.com/calendar/.*/appointments|calendly\.com)#i', $url );
+	} ) );
+}
+
+// Keep every Jetpack form submission on the Contact page routed to the single
+// approved inbox, regardless of the form author's account email.
+add_filter( 'render_block_data', 'ge_contact_form_recipient', 20, 2 );
+function ge_contact_form_recipient( $parsed_block, $source_block ) {
+	if ( is_page( 'contact' ) && isset( $parsed_block['blockName'] ) && 'jetpack/contact-form' === $parsed_block['blockName'] ) {
+		$parsed_block['attrs']['to']                 = 'info@goldenerasciences.com';
+		$parsed_block['attrs']['emailNotifications'] = 'yes';
+	}
+	return $parsed_block;
 }
 
 function ge_retire_legacy_pages( &$backup ) {

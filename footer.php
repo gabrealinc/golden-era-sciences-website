@@ -36,6 +36,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<p class="ge-footer__tagline">
 					<?php esc_html_e( 'Research products with clear specifications and accessible batch documentation.', 'golden-era' ); ?>
 				</p>
+				<p class="ge-footer__contact">
+					<a href="mailto:info@goldenerasciences.com">info@goldenerasciences.com</a>
+				</p>
 
 				<?php
 				$socials = array(
@@ -59,12 +62,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<div class="ge-footer__col">
 				<h4><?php esc_html_e( 'Explore', 'golden-era' ); ?></h4>
-				<?php ge_nav( 'footer_explore' ); ?>
+				<ul>
+					<li><a href="<?php echo esc_url( ge_shop_url() ); ?>"><?php esc_html_e( 'All Peptides', 'golden-era' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php esc_html_e( 'About', 'golden-era' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/faq/' ) ); ?>"><?php esc_html_e( 'FAQs', 'golden-era' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact', 'golden-era' ); ?></a></li>
+				</ul>
 			</div>
 
 			<div class="ge-footer__col">
 				<h4><?php esc_html_e( 'Legal', 'golden-era' ); ?></h4>
-				<?php ge_nav( 'footer_legal' ); ?>
+				<ul>
+					<li><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><?php esc_html_e( 'Privacy Policy', 'golden-era' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/terms-conditions/' ) ); ?>"><?php esc_html_e( 'Terms & Conditions', 'golden-era' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/shipping-returns/' ) ); ?>"><?php esc_html_e( 'Shipping & Returns', 'golden-era' ); ?></a></li>
+				</ul>
 			</div>
 
 		</div>
