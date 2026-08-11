@@ -3,8 +3,7 @@
  * Newsletter subscribe form.
  *
  * By default this posts to the theme's own AJAX handler (inc/subscribe.php),
- * which stores the subscriber and fires the `ge_new_subscriber` action so a
- * mail plugin can pick it up.
+ * which stores the subscriber and synchronizes the approved subscriber sheet.
  *
  * To use MailPoet, Jetpack, or another provider's form instead, return their
  * shortcode from this filter:
@@ -62,12 +61,17 @@ if ( $shortcode ) {
 	       placeholder="<?php esc_attr_e( 'Email address', 'golden-era' ); ?>"
 	       autocomplete="email" required>
 
+	<label class="ge-screen-reader-text" for="ge-phone"><?php esc_html_e( 'Phone number (optional)', 'golden-era' ); ?></label>
+	<input class="ge-input" id="ge-phone" name="phone_number" type="tel"
+	       placeholder="<?php esc_attr_e( 'Phone number (optional)', 'golden-era' ); ?>"
+	       autocomplete="tel" inputmode="tel">
+
 	<button class="ge-btn ge-btn--gold" type="submit">
 		<?php esc_html_e( 'Subscribe', 'golden-era' ); ?>
 	</button>
 
 	<p class="ge-form__note">
-		<?php esc_html_e( 'By subscribing you agree to receive research updates. Unsubscribe any time.', 'golden-era' ); ?>
+		<?php esc_html_e( 'By subscribing, you agree to receive email updates. If you provide a phone number, you also consent to receive recurring SMS updates. Message and data rates may apply. Reply STOP to opt out.', 'golden-era' ); ?>
 	</p>
 
 	<p class="ge-form__status" data-ge-status role="status" aria-live="polite"></p>

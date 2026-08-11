@@ -1443,6 +1443,9 @@ body.ge-locked { overflow: hidden; }
   display: grid;
   gap: 0.75rem;
 }
+.ge-form > .ge-btn {
+  width: 100%;
+}
 .ge-form__row {
   display: grid;
   gap: 0.75rem;

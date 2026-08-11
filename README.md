@@ -12,7 +12,7 @@ biological product categories, repairs catalog menu links, and refreshes
 product image alt text and common SEO description fields.
 
 The migration runs once and saves a private pre-change snapshot in the
-`ge_compliance_migration_backup_2026-08-11_2` WordPress option before marking
+`ge_compliance_migration_backup_2026-08-11_3` WordPress option before marking
 the release complete. Theme files and database content are therefore
 separately recoverable.
 
@@ -143,18 +143,20 @@ with best sellers so the section is never empty.
 
 ### Certificates of Analysis
 
-The COA button on a product page reads a custom field. Add it in the product
-editor under Custom Fields:
+The COA button looks up the product SKU in the connected Golden Era Sciences
+Google Drive library. Name PDFs `SKU__LOT-NUMBER__YYYY-MM-DD.pdf`; adding or
+replacing a correctly named file updates the site without a theme deploy.
 
-- Key: `coa_url`
-- Value: the full `https://…` link to the PDF
-
-No field, no button. `coa`, `_coa_url`, and `certificate_of_analysis` also work.
+If there is no exact SKU match, the button opens the shared COA library. The
+legacy `coa_url`, `coa`, `_coa_url`, and `certificate_of_analysis` product
+custom fields remain supported as fallbacks.
 
 ### Newsletter signups
 
-Out of the box, the footer form stores subscribers in WordPress under
-**Tools → Subscribers** and fires a `ge_new_subscriber` action.
+The footer form stores a private backup under **Tools → Subscribers** and
+synchronizes first name, last name, email, optional phone, and consent status
+to the approved Google Sheet. Email Opt In is always true for a completed
+signup. SMS Opt In is true only when the visitor supplies a phone number.
 
 To use MailPoet, Jetpack, or another provider's form instead, drop this in a
 site-specific plugin or `functions.php`:
@@ -162,19 +164,6 @@ site-specific plugin or `functions.php`:
 ```php
 add_filter( 'ge_subscribe_shortcode', function () {
     return '[mailpoet_form id="1"]';
-} );
-```
-
-To forward signups to WooCommerce as customers:
-
-```php
-add_action( 'ge_new_subscriber', function ( $data ) {
-    if ( ! email_exists( $data['email'] ) ) {
-        wc_create_new_customer( $data['email'], '', '', array(
-            'first_name' => $data['first_name'],
-            'last_name'  => $data['last_name'],
-        ) );
-    }
 } );
 ```
 
