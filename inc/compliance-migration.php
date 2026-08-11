@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GE_COMPLIANCE_MIGRATION_VERSION', '2026-08-11.2' );
+define( 'GE_COMPLIANCE_MIGRATION_VERSION', '2026-08-11.3' );
 
 add_action( 'init', 'ge_run_compliance_migration', 30 );
 
@@ -44,6 +44,7 @@ function ge_run_compliance_migration() {
 	ge_migrate_contact_page( $backup );
 	ge_retire_legacy_pages( $backup );
 	ge_remove_biological_categories( $backup );
+	ge_assign_research_product_category( $backup );
 	ge_repair_catalog_menu_links( $backup );
 
 	// add_option() deliberately refuses to overwrite the original snapshot.
@@ -180,6 +181,7 @@ function ge_compliance_contact_render_guard( $content ) {
 	// so remove that entire duplicate legacy header before the form.
 	$content = preg_replace( '#^\s*(?:<style[^>]*>)?\s*\.ges-contact-wrap\{.*?\.ges-contact-sub\{.*?\}\s*(?:</style>)?\s*#s', '', $content, 1 );
 	$content = preg_replace( '#<div class="ges-contact-wrap">.*?</div>\s*#s', '', $content, 1 );
+	$content = preg_replace( '#<p class="ges-contact-sub">.*?</p>\s*#s', '', $content );
 	$content = preg_replace(
 		'#(<div class="jetpack_forms_contact-form-custom-success-message">).*?(</div>)#s',
 		'$1Thank you. Your inquiry has been received, and our team will follow up by email.$2',
@@ -243,6 +245,35 @@ function ge_remove_biological_categories( &$backup ) {
 		}
 		$backup['terms'][ $term->term_id ] = array( 'name' => $term->name, 'slug' => $term->slug, 'description' => $term->description );
 		wp_delete_term( $term->term_id, 'product_cat' );
+	}
+}
+
+function ge_assign_research_product_category( &$backup ) {
+	$term = term_exists( 'Research Products', 'product_cat' );
+	if ( ! $term ) {
+		$term = wp_insert_term( 'Research Products', 'product_cat', array( 'slug' => 'research-products' ) );
+	}
+	if ( is_wp_error( $term ) ) {
+		return;
+	}
+	$term_id = (int) ( is_array( $term ) ? $term['term_id'] : $term );
+	update_option( 'default_product_cat', $term_id );
+
+	$product_ids = get_posts( array(
+		'post_type'      => 'product',
+		'post_status'    => 'any',
+		'posts_per_page' => -1,
+		'fields'         => 'ids',
+	) );
+	foreach ( $product_ids as $product_id ) {
+		$old_terms = wp_get_object_terms( $product_id, 'product_cat', array( 'fields' => 'ids' ) );
+		$backup['post_meta'][ $product_id ]['_product_cat_terms'] = is_wp_error( $old_terms ) ? array() : $old_terms;
+		wp_set_object_terms( $product_id, array( $term_id ), 'product_cat', false );
+	}
+
+	$uncategorized = get_term_by( 'slug', 'uncategorized', 'product_cat' );
+	if ( $uncategorized && (int) $uncategorized->term_id !== $term_id ) {
+		wp_delete_term( $uncategorized->term_id, 'product_cat' );
 	}
 }
 

@@ -217,8 +217,11 @@ theme deploy once the included Apps Script has been published.
 
 ### Newsletter signups
 
-The footer form stores subscribers under **Tools → Subscribers** and fires a
-`ge_new_subscriber` action. To use MailPoet or another provider instead:
+The footer form stores a private backup under **Tools → Subscribers** and
+synchronizes each signup to the approved Google Sheet. Email Opt In is true
+for every completed signup; SMS Opt In is true only when the optional phone
+number is supplied. To replace the built-in form with MailPoet or another
+provider instead:
 
 ```php
 add_filter( 'ge_subscribe_shortcode', function () {
