@@ -110,11 +110,19 @@ a {
 }
 
 img,
-video {
+video,
+iframe,
+svg {
   max-width: 100%;
   height: auto;
-  display: block;
 }
+img,
+video { display: block; }
+
+input,
+select,
+textarea,
+button { max-width: 100%; }
 
 ul, ol { margin: 0; padding: 0; list-style: none; }
 
@@ -514,7 +522,7 @@ button { font-family: inherit; cursor: pointer; }
 .ge-grid {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   margin-top: 3rem;
 }
 
@@ -1438,6 +1446,70 @@ body.ge-locked { overflow: hidden; }
 .ge-form__status.is-ok { color: var(--ge-gold); }
 .ge-form__status.is-err { color: #e08b7f; }
 
+/* Jetpack contact form — mobile-first and isolated from plugin defaults. */
+.jetpack-contact-form-container,
+.wp-block-jetpack-contact-form,
+.jetpack-contact-form-container form {
+  width: 100%;
+  max-width: 52rem;
+  margin-inline: auto;
+}
+.jetpack-contact-form-container form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+.jetpack-contact-form-container .grunion-field-wrap,
+.jetpack-contact-form-container .grunion-field,
+.jetpack-contact-form-container .contact-form__select-wrapper,
+.jetpack-contact-form-container .contact-form__select-element-wrapper,
+.jetpack-contact-form-container input,
+.jetpack-contact-form-container select,
+.jetpack-contact-form-container textarea {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0;
+}
+.jetpack-contact-form-container .grunion-field-wrap {
+  margin: 0 !important;
+}
+.jetpack-contact-form-container .grunion-field-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--ge-font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ge-stone);
+}
+.jetpack-contact-form-container input,
+.jetpack-contact-form-container select,
+.jetpack-contact-form-container textarea {
+  padding: 0.875rem 1rem !important;
+  border: 1px solid var(--ge-sand-dark) !important;
+  border-radius: var(--ge-radius) !important;
+  background: var(--ge-cream) !important;
+  color: var(--ge-espresso) !important;
+  font-family: var(--ge-font-body) !important;
+  font-size: 1rem !important;
+  line-height: 1.5;
+}
+.jetpack-contact-form-container input,
+.jetpack-contact-form-container select { min-height: 3.25rem; }
+.jetpack-contact-form-container textarea {
+  min-height: clamp(11rem, 32vw, 18rem);
+  resize: vertical;
+}
+.jetpack-contact-form-container .ges-submit-btn {
+  width: 100%;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+.jetpack-contact-form-container .contact-submit { margin: 0; }
+.jetpack-contact-form-container .contact-submit .pushbutton-wide { display: none !important; }
+
 /* 15. ANIMATIONS ========================================================== */
 
 @keyframes ge-marquee {
@@ -1486,6 +1558,21 @@ body.ge-locked { overflow: hidden; }
   .ge-btn { padding: 1rem 2rem; }
   .ge-stat__num { font-size: 2.25rem; }
   .ge-form__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ge-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jetpack-contact-form-container form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 1rem;
+  }
+  .jetpack-contact-form-container .grunion-field-width-100-wrap,
+  .jetpack-contact-form-container form > div:has(.ges-submit-btn),
+  .jetpack-contact-form-container .contact-submit,
+  .jetpack-contact-form-container .akismet-fields-container {
+    grid-column: 1 / -1;
+  }
+  .jetpack-contact-form-container .ges-submit-btn {
+    width: auto;
+    min-width: 14rem !important;
+  }
 }
 
 @media (min-width: 768px) {

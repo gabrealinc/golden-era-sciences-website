@@ -186,6 +186,7 @@ function ge_compliance_contact_render_guard( $content ) {
 		'$1Thank you. Your inquiry has been received, and our team will follow up by email.$2',
 		$content
 	);
+	$content = preg_replace( '#<button\b[^>]*class=["\'][^"\']*pushbutton-wide[^"\']*["\'][^>]*>.*?</button>#is', '', $content );
 	return ge_remove_booking_links( $content );
 }
 
