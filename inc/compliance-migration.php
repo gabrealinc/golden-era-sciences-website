@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GE_COMPLIANCE_MIGRATION_VERSION', '2026-08-11.1' );
+define( 'GE_COMPLIANCE_MIGRATION_VERSION', '2026-08-11.2' );
 
 add_action( 'init', 'ge_run_compliance_migration', 30 );
 
@@ -164,6 +164,7 @@ function ge_migrate_contact_page( &$backup ) {
 	$content = str_replace( array( 'Get in Touch', 'Let&#8217;s talk research.', "Let’s talk research." ), array( 'Contact Golden Era Sciences', 'Contact Us', 'Contact Us' ), $content );
 	$content = preg_replace( '#<p class="ges-contact-sub">.*?</p>#s', '<p class="ges-contact-sub">Questions about products, orders, COAs, or wholesale? Reach out and we will get back to you within 24 to 48 hours.</p><p class="ges-contact-sub"><a href="mailto:info@goldenerasciences.com">info@goldenerasciences.com</a></p><p class="ges-contact-sub">Fill out the form below and our team will follow up by email.</p>', $content, 1 );
 	$content = preg_replace( '#<div class="ges-book-call-box">.*?</div>\s*</div>\s*<style>.*?</style>#s', '', $content );
+	$content = preg_replace( '#(<div class="jetpack_forms_contact-form-custom-success-message">).*?(</div>)#s', '$1Thank you. Your inquiry has been received, and our team will follow up by email.$2', $content );
 	wp_update_post( array( 'ID' => $page->ID, 'post_title' => 'Contact Us', 'post_excerpt' => 'Questions about products, orders, COAs, or wholesale? Contact Golden Era Sciences.', 'post_content' => $content ) );
 }
 

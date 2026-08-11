@@ -12,7 +12,7 @@ biological product categories, repairs catalog menu links, and refreshes
 product image alt text and common SEO description fields.
 
 The migration runs once and saves a private pre-change snapshot in the
-`ge_compliance_migration_backup_2026-08-11_1` WordPress option before marking
+`ge_compliance_migration_backup_2026-08-11_2` WordPress option before marking
 the release complete. Theme files and database content are therefore
 separately recoverable.
 
