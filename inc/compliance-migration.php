@@ -173,13 +173,43 @@ function ge_migrate_contact_page( &$backup ) {
 add_filter( 'the_content', 'ge_compliance_contact_render_guard', 99 );
 function ge_compliance_contact_render_guard( $content ) {
 	if ( ! is_page( 'contact' ) ) {
-		return $content;
+		return ge_remove_booking_links( $content );
 	}
-	return preg_replace(
+	$intro = '<p class="ges-contact-sub">Questions about products, orders, COAs, or wholesale? Reach out and we will get back to you within 24 to 48 hours.</p><p class="ges-contact-sub"><a href="mailto:info@goldenerasciences.com">info@goldenerasciences.com</a></p><p class="ges-contact-sub">Fill out the form below and our team will follow up by email.</p>';
+	$content = preg_replace(
+		'#(?:<p class="ges-contact-sub">Questions about products, orders, COAs, or wholesale\?.*?follow up by email\.</p>)+#s',
+		$intro,
+		$content
+	);
+	$content = preg_replace(
 		'#(<div class="jetpack_forms_contact-form-custom-success-message">).*?(</div>)#s',
 		'$1Thank you. Your inquiry has been received, and our team will follow up by email.$2',
 		$content
 	);
+	return ge_remove_booking_links( $content );
+}
+
+function ge_remove_booking_links( $content ) {
+	return preg_replace( '#<a\b[^>]*href=["\'][^"\']*(?:calendar\.google\.com/calendar/.*/appointments|calendly\.com)[^"\']*["\'][^>]*>.*?</a>#is', '', $content );
+}
+
+add_filter( 'wp_nav_menu_objects', 'ge_remove_booking_menu_items' );
+function ge_remove_booking_menu_items( $items ) {
+	return array_values( array_filter( $items, function ( $item ) {
+		$url = isset( $item->url ) ? $item->url : '';
+		return ! preg_match( '#(?:calendar\.google\.com/calendar/.*/appointments|calendly\.com)#i', $url );
+	} ) );
+}
+
+// Keep every Jetpack form submission on the Contact page routed to the single
+// approved inbox, regardless of the form author's account email.
+add_filter( 'render_block_data', 'ge_contact_form_recipient', 20, 2 );
+function ge_contact_form_recipient( $parsed_block, $source_block ) {
+	if ( is_page( 'contact' ) && isset( $parsed_block['blockName'] ) && 'jetpack/contact-form' === $parsed_block['blockName'] ) {
+		$parsed_block['attrs']['to']                 = 'info@goldenerasciences.com';
+		$parsed_block['attrs']['emailNotifications'] = 'yes';
+	}
+	return $parsed_block;
 }
 
 function ge_retire_legacy_pages( &$backup ) {
