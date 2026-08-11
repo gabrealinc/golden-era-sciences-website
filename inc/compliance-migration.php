@@ -168,6 +168,20 @@ function ge_migrate_contact_page( &$backup ) {
 	wp_update_post( array( 'ID' => $page->ID, 'post_title' => 'Contact Us', 'post_excerpt' => 'Questions about products, orders, COAs, or wholesale? Contact Golden Era Sciences.', 'post_content' => $content ) );
 }
 
+// Jetpack may preserve its success message in block attributes even after the
+// page body is migrated. Sanitize the rendered Contact page as a final guard.
+add_filter( 'the_content', 'ge_compliance_contact_render_guard', 99 );
+function ge_compliance_contact_render_guard( $content ) {
+	if ( ! is_page( 'contact' ) ) {
+		return $content;
+	}
+	return preg_replace(
+		'#(<div class="jetpack_forms_contact-form-custom-success-message">).*?(</div>)#s',
+		'$1Thank you. Your inquiry has been received, and our team will follow up by email.$2',
+		$content
+	);
+}
+
 function ge_retire_legacy_pages( &$backup ) {
 	foreach ( array( 'all-peptides', 'popular-peptides', 'education', 'sample-page', 'peptide-calculator', 'calculator' ) as $slug ) {
 		$page = get_page_by_path( $slug );
