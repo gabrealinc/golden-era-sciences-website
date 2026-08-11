@@ -13,7 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <section class="ge-hero">
 
 	<div class="ge-hero__media">
-		<video autoplay loop muted playsinline>
+		<video autoplay loop muted playsinline
+		       poster="<?php echo ge_asset( 'images/hero-fallback.jpg' ); ?>">
 			<source src="<?php echo ge_asset( 'video/hero-loop.mp4' ); ?>" type="video/mp4">
 		</video>
 		<div class="ge-hero__scrim"></div>
