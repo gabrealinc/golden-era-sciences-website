@@ -69,7 +69,7 @@ function ge_faqs( $limit = null ) {
 		),
 		array(
 			'q' => __( 'How long does delivery take?', 'golden-era' ),
-			'a' => __( 'Delivery timelines depend on location and carrier performance. Typical U.S. delivery window is 3–7 business days.', 'golden-era' ),
+			'a' => __( 'Delivery timelines depend on location and carrier transit schedules. Typical U.S. delivery window is 3–7 business days.', 'golden-era' ),
 		),
 		array(
 			'q' => __( 'Do you offer international shipping?', 'golden-era' ),

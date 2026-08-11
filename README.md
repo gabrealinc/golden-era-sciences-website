@@ -2,6 +2,20 @@
 
 Custom WooCommerce theme for [goldenerasciences.com](https://goldenerasciences.com).
 
+## Compliance release 1.1.0
+
+Deploying this version through WordPress.com GitHub Deployments applies the
+approved compliance revision automatically on the first site request. It
+updates the 17 WooCommerce products, cleans the Contact page, retires and
+redirects the legacy catalog, education, and calculator pages, removes
+biological product categories, repairs catalog menu links, and refreshes
+product image alt text and common SEO description fields.
+
+The migration runs once and saves a private pre-change snapshot in the
+`ge_compliance_migration_backup_2026-08-11_1` WordPress option before marking
+the release complete. Theme files and database content are therefore
+separately recoverable.
+
 **The repository root is the theme root**, so `style.css` and `functions.php`
 sit at the top level. WordPress.com's GitHub Deployments copies the repo
 contents straight into the theme directory.
