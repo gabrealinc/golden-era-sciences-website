@@ -17,7 +17,8 @@ function ge_coa_library_url() {
 }
 
 function ge_coa_feed() {
-	$feed_url = get_theme_mod( 'ge_coa_feed_url', '' );
+	$default_feed_url = 'https://script.google.com/macros/s/AKfycbwU_e-MPeAoATB6nFT6P-Iehv0mbIMz1QUciT9ALIi2p9khMZ9mCZYlyZbZmhq9Fhp3/exec';
+	$feed_url         = get_theme_mod( 'ge_coa_feed_url', $default_feed_url );
 	if ( ! $feed_url ) {
 		return array();
 	}
