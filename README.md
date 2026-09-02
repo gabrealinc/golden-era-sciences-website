@@ -143,13 +143,16 @@ with best sellers so the section is never empty.
 
 ### Certificates of Analysis
 
-The COA button looks up the product SKU in the connected Golden Era Sciences
-Google Drive library. Name PDFs `SKU__LOT-NUMBER__YYYY-MM-DD.pdf`; adding or
-replacing a correctly named file updates the site without a theme deploy.
+The Purity Report and Endotoxin Report buttons look up the product SKU in the
+connected Golden Era Sciences Google Drive library. Store PDFs directly in the
+main COA folder and use these permanent names:
 
-If there is no exact SKU match, the button opens the shared COA library. The
-legacy `coa_url`, `coa`, `_coa_url`, and `certificate_of_analysis` product
-custom fields remain supported as fallbacks.
+- `SKU__LOT-NUMBER__PURITY.pdf`
+- `SKU__LOT-NUMBER__ENDOTOXIN.pdf`
+
+For a new batch, upload the two replacement reports with the same SKU and
+report-type suffix and change only the lot number. Products without an exact
+report match do not display report buttons.
 
 ### Newsletter signups
 

@@ -208,11 +208,7 @@ function ge_product_attribute( $product, $needles ) {
 }
 
 /**
- * Certificate of Analysis link.
- *
- * Reads a product custom field. Accepts several key spellings so it works
- * with whatever the catalog was imported with. Add the URL in the product
- * editor under Custom Fields using the key `coa_url`.
+ * Batch report links.
  */
 add_action( 'woocommerce_single_product_summary', 'ge_product_coa', 45 );
 function ge_product_coa() {
@@ -221,30 +217,19 @@ function ge_product_coa() {
 		return;
 	}
 
-	$url        = ge_coa_url_for_sku( $product->get_sku() );
-	$has_match  = (bool) $url;
-	foreach ( array( 'coa_url', 'coa', '_coa_url', 'certificate_of_analysis' ) as $key ) {
-		if ( $url ) {
-			break;
-		}
-		$value = get_post_meta( $product->get_id(), $key, true );
-		if ( is_string( $value ) && preg_match( '#^https?://#i', trim( $value ) ) ) {
-			$url = trim( $value );
-			break;
-		}
-	}
+    $reports = ge_coa_reports_for_sku( $product->get_sku() );
+    if ( empty( $reports['purity'] ) && empty( $reports['endotoxin'] ) ) {
+        return;
+    }
 
-	if ( ! $url ) {
-		$url = ge_coa_library_url();
-	}
-
-	printf(
-		'<a class="ge-coa" href="%s" target="_blank" rel="noopener noreferrer">%s</a>',
-		esc_url( $url ),
-		$has_match
-			? esc_html__( 'View Certificate of Analysis', 'golden-era' )
-			: esc_html__( 'Browse COA Library', 'golden-era' )
-	);
+    echo '<div class="ge-coa-links">';
+    if ( ! empty( $reports['purity'] ) ) {
+        printf( '<a class="ge-coa" href="%s" target="_blank" rel="noopener noreferrer">%s</a>', esc_url( $reports['purity'] ), esc_html__( 'Purity Report', 'golden-era' ) );
+    }
+    if ( ! empty( $reports['endotoxin'] ) ) {
+        printf( '<a class="ge-coa" href="%s" target="_blank" rel="noopener noreferrer">%s</a>', esc_url( $reports['endotoxin'] ), esc_html__( 'Endotoxin Report', 'golden-era' ) );
+    }
+    echo '</div>';
 }
 
 /**
