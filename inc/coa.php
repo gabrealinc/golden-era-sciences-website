@@ -19,6 +19,7 @@ function ge_coa_library_url() {
 function ge_coa_feed() {
 	$default_feed_url = 'https://script.google.com/macros/s/AKfycbwU_e-MPeAoATB6nFT6P-Iehv0mbIMz1QUciT9ALIi2p9khMZ9mCZYlyZbZmhq9Fhp3/exec';
 	$feed_url         = get_theme_mod( 'ge_coa_feed_url', '' );
+	$using_default    = ! $feed_url;
 	if ( ! $feed_url ) {
 		$feed_url = $default_feed_url;
 	}
@@ -29,7 +30,10 @@ function ge_coa_feed() {
 		return is_array( $cached ) ? $cached : array();
 	}
 
-	$response = wp_safe_remote_get( $feed_url, array( 'timeout' => 10 ) );
+	$request_args = array( 'timeout' => 20, 'redirection' => 5 );
+	$response     = $using_default
+		? wp_remote_get( $feed_url, $request_args )
+		: wp_safe_remote_get( $feed_url, $request_args );
 	if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 		return array();
 	}
