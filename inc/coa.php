@@ -148,10 +148,13 @@ add_action( 'template_redirect', function () {
     }
     if ( ! $data ) { $data = ge_coa_pdf_data( $report ); }
     if ( ! $data ) { wp_die( 'The current report is temporarily unavailable. Please try again later.', 'Report unavailable', array( 'response' => 503 ) ); }
+    // WordPress HTML output handlers can trim a PDF's trailing newline.
+    // Send binary bytes without those handlers or a manually fixed transfer length.
+    while ( ob_get_level() > 0 ) { ob_end_clean(); }
+    header_remove( 'Content-Length' );
     header( 'Content-Type: application/pdf' );
     header( 'Content-Disposition: ' . ( isset( $_GET['report_download'] ) ? 'attachment' : 'inline' ) . '; filename="' . sanitize_file_name( $report['name'] ) . '"' );
     header( 'X-Content-Type-Options: nosniff' );
-    header( 'Content-Length: ' . strlen( $data['pdf'] ) );
     echo $data['pdf']; // Validated PDF bytes from the approved current feed.
     exit;
 } );
