@@ -70,6 +70,9 @@ $excerpt = wp_strip_all_tags( $excerpt );
 		</h3>
 
 		<?php do_action( 'woocommerce_shop_loop_item_title' ); ?>
+		<?php if ( $product->get_attribute( 'Strength' ) ) : ?>
+			<p class="ge-card__spec"><?php echo esc_html( $product->get_attribute( 'Strength' ) . ' · ' . $product->get_attribute( 'Vial Size' ) ); ?></p>
+		<?php endif; ?>
 
 		<?php if ( $excerpt ) : ?>
 			<p class="ge-card__excerpt"><?php echo esc_html( $excerpt ); ?></p>

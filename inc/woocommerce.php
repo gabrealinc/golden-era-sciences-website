@@ -154,6 +154,8 @@ function ge_product_meta() {
 	if ( $product->get_sku() ) {
 		$rows[] = array( __( 'SKU', 'golden-era' ), $product->get_sku() );
 	}
+	$strength = ge_product_attribute( $product, array( 'strength' ) );
+	if ( $strength ) { $rows[] = array( __( 'Strength', 'golden-era' ), $strength ); }
 
 	$vial = ge_product_attribute( $product, array( 'vial', 'size' ) );
 	if ( $vial ) {
@@ -167,7 +169,7 @@ function ge_product_meta() {
 
 	$rows[] = array(
 		__( 'Availability', 'golden-era' ),
-		$product->is_in_stock() ? __( 'In stock', 'golden-era' ) : __( 'Out of stock', 'golden-era' ),
+		'yes' === get_post_meta( $product->get_id(), '_ge_catalog_pricing_pending', true ) ? __( 'Pricing pending', 'golden-era' ) : ( $product->is_in_stock() ? __( 'In stock', 'golden-era' ) : __( 'Out of stock', 'golden-era' ) ),
 	);
 
 	if ( ! $rows ) {
