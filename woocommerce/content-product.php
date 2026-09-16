@@ -85,6 +85,7 @@ $excerpt = wp_strip_all_tags( $excerpt );
 			<span class="ge-card__cta" aria-hidden="true"><?php esc_html_e( 'View →', 'golden-era' ); ?></span>
 		</div>
 
+        <a class="ge-card__reports" href="<?php echo esc_url( get_permalink( $product->get_id() ) . '#product-reports' ); ?>">View reports<span class="screen-reader-text"> for <?php echo esc_html( $product->get_name() ); ?></span></a>
 		<?php do_action( 'woocommerce_after_shop_loop_item_title' ); ?>
 
 	</div>

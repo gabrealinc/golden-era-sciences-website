@@ -1,22 +1,59 @@
 const COA_FOLDER_ID = '16yO3ZxYaQoA6iu6qErbXkNaaZKFZhtjz';
 const SUBSCRIBER_SHEET_NAME = 'Subscribers';
 
-function doGet() {
-  const folder = DriveApp.getFolderById(COA_FOLDER_ID);
-  const files = folder.getFilesByType(MimeType.PDF);
+// Only these verified report folders are read. The parent library is never published.
+const COA_REPORT_FOLDERS = [
+  '1Kzf2igXhYnTczGP9-4AJadhxLaXhuo0M',
+  '1prtt04af6J54u5hF5085pekr3me7RP7T'
+];
+
+function doGet(event) {
+  const products = {};
+  COA_REPORT_FOLDERS.forEach(id => {
+    const files = DriveApp.getFolderById(id).getFilesByType(MimeType.PDF);
+    while (files.hasNext()) {
+      const file = files.next();
+      const match = file.getName().match(/^(.+)__([^_]+)__(PURITY|ENDOTOXIN)\.pdf$/i);
+      if (!match) continue;
+      const sku = match[1].toUpperCase();
+      const lot = match[2];
+      const type = match[3].toLowerCase();
+      const created = file.getDateCreated().getTime();
+      if (!products[sku]) products[sku] = {};
+      if (!products[sku][lot]) products[sku][lot] = { created: 0, reports: {} };
+      const batch = products[sku][lot];
+      batch.created = Math.max(batch.created, created);
+      // Duplicate files are ambiguous. Do not guess which is approved.
+      if (batch.reports[type]) batch.reports[type] = { ambiguous: true };
+      else batch.reports[type] = {
+        id: file.getId(), name: file.getName(), url: file.getUrl(),
+        created: file.getDateCreated().toISOString(),
+        updated: file.getLastUpdated().toISOString()
+      };
+    }
+  });
   const output = [];
-
-  while (files.hasNext()) {
-    const file = files.next();
-    output.push({
-      name: file.getName(),
-      url: file.getUrl(),
-      updated: file.getLastUpdated().toISOString()
-    });
+  Object.keys(products).sort().forEach(sku => {
+    const lots = Object.keys(products[sku]).sort((a, b) => products[sku][b].created - products[sku][a].created);
+    const batch = products[sku][lots[0]];
+    if (lots.length > 1 && batch.created === products[sku][lots[1]].created) return;
+    // A new lot immediately retires the old public pair. Publish only a complete pair.
+    if (!batch.reports.purity || !batch.reports.endotoxin ||
+        batch.reports.purity.ambiguous || batch.reports.endotoxin.ambiguous) return;
+    output.push(batch.reports.purity, batch.reports.endotoxin);
+  });
+  const requested = event && event.parameter && event.parameter.report;
+  if (requested) {
+    // Public delivery is limited to files already selected in a current complete pair.
+    const report = output.find(item => item.id === requested);
+    if (!report) return jsonResponse_({ error: 'Current report not found.' });
+    const file = DriveApp.getFileById(report.id);
+    const thumbnail = file.getThumbnail();
+    return jsonResponse_({ id: report.id, name: report.name, updated: report.updated,
+      pdf: Utilities.base64Encode(file.getBlob().getBytes()),
+      preview: thumbnail ? Utilities.base64Encode(thumbnail.getBytes()) : '' });
   }
-
-  output.sort((a, b) => a.name.localeCompare(b.name));
-  return jsonResponse_({ files: output });
+  return jsonResponse_({ version: 2, generated: new Date().toISOString(), files: output });
 }
 
 function doPost(event) {

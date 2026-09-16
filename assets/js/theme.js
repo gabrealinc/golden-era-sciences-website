@@ -248,3 +248,18 @@
     initAccessibilityDetails();
   });
 })();
+
+(function () {
+  var search = document.getElementById('ge-report-search');
+  if (!search) return;
+  search.addEventListener('input', function () {
+    var query = search.value.toLowerCase().trim();
+    var count = 0;
+    var rows = document.querySelectorAll('[data-report-search]');
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].hidden = rows[i].getAttribute('data-report-search').indexOf(query) === -1;
+      if (!rows[i].hidden) count++;
+    }
+    document.getElementById('ge-report-empty').hidden = count > 0;
+  });
+}());

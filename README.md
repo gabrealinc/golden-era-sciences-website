@@ -1,4 +1,4 @@
-# Golden Era Sciences — WordPress Theme
+# Golden Era Sciences – WordPress Theme
 
 Custom WooCommerce theme for [goldenerasciences.com](https://goldenerasciences.com).
 
@@ -143,16 +143,17 @@ with best sellers so the section is never empty.
 
 ### Certificates of Analysis
 
-The Purity Report and Endotoxin Report buttons look up the product SKU in the
-connected Golden Era Sciences Google Drive library. Store PDFs directly in the
-main COA folder and use these permanent names:
+The on-site `/coas/` index, product report sections, and product-card report
+links share exact approved SKU/strength matching. WooCommerce galleries show
+the main image, purity preview, and endotoxin preview in positions 1, 2, and 3.
+Drive folders remain private. PDF buttons deliver only the current matching
+reports through WordPress.
 
-- `SKU__LOT-NUMBER__PURITY.pdf`
-- `SKU__LOT-NUMBER__ENDOTOXIN.pdf`
-
-For a new batch, upload the two replacement reports with the same SKU and
-report-type suffix and change only the lot number. Products without an exact
-report match do not display report buttons.
+Use the locked filenames in the verified Purity Reports and Endotoxin Reports
+subfolders. Upload both replacement reports for a new lot. Do not select a
+current lot by alphabetic lot-number order. See
+[report delivery and replacement workflow](tools/google-apps-script/README.md)
+and [UX research](COA-UX-RESEARCH.md).
 
 ### Newsletter signups
 

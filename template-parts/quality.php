@@ -49,7 +49,7 @@ $vials = ge_asset( 'images/vials.jpg' );
 				<a class="ge-btn ge-btn--outline" href="<?php echo esc_url( ge_shop_url() ); ?>">
 					<?php esc_html_e( 'View All Peptides', 'golden-era' ); ?>
 				</a>
-				<a class="ge-btn ge-btn--shimmer" href="<?php echo esc_url( ge_coa_library_url() ); ?>" target="_blank" rel="noopener noreferrer">
+				<a class="ge-btn ge-btn--shimmer" href="<?php echo esc_url( ge_coa_library_url() ); ?>">
 					<?php esc_html_e( 'View COAs', 'golden-era' ); ?>
 				</a>
 			</div>

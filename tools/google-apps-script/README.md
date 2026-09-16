@@ -1,37 +1,50 @@
-# Google Drive COA feed
+# Current COA delivery
 
-This script exposes only PDF metadata from the Golden Era Sciences `COAs`
-folder. It does not expose any other Drive folder.
+The existing Golden Era Sciences Website Automation deployment reads only the
+verified Purity Reports and Endotoxin Reports folders. Drive folders remain
+restricted to named collaborators. The public endpoint publishes current report
+metadata and delivers only PDFs belonging to selected complete pairs. It cannot
+fetch an arbitrary Drive file supplied by a visitor.
 
-## File naming
+## Locked filenames
 
-Use this exact pattern:
+- `SKU__LOT-NUMBER__PURITY.pdf`
+- `SKU__LOT-NUMBER__ENDOTOXIN.pdf`
 
-`SKU__LOT-NUMBER__YYYY-MM-DD.pdf`
+Use the approved product-sheet SKU and exact strength. The existing approved
+WooCommerce SKU aliases are in `inc/coa.php`.
 
-Example:
+## Replacement workflow
 
-`GES-BPC-10MG__LOT-24081__2026-08-10.pdf`
+Upload both reports into their respective folders. The lot with the latest
+file creation time becomes the current candidate for that exact SKU. An
+incomplete new pair, duplicate type, or tied lot timestamp is withheld. Older
+pairs are not used as fallbacks. Updating an existing file also refreshes its
+preview through its modified timestamp.
 
-The site matches the exact SKU prefix and selects the newest filename date.
-Older batch PDFs remain available in Drive.
+The theme caches metadata for 15 minutes. Product and index links resolve the
+current exact PDF at click time and serve it through WordPress without exposing
+Drive browsing links. Metadata cache expiry is the publication delay; report
+preview imports run hourly through WooCommerce Action Scheduler and depend on
+working WordPress cron. Tools > Batch Reports provides immediate per-product
+sync and import errors. Uploading a replacement does not require a theme deploy.
+
+The first successful manual import verifies host compatibility and enables the
+hourly queue. Main product images remain first, purity previews second, and
+endotoxin previews third. Other gallery images are preserved. Managed old images
+and PDF media copies are removed after a successful replacement. Import errors
+leave stored prior assets intact, while product output suppresses previews that
+no longer match the current report keys.
 
 ## Deployment
 
-1. Create a Google Apps Script project in the Google account that owns or can
-   read the COA folder.
-2. Replace the default script with `Code.gs`.
-3. Deploy as a Web app.
-4. Execute as the deploying account.
-5. Set access to anyone who can view the public COA library.
-6. Paste the deployed `/exec` URL into WordPress Customizer under
-   `Golden Era — Brand` → `COA index feed URL`.
+Edit the existing script and update its existing Web app deployment to a new
+version. Preserve the deployment URL, owner execution, and current access
+settings. Preserve `doPost` and subscriber behavior. Do not change Drive sharing
+to make folders public. The existing deployment already has the Drive access
+needed to read these reports.
 
-The WordPress theme caches the index for 15 minutes. A newly uploaded PDF may
-therefore take up to 15 minutes to become the current product COA.
+## Known catalog gaps as of September 16, 2026
 
-## Failure behavior
-
-If the feed is unavailable or no exact SKU match exists, the product page links
-to the main COA library and labels the link `Browse COA Library`. It never uses
-a partial SKU match or a different product's PDF.
+No approved exact pair exists for GLP-S 20mg, GLP-R 24mg, Sermorelin 10mg, or
+AOD-9604 5mg. Never substitute another strength or fabricate mappings.

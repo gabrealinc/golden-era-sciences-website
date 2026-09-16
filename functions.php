@@ -13,7 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GE_VERSION', '1.1.1' );
+define( 'GE_VERSION', '1.2.0' );
+if ( isset( $_GET['ge_report'] ) && ! defined( 'DONOTCACHEPAGE' ) ) { define( 'DONOTCACHEPAGE', true ); }
 define( 'GE_DIR', get_template_directory() );
 define( 'GE_URI', get_template_directory_uri() );
 

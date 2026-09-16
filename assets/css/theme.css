@@ -1694,3 +1694,49 @@ body.ge-locked { overflow: hidden; }
   }
   .ge-shop { grid-template-columns: 1fr; }
 }
+
+/* Success notices reserve space for the icon and clear Woo's floated action. */
+.woocommerce .woocommerce-message,
+.woocommerce-message {
+  position: relative;
+  padding: 1.25rem 1.25rem 1.25rem 3.25rem;
+  line-height: 1.6;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--ge-gold);
+  border-top: 3px solid var(--ge-gold);
+}
+.woocommerce .woocommerce-message::before,
+.woocommerce-message::before {
+  content: "✓";
+  font-family: var(--ge-font-body);
+  color: var(--ge-gold-deep);
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+}
+.woocommerce .woocommerce-message .button,
+.woocommerce-message .button { margin-left: 1.25rem; }
+@media (max-width: 640px) {
+  .woocommerce .woocommerce-message .button,
+  .woocommerce-message .button {
+    float: none;
+    display: block;
+    width: 100%;
+    order: 1;
+    margin: 0.85rem 0 0;
+    text-align: center;
+  }
+}
+.ge-product-reports { scroll-margin-top: 10rem; margin: 1.75rem 0; }
+.ge-product-reports h2 { font-size: 1.25rem; }
+.ge-report-caption { font-size: 0.875rem; color: var(--ge-stone); }
+.ge-card__reports { position: relative; z-index: 2; display: inline-block; margin-top: 1rem; text-decoration: underline; color: var(--ge-gold-deep); }
+#ge-report-search { display: block; width: 100%; max-width: 36rem; margin: 0.5rem 0 2rem; padding: 0.8rem 1rem; background: var(--ge-cream); border: 1px solid var(--ge-gold); color: var(--ge-espresso); }
+.ge-report-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; border-bottom: 1px solid var(--ge-sand-dark); padding: 1.5rem 0; }
+.ge-report-row h2 { font-size: 1.3rem; }
+.ge-report-row[hidden] { display: none; }
+.ge-report-row .ge-coa-links { margin-top: 0.75rem; }
+@media (max-width: 640px) { .ge-report-row { grid-template-columns: 1fr; gap: 0.5rem; } }
+
+@media (max-width: 640px) { .woocommerce .woocommerce-message, .woocommerce-message { display: flex; flex-direction: column; } }

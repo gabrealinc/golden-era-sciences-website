@@ -217,19 +217,7 @@ function ge_product_coa() {
 		return;
 	}
 
-    $reports = ge_coa_reports_for_sku( $product->get_sku() );
-    if ( empty( $reports['purity'] ) && empty( $reports['endotoxin'] ) ) {
-        return;
-    }
-
-    echo '<div class="ge-coa-links">';
-    if ( ! empty( $reports['purity'] ) ) {
-        printf( '<a class="ge-coa" href="%s" target="_blank" rel="noopener noreferrer">%s</a>', esc_url( $reports['purity'] ), esc_html__( 'Purity Report', 'golden-era' ) );
-    }
-    if ( ! empty( $reports['endotoxin'] ) ) {
-        printf( '<a class="ge-coa" href="%s" target="_blank" rel="noopener noreferrer">%s</a>', esc_url( $reports['endotoxin'] ), esc_html__( 'Endotoxin Report', 'golden-era' ) );
-    }
-    echo '</div>';
+    ge_coa_render_links( $product );
 }
 
 /**
