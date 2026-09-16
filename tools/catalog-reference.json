@@ -1,0 +1,578 @@
+{
+  "source": "https://docs.google.com/spreadsheets/d/1adC902rs62X4bE7TYreNnA5GNEy0936x7YyLYxnxZ1U/edit",
+  "tab": "Aug 2026 COA's",
+  "verifiedAt": "2026-09-16",
+  "status": "Read-only reference snapshot. Selling scope and missing prices pending confirmation; not an automatic publish instruction.",
+  "products": [
+    {
+      "sheetRow": 2,
+      "sku": "GHK-Cu-50mg",
+      "lot": "DPS-5065007",
+      "compound": "GHK-Cu (50mg)",
+      "websiteName": "GHK-Cu",
+      "subtitle": "GHK-Cu",
+      "strength": "50mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "GHK-Cu-50mg__DPS-5065007__PURITY.pdf",
+        "verifiedFileId": "1xStRPoNBJkF0AI9oQ69b99isVOolxjAY"
+      },
+      "endotoxin": {
+        "expectedName": "GHK-Cu-50mg__DPS-5065007__ENDOTOXIN.pdf",
+        "verifiedFileId": "1x_Fi3vmWmwwKMDoMi2UVoIKE1uF_C8-V"
+      }
+    },
+    {
+      "sheetRow": 3,
+      "sku": "KPV-10mg",
+      "lot": "DPS-3255068",
+      "compound": "KPV (10mg)",
+      "websiteName": "KPV",
+      "subtitle": "KPV",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "KPV-10mg__DPS-3255068__PURITY.pdf",
+        "verifiedFileId": "126V-OYlHK8dFq0NTDisKgOAb2aM3t6k8"
+      },
+      "endotoxin": {
+        "expectedName": "KPV-10mg__DPS-3255068__ENDOTOXIN.pdf",
+        "verifiedFileId": "1ikCc2rICHZgAbo74-idAJwuKgTOOcjPk"
+      }
+    },
+    {
+      "sheetRow": 4,
+      "sku": "Kisspeptin-10mg",
+      "lot": "DPS-7618532",
+      "compound": "Kisspeptin (10mg)",
+      "websiteName": "Kisspeptin",
+      "subtitle": "Kisspeptin",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "Kisspeptin-10mg__DPS-7618532__PURITY.pdf",
+        "verifiedFileId": "1fTBybmECskeImkyE_1_pHdeAoODZwJfQ"
+      },
+      "endotoxin": {
+        "expectedName": "Kisspeptin-10mg__DPS-7618532__ENDOTOXIN.pdf",
+        "verifiedFileId": "1ywaWQDrvH0Hdlbexc3zOzRVavCbAUcWq"
+      }
+    },
+    {
+      "sheetRow": 5,
+      "sku": "BPC-157-10mg",
+      "lot": "DPS-9628420",
+      "compound": "BPC-157 (10mg)",
+      "websiteName": "BPC-157",
+      "subtitle": "BPC-157",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "BPC-157-10mg__DPS-9628420__PURITY.pdf",
+        "verifiedFileId": "1wDpEb99NXRzfxK_3mdSfH1H7a38rSYJc"
+      },
+      "endotoxin": {
+        "expectedName": "BPC-157-10mg__DPS-9628420__ENDOTOXIN.pdf",
+        "verifiedFileId": "1AjdslIFcrxnWRaEIlYimjGQA5R8DYy48"
+      }
+    },
+    {
+      "sheetRow": 6,
+      "sku": "TB-500-10mg",
+      "lot": "DPS-2022011",
+      "compound": "TB-500 (10mg)",
+      "websiteName": "TB-500",
+      "subtitle": "TB-500",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "TB-500-10mg__DPS-2022011__PURITY.pdf",
+        "verifiedFileId": "1ZICzePHQ4iHBdIKR57qd6dRaLJVrn8Zd"
+      },
+      "endotoxin": {
+        "expectedName": "TB-500-10mg__DPS-2022011__ENDOTOXIN.pdf",
+        "verifiedFileId": "1aP-k4HCaOS8tiiSrYAz0UjwLlcddjAfb"
+      }
+    },
+    {
+      "sheetRow": 7,
+      "sku": "TB-500-TB-4-43AA-5mg",
+      "lot": "DPS-0000001",
+      "compound": "TB-500 (TB-4 43AA) (5mg)",
+      "websiteName": "TB-500 (TB-4 43AA)",
+      "subtitle": "TB-500 (TB-4 43AA)",
+      "strength": "5mg",
+      "vialSize": "3ML",
+      "coaDeclared": false,
+      "purity": {
+        "expectedName": "TB-500-TB-4-43AA-5mg__DPS-0000001__PURITY.pdf",
+        "verifiedFileId": null
+      },
+      "endotoxin": {
+        "expectedName": "TB-500-TB-4-43AA-5mg__DPS-0000001__ENDOTOXIN.pdf",
+        "verifiedFileId": null
+      }
+    },
+    {
+      "sheetRow": 8,
+      "sku": "Tesamorelin-10mg",
+      "lot": "DPS-9789916",
+      "compound": "Tesamorelin (10mg)",
+      "websiteName": "Tesamorelin",
+      "subtitle": "Tesamorelin",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "Tesamorelin-10mg__DPS-9789916__PURITY.pdf",
+        "verifiedFileId": "1mLrbpyqfD1Mqiens623tCy8p5wOPObhX"
+      },
+      "endotoxin": {
+        "expectedName": "Tesamorelin-10mg__DPS-9789916__ENDOTOXIN.pdf",
+        "verifiedFileId": "1YWC9cPFdE37hFT40HpXMFUfsV2z37X8A"
+      }
+    },
+    {
+      "sheetRow": 9,
+      "sku": "MOTS-c-10mg",
+      "lot": "DPS-6246893",
+      "compound": "MOTS-c (10mg)",
+      "websiteName": "MOTS-c",
+      "subtitle": "MOTS-c",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "MOTS-c-10mg__DPS-6246893__PURITY.pdf",
+        "verifiedFileId": "1ziY-1AvNsn2iqBBLEfvJE5N2dOjl37gj"
+      },
+      "endotoxin": {
+        "expectedName": "MOTS-c-10mg__DPS-6246893__ENDOTOXIN.pdf",
+        "verifiedFileId": "1lu8tAjTGEcQy0bRAju8J9se3VvPTvWF7"
+      }
+    },
+    {
+      "sheetRow": 10,
+      "sku": "NAD-1000mg",
+      "lot": "DPS-1640102",
+      "compound": "NAD+ (1000mg)",
+      "websiteName": "NAD+",
+      "subtitle": "NAD+",
+      "strength": "1000mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "NAD-1000mg__DPS-1640102__PURITY.pdf",
+        "verifiedFileId": "1hx5kZK4vAHudrKJPmYlYQqC1bR4WiqCP"
+      },
+      "endotoxin": {
+        "expectedName": "NAD-1000mg__DPS-1640102__ENDOTOXIN.pdf",
+        "verifiedFileId": "1K7YtdDoyvaSYFX29jfiPHxkac2sDxc8s"
+      }
+    },
+    {
+      "sheetRow": 11,
+      "sku": "GLP1-S-20mg",
+      "lot": "DPS-0000002",
+      "compound": "Semaglutide (20mg)",
+      "websiteName": "GLP1-S",
+      "subtitle": "GLP1-S",
+      "strength": "20mg",
+      "vialSize": "6ML",
+      "coaDeclared": false,
+      "purity": {
+        "expectedName": "GLP1-S-20mg__DPS-0000002__PURITY.pdf",
+        "verifiedFileId": null
+      },
+      "endotoxin": {
+        "expectedName": "GLP1-S-20mg__DPS-0000002__ENDOTOXIN.pdf",
+        "verifiedFileId": null
+      }
+    },
+    {
+      "sheetRow": 12,
+      "sku": "GLP2-T-10mg",
+      "lot": "DPS-3675713",
+      "compound": "Tirzepitide (10mg)",
+      "websiteName": "GLP2-T",
+      "subtitle": "GLP2-T",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "GLP2-T-10mg__DPS-3675713__PURITY.pdf",
+        "verifiedFileId": "1VozrMnR1xXgjaqCgGlqJPLzlBfNbSg85"
+      },
+      "endotoxin": {
+        "expectedName": "GLP2-T-10mg__DPS-3675713__ENDOTOXIN.pdf",
+        "verifiedFileId": "1qASHWJ_bqjEX_HhlPHsFE_y5AEW7Eld1"
+      }
+    },
+    {
+      "sheetRow": 13,
+      "sku": "GLP2-T-30mg",
+      "lot": "DPS-3402861",
+      "compound": "Tirzepitide (30mg)",
+      "websiteName": "GLP2-T",
+      "subtitle": "GLP2-T",
+      "strength": "30mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "GLP2-T-30mg__DPS-3402861__PURITY.pdf",
+        "verifiedFileId": "15VLPvpoBE3GM2AnJ4xX4Hz9Zvx9ejl-R"
+      },
+      "endotoxin": {
+        "expectedName": "GLP2-T-30mg__DPS-3402861__ENDOTOXIN.pdf",
+        "verifiedFileId": "1_ey7XfGnkGq-_OjuPV7s9PJAxmqyamam"
+      }
+    },
+    {
+      "sheetRow": 14,
+      "sku": "GLP3-R-10mg",
+      "lot": "DPS-3733528",
+      "compound": "Retatrutide (10mg)",
+      "websiteName": "GLP3-R",
+      "subtitle": "GLP3-R",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "GLP3-R-10mg__DPS-3733528__PURITY.pdf",
+        "verifiedFileId": "1SSxDE_0l9oQ3JjKJA2Cs4AWTo6cMZelV"
+      },
+      "endotoxin": {
+        "expectedName": "GLP3-R-10mg__DPS-3733528__ENDOTOXIN.pdf",
+        "verifiedFileId": "1hZYC-eBreEh5O_56UOHicdYrl9pAST1v"
+      }
+    },
+    {
+      "sheetRow": 15,
+      "sku": "GLP3-R-30mg",
+      "lot": "DPS-1743241",
+      "compound": "Retatrutide (30mg)",
+      "websiteName": "GLP3-R",
+      "subtitle": "GLP3-R",
+      "strength": "30mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "GLP3-R-30mg__DPS-1743241__PURITY.pdf",
+        "verifiedFileId": "1uSNA_p1C7QgvnBP13ZepImDy9LLsIhZE"
+      },
+      "endotoxin": {
+        "expectedName": "GLP3-R-30mg__DPS-1743241__ENDOTOXIN.pdf",
+        "verifiedFileId": "1wDtZvbx8Qp2bUHVUt61wX2_x5NN4tc9N"
+      }
+    },
+    {
+      "sheetRow": 16,
+      "sku": "GLOW-70mg",
+      "lot": "DPS-7777201",
+      "compound": "GLOW (70mg)",
+      "websiteName": "GLOW",
+      "subtitle": "GHK-Cu / BPC-157 / TB-500",
+      "strength": "50mg / 10mg / 10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "GLOW-70mg__DPS-7777201__PURITY.pdf",
+        "verifiedFileId": "1H6FoNb6GUST98amJ5h8tqoeZr7d6Soe0"
+      },
+      "endotoxin": {
+        "expectedName": "GLOW-70mg__DPS-7777201__ENDOTOXIN.pdf",
+        "verifiedFileId": "12bvGN6SIA1qIiOxaM8EeT7C9kOofKe1b"
+      }
+    },
+    {
+      "sheetRow": 17,
+      "sku": "KLOW-80mg",
+      "lot": "DPS-8243101",
+      "compound": "KLOW (80mg)",
+      "websiteName": "KLOW",
+      "subtitle": "GHK-Cu / KPV / BPC-157 / TB-500",
+      "strength": "50mg / 10mg / 10mg/ 10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "KLOW-80mg__DPS-8243101__PURITY.pdf",
+        "verifiedFileId": "1R0Ak292MkpyNDdlIIqlWb9kT2OztE6EZ"
+      },
+      "endotoxin": {
+        "expectedName": "KLOW-80mg__DPS-8243101__ENDOTOXIN.pdf",
+        "verifiedFileId": "1cSg7KGIGvcgcDrwfNlA3EQclIyKtd-MK"
+      }
+    },
+    {
+      "sheetRow": 18,
+      "sku": "Klow-55mg",
+      "lot": "DPS-0000003",
+      "compound": "KLOW (55mg)",
+      "websiteName": "KLOW",
+      "subtitle": "GHK-Cu / KPV / BPC-157 / TB-500",
+      "strength": "25mg / 10 mg / 10mg / 10mg",
+      "vialSize": "6ML",
+      "coaDeclared": false,
+      "purity": {
+        "expectedName": "Klow-55mg__DPS-0000003__PURITY.pdf",
+        "verifiedFileId": null
+      },
+      "endotoxin": {
+        "expectedName": "Klow-55mg__DPS-0000003__ENDOTOXIN.pdf",
+        "verifiedFileId": null
+      }
+    },
+    {
+      "sheetRow": 19,
+      "sku": "Sermorelin-5mg",
+      "lot": "DPS-3441701",
+      "compound": "Sermorelin (5mg)",
+      "websiteName": "Sermorelin",
+      "subtitle": "Sermorelin",
+      "strength": "5mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "Sermorelin-5mg__DPS-3441701__PURITY.pdf",
+        "verifiedFileId": "18wPi2cUdr8Ag3wFxixWCHfuLUqg5RYrj"
+      },
+      "endotoxin": {
+        "expectedName": "Sermorelin-5mg__DPS-3441701__ENDOTOXIN.pdf",
+        "verifiedFileId": "1rmBnGURCc3Q0C0GJRLtlJV2V6dudbH0n"
+      }
+    },
+    {
+      "sheetRow": 20,
+      "sku": "Wolverine-20mg",
+      "lot": "DPS-8546475",
+      "compound": "Wolverine (20mg)",
+      "websiteName": "Wolverine",
+      "subtitle": "BPC-157 / TB-500",
+      "strength": "20mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "Wolverine-20mg__DPS-8546475__PURITY.pdf",
+        "verifiedFileId": "1x9yY24bV9JIfJYWqppzEwahTB3V4568w"
+      },
+      "endotoxin": {
+        "expectedName": "Wolverine-20mg__DPS-8546475__ENDOTOXIN.pdf",
+        "verifiedFileId": "1PYtFgD1NtmIfRrcel0aQehg2O1_wOtKJ"
+      }
+    },
+    {
+      "sheetRow": 21,
+      "sku": "CJC-1295-Ipamorelin-5mg-5mg",
+      "lot": "DPS-6465415",
+      "compound": "CJC-1295 / Ipamorelin (10mg)",
+      "websiteName": "CJC-1295 / Ipamorelin",
+      "subtitle": "CJC-1295 / Ipamorelin",
+      "strength": "5mg / 5mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "CJC-1295-Ipamorelin-5mg-5mg__DPS-6465415__PURITY.pdf",
+        "verifiedFileId": "1PPpI4sKRPahmkcdrBzQIMUVVi0nQ9Kbk"
+      },
+      "endotoxin": {
+        "expectedName": "CJC-1295-Ipamorelin-5mg-5mg__DPS-6465415__ENDOTOXIN.pdf",
+        "verifiedFileId": "18-T-HCdu_fcXH9Q8XvEpJ1ERqwMGQTA9"
+      }
+    },
+    {
+      "sheetRow": 22,
+      "sku": "Ipamorelin-5mg",
+      "lot": "DPS-0000004",
+      "compound": "Ipamorelin (5mg)",
+      "websiteName": "Ipamorelin",
+      "subtitle": "Ipamorelin",
+      "strength": "5mg",
+      "vialSize": "3ML",
+      "coaDeclared": false,
+      "purity": {
+        "expectedName": "Ipamorelin-5mg__DPS-0000004__PURITY.pdf",
+        "verifiedFileId": null
+      },
+      "endotoxin": {
+        "expectedName": "Ipamorelin-5mg__DPS-0000004__ENDOTOXIN.pdf",
+        "verifiedFileId": null
+      }
+    },
+    {
+      "sheetRow": 23,
+      "sku": "Ipamorelin-10mg",
+      "lot": "DPS-1725130",
+      "compound": "Ipamorelin (10mg)",
+      "websiteName": "Ipamorelin",
+      "subtitle": "Ipamorelin",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "Ipamorelin-10mg__DPS-1725130__PURITY.pdf",
+        "verifiedFileId": "1o7shTfYVUAL0HMCvwmdQhybH8vjkGc5N"
+      },
+      "endotoxin": {
+        "expectedName": "Ipamorelin-10mg__DPS-1725130__ENDOTOXIN.pdf",
+        "verifiedFileId": "1MyXf1igUuKV_24FnwXlUfwLt5ssLAc6D"
+      }
+    },
+    {
+      "sheetRow": 24,
+      "sku": "DSIP-10mg",
+      "lot": "DPS-3123996",
+      "compound": "DSIP (10mg)",
+      "websiteName": "DSIP",
+      "subtitle": "DSIP",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "DSIP-10mg__DPS-3123996__PURITY.pdf",
+        "verifiedFileId": "1kAFJGs2IIQof0EWS1nSHdw4M5X6gqSSv"
+      },
+      "endotoxin": {
+        "expectedName": "DSIP-10mg__DPS-3123996__ENDOTOXIN.pdf",
+        "verifiedFileId": "1avrfgWmzGxtANZVO5GgIUgw9EKsl99hf"
+      }
+    },
+    {
+      "sheetRow": 25,
+      "sku": "L-Glutathione-500mg",
+      "lot": "DPS-1818605",
+      "compound": "L-Glutathione (500mg)",
+      "websiteName": "L-Glutathione",
+      "subtitle": "L-Glutathione",
+      "strength": "500mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "L-Glutathione-500mg__DPS-1818605__PURITY.pdf",
+        "verifiedFileId": "1RVs8r6SGz1tokAuC1ANXFi24ioABa8ZK"
+      },
+      "endotoxin": {
+        "expectedName": "L-Glutathione-500mg__DPS-1818605__ENDOTOXIN.pdf",
+        "verifiedFileId": "1xLUaY_GJTnpVY4dDak7DZmWTeEQU584Z"
+      }
+    },
+    {
+      "sheetRow": 26,
+      "sku": "PT-141-10mg",
+      "lot": "DPS-9050324",
+      "compound": "PT-141 (10mg)",
+      "websiteName": "PT-141",
+      "subtitle": "PT-141",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "PT-141-10mg__DPS-9050324__PURITY.pdf",
+        "verifiedFileId": "1FZKtlqGJbiKL6sHeSqS1XEAY2qjfaa3I"
+      },
+      "endotoxin": {
+        "expectedName": "PT-141-10mg__DPS-9050324__ENDOTOXIN.pdf",
+        "verifiedFileId": "15PtcqRB_Cg1YwJXi7d3wE9RdqlageHMY"
+      }
+    },
+    {
+      "sheetRow": 27,
+      "sku": "Selank-10mg",
+      "lot": "DPS-8800891",
+      "compound": "Selank (10mg)",
+      "websiteName": "Selank",
+      "subtitle": "Selank",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "Selank-10mg__DPS-8800891__PURITY.pdf",
+        "verifiedFileId": "15O37828HPB7bA6oDX9x2G-j3u376nNDY"
+      },
+      "endotoxin": {
+        "expectedName": "Selank-10mg__DPS-8800891__ENDOTOXIN.pdf",
+        "verifiedFileId": "1oxPGwf_8JYB2ZzkJlSFksx2hbyCINUmr"
+      }
+    },
+    {
+      "sheetRow": 28,
+      "sku": "Semax-10mg",
+      "lot": "DPS-8509849",
+      "compound": "Semax (10mg)",
+      "websiteName": "Semax",
+      "subtitle": "Semax",
+      "strength": "10mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "Semax-10mg__DPS-8509849__PURITY.pdf",
+        "verifiedFileId": "1kU2kIKPGD_VBfK-p8xnUWlxaGW-TcZqB"
+      },
+      "endotoxin": {
+        "expectedName": "Semax-10mg__DPS-8509849__ENDOTOXIN.pdf",
+        "verifiedFileId": "1qTJqA017EF-TFBspoJjVlg3UNlNQH4q2"
+      }
+    },
+    {
+      "sheetRow": 29,
+      "sku": "Oxytocin-5mg",
+      "lot": "DPS-1340958",
+      "compound": "Oxytocin (5mg)",
+      "websiteName": "Oxytocin",
+      "subtitle": "Oxytocin",
+      "strength": "5mg",
+      "vialSize": "3ML",
+      "coaDeclared": true,
+      "purity": {
+        "expectedName": "Oxytocin-5mg__DPS-1340958__PURITY.pdf",
+        "verifiedFileId": "1AtyVxkpagU8Rq1_f6Q6rbr02oWH7yboT"
+      },
+      "endotoxin": {
+        "expectedName": "Oxytocin-5mg__DPS-1340958__ENDOTOXIN.pdf",
+        "verifiedFileId": "1XMsu56rg2mEtc2QVWReM924dHNGqrk3l"
+      }
+    },
+    {
+      "sheetRow": 30,
+      "sku": "AOD-9604-5mg",
+      "lot": "DPS-0000005",
+      "compound": "AOD-9604 (5mg)",
+      "websiteName": "AOD-9604",
+      "subtitle": "AOD-9604",
+      "strength": "5mg",
+      "vialSize": "3ML",
+      "coaDeclared": false,
+      "purity": {
+        "expectedName": "AOD-9604-5mg__DPS-0000005__PURITY.pdf",
+        "verifiedFileId": null
+      },
+      "endotoxin": {
+        "expectedName": "AOD-9604-5mg__DPS-0000005__ENDOTOXIN.pdf",
+        "verifiedFileId": null
+      }
+    },
+    {
+      "sheetRow": 31,
+      "sku": "Reconstitution-Water",
+      "lot": "N/A",
+      "compound": "Reconstitution Water 30ML",
+      "websiteName": "Reconstitution Water",
+      "subtitle": "Reconstitution Water",
+      "strength": "N/A",
+      "vialSize": "30ML",
+      "coaDeclared": false,
+      "purity": {
+        "expectedName": "Reconstitution-Water__N/A__PURITY.pdf",
+        "verifiedFileId": null
+      },
+      "endotoxin": {
+        "expectedName": "Reconstitution-Water__N/A__ENDOTOXIN.pdf",
+        "verifiedFileId": null
+      }
+    }
+  ]
+}
