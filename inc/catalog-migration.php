@@ -139,3 +139,15 @@ function ge_catalog_placeholder() {
 add_filter( 'woocommerce_get_price_html', function ( $html, $product ) {
     return '' === $product->get_price() && 'yes' === get_post_meta( $product->get_id(), '_ge_catalog_pricing_pending', true ) ? '<span class="ge-pricing-pending">Pricing pending</span>' : $html;
 }, 20, 2 );
+
+add_action( 'template_redirect', function () {
+    if ( GE_CATALOG_VERSION !== get_option( 'ge_catalog_version' ) ) { return; }
+    $path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
+    if ( 'product/sermorelin' === $path ) {
+        $id = wc_get_product_id_by_sku( 'Sermorelin-5mg' );
+        if ( $id ) { wp_safe_redirect( get_permalink( $id ), 301 ); exit; }
+    }
+    if ( 'product/glp-r' === $path ) {
+        wp_safe_redirect( add_query_arg( array( 's' => 'GLP3-R', 'post_type' => 'product' ), ge_shop_url() ), 301 ); exit;
+    }
+}, 2 );

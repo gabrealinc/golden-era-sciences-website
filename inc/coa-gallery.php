@@ -27,6 +27,9 @@ function ge_coa_sync_product( $product_id ) {
                 $report = $record['reports'][$type];
                 $key = ge_coa_image_key( $report );
                 if ( isset( $old[$type]['key'], $old[$type]['attachment'] ) && $old[$type]['key'] === $key && wp_attachment_is_image( $old[$type]['attachment'] ) ) {
+                    $title = $product->get_name() . ' – ' . $product->get_attribute( 'Strength' ) . ' – ' . $record['lot'] . ' – ' . ucfirst( $type ) . ' Report (page 1 preview)';
+                    wp_update_post( array( 'ID' => $old[$type]['attachment'], 'post_title' => $title ) );
+                    update_post_meta( $old[$type]['attachment'], '_wp_attachment_image_alt', $title );
                     $new[$type] = $old[$type];
                     continue;
                 }
