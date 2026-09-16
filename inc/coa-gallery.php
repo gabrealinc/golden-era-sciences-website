@@ -15,7 +15,7 @@ function ge_coa_sync_product( $product_id ) {
     try {
         $record = ge_coa_record_for_sku( $product->get_sku() );
         if ( empty( $GLOBALS['ge_coa_feed_valid'] ) ) { return; }
-        $old = (array) get_post_meta( $product_id, '_ge_coa_gallery', true );
+        $old = (array) ( get_post_meta( $product_id, '_ge_coa_gallery', true ) ?: array() );
         $old_ids = array_filter( array_map( 'absint', array_column( $old, 'attachment' ) ) );
         $old_pdf_ids = array_filter( array_map( 'absint', array_column( $old, 'pdf_attachment' ) ) );
         $base = array_values( array_diff( $product->get_gallery_image_ids( 'edit' ), $old_ids ) );
@@ -109,7 +109,7 @@ function ge_coa_admin_page() {
     echo '<div class="wrap"><h1>Batch Reports</h1><p>The active pair follows the newest uploaded lot for an exact SKU and strength. Upload both locked filenames to the verified Purity Reports and Endotoxin Reports folders. Duplicate reports are withheld. Gallery previews synchronize hourly; use Sync now for an immediate update.</p><table class="widefat"><thead><tr><th>Product</th><th>Current reports</th><th>Gallery</th><th>Action</th></tr></thead><tbody>';
     foreach ( wc_get_products( array( 'status' => 'publish', 'limit' => -1, 'orderby' => 'title', 'order' => 'ASC' ) ) as $product ) {
         $record = ge_coa_record_for_sku( $product->get_sku() );
-        $images = (array) get_post_meta( $product->get_id(), '_ge_coa_gallery', true );
+        $images = (array) ( get_post_meta( $product->get_id(), '_ge_coa_gallery', true ) ?: array() );
         $error = get_post_meta( $product->get_id(), '_ge_coa_sync_error', true );
         printf( '<tr><td>%s<br>%s</td><td>%s</td><td>%s</td><td><form method="post" action="%s"><input type="hidden" name="action" value="ge_coa_sync"><input type="hidden" name="product_id" value="%d">', esc_html( $product->get_name() ), esc_html( $product->get_sku() ), esc_html( $record ? $record['lot'] : 'No exact current pair' ), esc_html( $error ? $error : count( $images ) . ' managed preview(s)' ), esc_url( admin_url( 'admin-post.php' ) ), $product->get_id() );
         wp_nonce_field( 'ge_coa_sync' );
@@ -122,7 +122,7 @@ add_action( 'admin_post_ge_coa_sync', function () {
     check_admin_referer( 'ge_coa_sync' );
     $id = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
     ge_coa_sync_product( $id );
-    if ( ! get_option( 'ge_coa_gallery_ready' ) && count( (array) get_post_meta( $id, '_ge_coa_gallery', true ) ) === 2 && ! get_post_meta( $id, '_ge_coa_sync_error', true ) ) {
+    if ( ! get_option( 'ge_coa_gallery_ready' ) && count( (array) ( get_post_meta( $id, '_ge_coa_gallery', true ) ?: array() ) ) === 2 && ! get_post_meta( $id, '_ge_coa_sync_error', true ) ) {
         update_option( 'ge_coa_gallery_ready', 1, false );
         ge_coa_queue_gallery();
     }
