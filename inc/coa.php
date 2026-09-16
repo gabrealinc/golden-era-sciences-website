@@ -80,7 +80,7 @@ function ge_coa_feed_sku( $sku ) {
         'GES-CJC-IPA-BLEND' => 'CJC-1295-Ipamorelin-5mg-5mg',
         'GES-BPC-TB-BLEND'  => 'Wolverine-20mg',
         'GES-GLOW-BLEND'    => 'GLOW-70mg',
-        'GES-KLOW-BLEND'    => 'KLOW-80mg',
+        'GES-KLOW-BLEND'    => 'Klow-55mg',
         'GES-GLPT-10MG'     => 'GLP2-T-10mg',
     );
 
