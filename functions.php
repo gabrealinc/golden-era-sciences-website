@@ -13,12 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GE_VERSION', '1.2.1' );
+define( 'GE_VERSION', '1.3.0' );
 if ( isset( $_GET['ge_report'] ) && ! defined( 'DONOTCACHEPAGE' ) ) { define( 'DONOTCACHEPAGE', true ); }
 define( 'GE_DIR', get_template_directory() );
 define( 'GE_URI', get_template_directory_uri() );
 
 require_once GE_DIR . '/inc/compliance-migration.php';
+require_once GE_DIR . '/inc/catalog-migration.php';
 
 /* -------------------------------------------------------------------------
  * Theme supports

@@ -2,7 +2,7 @@
   "source": "https://docs.google.com/spreadsheets/d/1adC902rs62X4bE7TYreNnA5GNEy0936x7YyLYxnxZ1U/edit",
   "tab": "Aug 2026 COA's",
   "verifiedAt": "2026-09-16",
-  "status": "Read-only reference snapshot. Selling scope and missing prices pending confirmation; not an automatic publish instruction.",
+  "status": "Complete sheet catalog authorized by Gabby September 16, 2026. Blank prices retain existing exact-product prices; new strengths remain unpriced.",
   "products": [
     {
       "sheetRow": 2,
@@ -21,7 +21,11 @@
       "endotoxin": {
         "expectedName": "GHK-Cu-50mg__DPS-5065007__ENDOTOXIN.pdf",
         "verifiedFileId": "1x_Fi3vmWmwwKMDoMi2UVoIKE1uF_C8-V"
-      }
+      },
+      "popular": true,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 3,
@@ -40,7 +44,11 @@
       "endotoxin": {
         "expectedName": "KPV-10mg__DPS-3255068__ENDOTOXIN.pdf",
         "verifiedFileId": "1ikCc2rICHZgAbo74-idAJwuKgTOOcjPk"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 4,
@@ -59,7 +67,11 @@
       "endotoxin": {
         "expectedName": "Kisspeptin-10mg__DPS-7618532__ENDOTOXIN.pdf",
         "verifiedFileId": "1ywaWQDrvH0Hdlbexc3zOzRVavCbAUcWq"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 5,
@@ -78,7 +90,11 @@
       "endotoxin": {
         "expectedName": "BPC-157-10mg__DPS-9628420__ENDOTOXIN.pdf",
         "verifiedFileId": "1AjdslIFcrxnWRaEIlYimjGQA5R8DYy48"
-      }
+      },
+      "popular": true,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 6,
@@ -97,7 +113,11 @@
       "endotoxin": {
         "expectedName": "TB-500-10mg__DPS-2022011__ENDOTOXIN.pdf",
         "verifiedFileId": "1aP-k4HCaOS8tiiSrYAz0UjwLlcddjAfb"
-      }
+      },
+      "popular": true,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 7,
@@ -116,7 +136,11 @@
       "endotoxin": {
         "expectedName": "TB-500-TB-4-43AA-5mg__DPS-0000001__ENDOTOXIN.pdf",
         "verifiedFileId": null
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 8,
@@ -135,7 +159,11 @@
       "endotoxin": {
         "expectedName": "Tesamorelin-10mg__DPS-9789916__ENDOTOXIN.pdf",
         "verifiedFileId": "1YWC9cPFdE37hFT40HpXMFUfsV2z37X8A"
-      }
+      },
+      "popular": true,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 9,
@@ -154,7 +182,11 @@
       "endotoxin": {
         "expectedName": "MOTS-c-10mg__DPS-6246893__ENDOTOXIN.pdf",
         "verifiedFileId": "1lu8tAjTGEcQy0bRAju8J9se3VvPTvWF7"
-      }
+      },
+      "popular": true,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 10,
@@ -173,7 +205,11 @@
       "endotoxin": {
         "expectedName": "NAD-1000mg__DPS-1640102__ENDOTOXIN.pdf",
         "verifiedFileId": "1K7YtdDoyvaSYFX29jfiPHxkac2sDxc8s"
-      }
+      },
+      "popular": true,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 11,
@@ -192,7 +228,11 @@
       "endotoxin": {
         "expectedName": "GLP1-S-20mg__DPS-0000002__ENDOTOXIN.pdf",
         "verifiedFileId": null
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 12,
@@ -211,7 +251,11 @@
       "endotoxin": {
         "expectedName": "GLP2-T-10mg__DPS-3675713__ENDOTOXIN.pdf",
         "verifiedFileId": "1qASHWJ_bqjEX_HhlPHsFE_y5AEW7Eld1"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 13,
@@ -230,7 +274,11 @@
       "endotoxin": {
         "expectedName": "GLP2-T-30mg__DPS-3402861__ENDOTOXIN.pdf",
         "verifiedFileId": "1_ey7XfGnkGq-_OjuPV7s9PJAxmqyamam"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 14,
@@ -249,7 +297,11 @@
       "endotoxin": {
         "expectedName": "GLP3-R-10mg__DPS-3733528__ENDOTOXIN.pdf",
         "verifiedFileId": "1hZYC-eBreEh5O_56UOHicdYrl9pAST1v"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 15,
@@ -268,7 +320,11 @@
       "endotoxin": {
         "expectedName": "GLP3-R-30mg__DPS-1743241__ENDOTOXIN.pdf",
         "verifiedFileId": "1wDtZvbx8Qp2bUHVUt61wX2_x5NN4tc9N"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 16,
@@ -287,7 +343,11 @@
       "endotoxin": {
         "expectedName": "GLOW-70mg__DPS-7777201__ENDOTOXIN.pdf",
         "verifiedFileId": "12bvGN6SIA1qIiOxaM8EeT7C9kOofKe1b"
-      }
+      },
+      "popular": true,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 17,
@@ -306,7 +366,11 @@
       "endotoxin": {
         "expectedName": "KLOW-80mg__DPS-8243101__ENDOTOXIN.pdf",
         "verifiedFileId": "1cSg7KGIGvcgcDrwfNlA3EQclIyKtd-MK"
-      }
+      },
+      "popular": true,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 18,
@@ -325,7 +389,11 @@
       "endotoxin": {
         "expectedName": "Klow-55mg__DPS-0000003__ENDOTOXIN.pdf",
         "verifiedFileId": null
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 19,
@@ -344,7 +412,11 @@
       "endotoxin": {
         "expectedName": "Sermorelin-5mg__DPS-3441701__ENDOTOXIN.pdf",
         "verifiedFileId": "1rmBnGURCc3Q0C0GJRLtlJV2V6dudbH0n"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 20,
@@ -363,7 +435,11 @@
       "endotoxin": {
         "expectedName": "Wolverine-20mg__DPS-8546475__ENDOTOXIN.pdf",
         "verifiedFileId": "1PYtFgD1NtmIfRrcel0aQehg2O1_wOtKJ"
-      }
+      },
+      "popular": true,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 21,
@@ -382,7 +458,11 @@
       "endotoxin": {
         "expectedName": "CJC-1295-Ipamorelin-5mg-5mg__DPS-6465415__ENDOTOXIN.pdf",
         "verifiedFileId": "18-T-HCdu_fcXH9Q8XvEpJ1ERqwMGQTA9"
-      }
+      },
+      "popular": true,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 22,
@@ -401,7 +481,11 @@
       "endotoxin": {
         "expectedName": "Ipamorelin-5mg__DPS-0000004__ENDOTOXIN.pdf",
         "verifiedFileId": null
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 23,
@@ -420,7 +504,11 @@
       "endotoxin": {
         "expectedName": "Ipamorelin-10mg__DPS-1725130__ENDOTOXIN.pdf",
         "verifiedFileId": "1MyXf1igUuKV_24FnwXlUfwLt5ssLAc6D"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 24,
@@ -439,7 +527,11 @@
       "endotoxin": {
         "expectedName": "DSIP-10mg__DPS-3123996__ENDOTOXIN.pdf",
         "verifiedFileId": "1avrfgWmzGxtANZVO5GgIUgw9EKsl99hf"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 25,
@@ -458,7 +550,11 @@
       "endotoxin": {
         "expectedName": "L-Glutathione-500mg__DPS-1818605__ENDOTOXIN.pdf",
         "verifiedFileId": "1xLUaY_GJTnpVY4dDak7DZmWTeEQU584Z"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 26,
@@ -477,7 +573,11 @@
       "endotoxin": {
         "expectedName": "PT-141-10mg__DPS-9050324__ENDOTOXIN.pdf",
         "verifiedFileId": "15PtcqRB_Cg1YwJXi7d3wE9RdqlageHMY"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 27,
@@ -496,7 +596,11 @@
       "endotoxin": {
         "expectedName": "Selank-10mg__DPS-8800891__ENDOTOXIN.pdf",
         "verifiedFileId": "1oxPGwf_8JYB2ZzkJlSFksx2hbyCINUmr"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 28,
@@ -515,7 +619,11 @@
       "endotoxin": {
         "expectedName": "Semax-10mg__DPS-8509849__ENDOTOXIN.pdf",
         "verifiedFileId": "1qTJqA017EF-TFBspoJjVlg3UNlNQH4q2"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 29,
@@ -534,7 +642,11 @@
       "endotoxin": {
         "expectedName": "Oxytocin-5mg__DPS-1340958__ENDOTOXIN.pdf",
         "verifiedFileId": "1XMsu56rg2mEtc2QVWReM924dHNGqrk3l"
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 30,
@@ -553,7 +665,11 @@
       "endotoxin": {
         "expectedName": "AOD-9604-5mg__DPS-0000005__ENDOTOXIN.pdf",
         "verifiedFileId": null
-      }
+      },
+      "popular": false,
+      "manufactured": "07-22-26",
+      "expires": "07-22-27",
+      "retailPrice": ""
     },
     {
       "sheetRow": 31,
@@ -572,7 +688,11 @@
       "endotoxin": {
         "expectedName": "Reconstitution-Water__N/A__ENDOTOXIN.pdf",
         "verifiedFileId": null
-      }
+      },
+      "popular": false,
+      "manufactured": "",
+      "expires": "",
+      "retailPrice": ""
     }
   ]
 }
