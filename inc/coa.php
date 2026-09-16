@@ -133,10 +133,23 @@ add_action( 'template_redirect', function () {
         wp_die( esc_html__( 'A current matching report is not available. Please contact info@goldenerasciences.com.', 'golden-era' ), esc_html__( 'Report unavailable', 'golden-era' ), array( 'response' => 404 ) );
     }
     $report = $record['reports'][$type];
-    $data = ge_coa_pdf_data( $report );
+    if ( ! isset( $_GET['report_pdf'] ) ) {
+        include __DIR__ . '/../template-parts/report-viewer.php';
+        exit;
+    }
+    // Reuse only the local PDF whose source ID and revision still match the feed.
+    $gallery = (array) get_post_meta( $product->get_id(), '_ge_coa_gallery', true );
+    $entry = isset( $gallery[$type] ) ? $gallery[$type] : array();
+    $data = array();
+    if ( isset( $entry['key'], $entry['pdf_attachment'] ) && $entry['key'] === ge_coa_image_key( $report ) && get_post_meta( $entry['pdf_attachment'], '_ge_coa_source_key', true ) === $entry['key'] ) {
+        $path = get_attached_file( $entry['pdf_attachment'] );
+        $bytes = $path && is_readable( $path ) ? file_get_contents( $path ) : '';
+        if ( 0 === strpos( $bytes, '%PDF-' ) ) { $data = array( 'pdf' => $bytes ); }
+    }
+    if ( ! $data ) { $data = ge_coa_pdf_data( $report ); }
     if ( ! $data ) { wp_die( 'The current report is temporarily unavailable. Please try again later.', 'Report unavailable', array( 'response' => 503 ) ); }
     header( 'Content-Type: application/pdf' );
-    header( 'Content-Disposition: inline; filename="' . sanitize_file_name( $report['name'] ) . '"' );
+    header( 'Content-Disposition: ' . ( isset( $_GET['report_download'] ) ? 'attachment' : 'inline' ) . '; filename="' . sanitize_file_name( $report['name'] ) . '"' );
     header( 'X-Content-Type-Options: nosniff' );
     header( 'Content-Length: ' . strlen( $data['pdf'] ) );
     echo $data['pdf']; // Validated PDF bytes from the approved current feed.

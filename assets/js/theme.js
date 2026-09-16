@@ -263,3 +263,10 @@
     document.getElementById('ge-report-empty').hidden = count > 0;
   });
 }());
+(function () {
+  var frame = document.querySelector('[data-report-frame]');
+  var status = document.getElementById('ge-report-loading');
+  if (frame && status) {
+    frame.addEventListener('load', function () { status.textContent = 'Report viewer loaded. Download PDF if the document is not visible.'; });
+  }
+}());
