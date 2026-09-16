@@ -1,10 +1,14 @@
+## Current report policy correction
+
+COA? is an output only. Product information comes from the other sheet fields; report availability comes from actual verified files. Removed the COA flag from the catalog snapshot, deleted legacy flag metadata, and replaced status-derived product description wording with a reference to the dynamic Batch Reports section. Existing report links and galleries already use the actual report feed. Verified pairs are marked YES after file/content/name reconciliation.
+
 # Catalog reconciliation, September 16, 2026
 
 ## Approved update applied
 
 Gabby explicitly instructed the site to reflect Product Information only. The live catalog now contains all 30 exact sheet SKUs as individual simple products. Names, subtitles, strengths, vial sizes, lots, manufacture/expiration dates and Popular flags match the current sheet. Separate strength pages prevent report mixing across variations. Old GLP-R 24mg and Sermorelin 10mg records are draft, preserving historical records. Exact existing products retain their verified WooCommerce prices, including the separately verified 30mg tirzepatide variation price. Fourteen new or changed-strength products have no verified price and show Pricing pending, with purchasing disabled. Original records and metadata were backed up privately before mutation. New strengths and corrected NAD+/GLOW vial sizes use a neutral illustrative product image until exact product photography is supplied.
 
-All 30 product pages and 48 exact PDF deliveries passed the live catalog audit. Twenty-four sheet rows have purity/endotoxin pairs; six marked COA No remain explicitly unavailable. All 24 applicable WooCommerce galleries were verified with the product image first, purity preview second, and endotoxin preview third, including correct lot labels. All 14 unpriced items are not purchasable. The COA index has 30 rows and 48 report buttons, with no Drive-folder links. Mobile product layout and desktop PDF rendering were visually checked; no report-viewer console errors were observed.
+All 30 product pages and 48 exact PDF deliveries passed the live catalog audit. Twenty-four sheet rows have purity/endotoxin pairs; six have no verified report pair in the connected source folders. All 24 applicable WooCommerce galleries were verified with the product image first, purity preview second, and endotoxin preview third, including correct lot labels. All 14 unpriced items are not purchasable. The COA index has 30 rows and 48 report buttons, with no Drive-folder links. Mobile product layout and desktop PDF rendering were visually checked; no report-viewer console errors were observed.
 
 Product Information, tab `Aug 2026 COA's`, is the current catalog reference identified by Gabby. Golden Era SKU's Order #1 is an older comparison source, not an override for current records.
 

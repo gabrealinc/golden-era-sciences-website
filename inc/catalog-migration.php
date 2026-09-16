@@ -98,7 +98,7 @@ function ge_apply_sheet_catalog() {
             $item->set_short_description( $spec . ' For laboratory research use only.' );
             $description = '<p>' . esc_html( $spec ) . '</p><p>Lot: ' . esc_html( $row['lot'] ) . '.</p>';
             if ( ! empty( $row['manufactured'] ) ) { $description .= '<p>Manufacture date: ' . esc_html( $row['manufactured'] ) . '. Expiration date: ' . esc_html( $row['expires'] ) . '.</p>'; }
-            $description .= '<h2>Batch Documentation</h2><p>' . ( $row['coaDeclared'] ? 'Available purity and endotoxin reports are linked in Batch Reports for this exact product and lot.' : 'Current batch reports are not available for this product.' ) . '</p>';
+            $description .= '<h2>Batch Documentation</h2><p>' . 'Verified current reports, when available, are linked in Batch Reports for this exact product and lot.' . '</p>';
             $description .= '<h2>Research Use Disclaimer</h2><p>For Research Use Only. Not for human or veterinary use. Supplied strictly for laboratory research; not intended to diagnose, treat, cure, or prevent any condition.</p>';
             $item->set_description( $description );
             $id = $item->save();
@@ -107,7 +107,6 @@ function ge_apply_sheet_catalog() {
             update_option( 'ge_catalog_sheet_map', $map, false );
             update_post_meta( $id, '_ge_catalog_sheet_row', $row['sheetRow'] );
             update_post_meta( $id, '_ge_catalog_lot', $row['lot'] );
-            update_post_meta( $id, '_ge_catalog_coa_declared', $row['coaDeclared'] ? 'yes' : 'no' );
             update_post_meta( $id, '_ge_catalog_pricing_pending', '' === (string) $price ? 'yes' : 'no' );
             wc_delete_product_transients( $id );
         }
@@ -151,3 +150,25 @@ add_action( 'template_redirect', function () {
         wp_safe_redirect( add_query_arg( array( 's' => 'GLP3-R', 'post_type' => 'product' ), ge_shop_url() ), 301 ); exit;
     }
 }, 2 );
+
+/** Remove historical sheet-status wording without changing catalog, pricing or stock. */
+add_action( 'init', function () {
+    if ( ! function_exists( 'wc_get_product' ) || get_option( 'ge_report_wording_corrected' ) ) { return; }
+    $map = (array) get_option( 'ge_catalog_sheet_map', array() );
+    if ( 30 !== count( $map ) ) { return; }
+    $backup = (array) get_option( 'ge_report_wording_backup', array() );
+    foreach ( $map as $id ) {
+        $item = wc_get_product( $id );
+        if ( ! $item ) { return; }
+        $old = $item->get_description();
+        if ( ! isset( $backup[$id] ) ) { $backup[$id] = $old; }
+        update_option( 'ge_report_wording_backup', $backup, false );
+        $new = str_replace( array(
+            'Available purity and endotoxin reports are linked in Batch Reports for this exact product and lot.',
+            'Current batch reports are not available for this product.',
+        ), 'Verified current reports, when available, are linked in Batch Reports for this exact product and lot.', $old );
+        if ( $new !== $old ) { $item->set_description( $new ); $item->save(); }
+        delete_post_meta( $id, '_ge_catalog_coa_declared' );
+    }
+    update_option( 'ge_report_wording_corrected', 1, false );
+}, 41 );

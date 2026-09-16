@@ -1,3 +1,7 @@
+## Source-of-truth correction
+
+COA? is a derived verification status, never an input to report discovery, mapping or website availability. SKU, lot and generated filename cells are the authoritative matching targets. All 48 actual reports were verified independently of that column. Their names already match, so no further rename is needed. The six unresolved rows below reflect actual file searches, not their sheet status.
+
 # COA content audit – September 16, 2026
 
 Compared the current [Product Information spreadsheet](https://docs.google.com/spreadsheets/d/1adC902rs62X4bE7TYreNnA5GNEy0936x7YyLYxnxZ1U/edit), tab Aug 2026 COA's, rows 2–31, against all 48 PDFs in the two connected report folders. Read each complete extracted report, not just its filename.
@@ -35,12 +39,12 @@ Twenty single-compound purity reports explicitly state the expected nominal stre
 
 ## No matching current reports found
 
-- TB-500-TB-4-43AA-5mg – DPS-0000001. Spreadsheet COA? No.
-- GLP1-S-20mg – DPS-0000002. Spreadsheet COA? No.
-- Klow-55mg – DPS-0000003. Spreadsheet COA? No.
-- Ipamorelin-5mg – DPS-0000004. Spreadsheet COA? No.
-- AOD-9604-5mg – DPS-0000005. Spreadsheet COA? No.
-- Reconstitution-Water – N/A. Spreadsheet COA? No.
+- TB-500-TB-4-43AA-5mg – DPS-0000001.
+- GLP1-S-20mg – DPS-0000002.
+- Klow-55mg – DPS-0000003.
+- Ipamorelin-5mg – DPS-0000004.
+- AOD-9604-5mg – DPS-0000005.
+- Reconstitution-Water – N/A.
 
 Searched accessible Drive PDFs by AOD, semaglutide and the relevant missing lots, and inspected the returned label PDFs. Those are bottle-label artwork, not COAs. Reviewed the COA root and its two subfolders, plus metadata in the client's Website, Archives and Marketing Assets folders. No additional report source was found there. This is a conclusion about the connected sources inspected, not proof no reports exist in another account or unshared folder.
 

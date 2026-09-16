@@ -13,7 +13,6 @@
       "subtitle": "GHK-Cu",
       "strength": "50mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "GHK-Cu-50mg__DPS-5065007__PURITY.pdf",
         "verifiedFileId": "1xStRPoNBJkF0AI9oQ69b99isVOolxjAY"
@@ -36,7 +35,6 @@
       "subtitle": "KPV",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "KPV-10mg__DPS-3255068__PURITY.pdf",
         "verifiedFileId": "126V-OYlHK8dFq0NTDisKgOAb2aM3t6k8"
@@ -59,7 +57,6 @@
       "subtitle": "Kisspeptin",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "Kisspeptin-10mg__DPS-7618532__PURITY.pdf",
         "verifiedFileId": "1fTBybmECskeImkyE_1_pHdeAoODZwJfQ"
@@ -82,7 +79,6 @@
       "subtitle": "BPC-157",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "BPC-157-10mg__DPS-9628420__PURITY.pdf",
         "verifiedFileId": "1wDpEb99NXRzfxK_3mdSfH1H7a38rSYJc"
@@ -105,7 +101,6 @@
       "subtitle": "TB-500",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "TB-500-10mg__DPS-2022011__PURITY.pdf",
         "verifiedFileId": "1ZICzePHQ4iHBdIKR57qd6dRaLJVrn8Zd"
@@ -128,7 +123,6 @@
       "subtitle": "TB-500 (TB-4 43AA)",
       "strength": "5mg",
       "vialSize": "3ML",
-      "coaDeclared": false,
       "purity": {
         "expectedName": "TB-500-TB-4-43AA-5mg__DPS-0000001__PURITY.pdf",
         "verifiedFileId": null
@@ -151,7 +145,6 @@
       "subtitle": "Tesamorelin",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "Tesamorelin-10mg__DPS-9789916__PURITY.pdf",
         "verifiedFileId": "1mLrbpyqfD1Mqiens623tCy8p5wOPObhX"
@@ -174,7 +167,6 @@
       "subtitle": "MOTS-c",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "MOTS-c-10mg__DPS-6246893__PURITY.pdf",
         "verifiedFileId": "1ziY-1AvNsn2iqBBLEfvJE5N2dOjl37gj"
@@ -197,7 +189,6 @@
       "subtitle": "NAD+",
       "strength": "1000mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "NAD-1000mg__DPS-1640102__PURITY.pdf",
         "verifiedFileId": "1hx5kZK4vAHudrKJPmYlYQqC1bR4WiqCP"
@@ -220,7 +211,6 @@
       "subtitle": "GLP1-S",
       "strength": "20mg",
       "vialSize": "6ML",
-      "coaDeclared": false,
       "purity": {
         "expectedName": "GLP1-S-20mg__DPS-0000002__PURITY.pdf",
         "verifiedFileId": null
@@ -243,7 +233,6 @@
       "subtitle": "GLP2-T",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "GLP2-T-10mg__DPS-3675713__PURITY.pdf",
         "verifiedFileId": "1VozrMnR1xXgjaqCgGlqJPLzlBfNbSg85"
@@ -266,7 +255,6 @@
       "subtitle": "GLP2-T",
       "strength": "30mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "GLP2-T-30mg__DPS-3402861__PURITY.pdf",
         "verifiedFileId": "15VLPvpoBE3GM2AnJ4xX4Hz9Zvx9ejl-R"
@@ -289,7 +277,6 @@
       "subtitle": "GLP3-R",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "GLP3-R-10mg__DPS-3733528__PURITY.pdf",
         "verifiedFileId": "1SSxDE_0l9oQ3JjKJA2Cs4AWTo6cMZelV"
@@ -312,7 +299,6 @@
       "subtitle": "GLP3-R",
       "strength": "30mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "GLP3-R-30mg__DPS-1743241__PURITY.pdf",
         "verifiedFileId": "1uSNA_p1C7QgvnBP13ZepImDy9LLsIhZE"
@@ -335,7 +321,6 @@
       "subtitle": "GHK-Cu / BPC-157 / TB-500",
       "strength": "50mg / 10mg / 10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "GLOW-70mg__DPS-7777201__PURITY.pdf",
         "verifiedFileId": "1H6FoNb6GUST98amJ5h8tqoeZr7d6Soe0"
@@ -358,7 +343,6 @@
       "subtitle": "GHK-Cu / KPV / BPC-157 / TB-500",
       "strength": "50mg / 10mg / 10mg/ 10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "KLOW-80mg__DPS-8243101__PURITY.pdf",
         "verifiedFileId": "1R0Ak292MkpyNDdlIIqlWb9kT2OztE6EZ"
@@ -381,7 +365,6 @@
       "subtitle": "GHK-Cu / KPV / BPC-157 / TB-500",
       "strength": "25mg / 10 mg / 10mg / 10mg",
       "vialSize": "6ML",
-      "coaDeclared": false,
       "purity": {
         "expectedName": "Klow-55mg__DPS-0000003__PURITY.pdf",
         "verifiedFileId": null
@@ -404,7 +387,6 @@
       "subtitle": "Sermorelin",
       "strength": "5mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "Sermorelin-5mg__DPS-3441701__PURITY.pdf",
         "verifiedFileId": "18wPi2cUdr8Ag3wFxixWCHfuLUqg5RYrj"
@@ -427,7 +409,6 @@
       "subtitle": "BPC-157 / TB-500",
       "strength": "20mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "Wolverine-20mg__DPS-8546475__PURITY.pdf",
         "verifiedFileId": "1x9yY24bV9JIfJYWqppzEwahTB3V4568w"
@@ -450,7 +431,6 @@
       "subtitle": "CJC-1295 / Ipamorelin",
       "strength": "5mg / 5mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "CJC-1295-Ipamorelin-5mg-5mg__DPS-6465415__PURITY.pdf",
         "verifiedFileId": "1PPpI4sKRPahmkcdrBzQIMUVVi0nQ9Kbk"
@@ -473,7 +453,6 @@
       "subtitle": "Ipamorelin",
       "strength": "5mg",
       "vialSize": "3ML",
-      "coaDeclared": false,
       "purity": {
         "expectedName": "Ipamorelin-5mg__DPS-0000004__PURITY.pdf",
         "verifiedFileId": null
@@ -496,7 +475,6 @@
       "subtitle": "Ipamorelin",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "Ipamorelin-10mg__DPS-1725130__PURITY.pdf",
         "verifiedFileId": "1o7shTfYVUAL0HMCvwmdQhybH8vjkGc5N"
@@ -519,7 +497,6 @@
       "subtitle": "DSIP",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "DSIP-10mg__DPS-3123996__PURITY.pdf",
         "verifiedFileId": "1kAFJGs2IIQof0EWS1nSHdw4M5X6gqSSv"
@@ -542,7 +519,6 @@
       "subtitle": "L-Glutathione",
       "strength": "500mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "L-Glutathione-500mg__DPS-1818605__PURITY.pdf",
         "verifiedFileId": "1RVs8r6SGz1tokAuC1ANXFi24ioABa8ZK"
@@ -565,7 +541,6 @@
       "subtitle": "PT-141",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "PT-141-10mg__DPS-9050324__PURITY.pdf",
         "verifiedFileId": "1FZKtlqGJbiKL6sHeSqS1XEAY2qjfaa3I"
@@ -588,7 +563,6 @@
       "subtitle": "Selank",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "Selank-10mg__DPS-8800891__PURITY.pdf",
         "verifiedFileId": "15O37828HPB7bA6oDX9x2G-j3u376nNDY"
@@ -611,7 +585,6 @@
       "subtitle": "Semax",
       "strength": "10mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "Semax-10mg__DPS-8509849__PURITY.pdf",
         "verifiedFileId": "1kU2kIKPGD_VBfK-p8xnUWlxaGW-TcZqB"
@@ -634,7 +607,6 @@
       "subtitle": "Oxytocin",
       "strength": "5mg",
       "vialSize": "3ML",
-      "coaDeclared": true,
       "purity": {
         "expectedName": "Oxytocin-5mg__DPS-1340958__PURITY.pdf",
         "verifiedFileId": "1AtyVxkpagU8Rq1_f6Q6rbr02oWH7yboT"
@@ -657,7 +629,6 @@
       "subtitle": "AOD-9604",
       "strength": "5mg",
       "vialSize": "3ML",
-      "coaDeclared": false,
       "purity": {
         "expectedName": "AOD-9604-5mg__DPS-0000005__PURITY.pdf",
         "verifiedFileId": null
@@ -680,7 +651,6 @@
       "subtitle": "Reconstitution Water",
       "strength": "N/A",
       "vialSize": "30ML",
-      "coaDeclared": false,
       "purity": {
         "expectedName": "Reconstitution-Water__N/A__PURITY.pdf",
         "verifiedFileId": null
@@ -694,5 +664,6 @@
       "expires": "",
       "retailPrice": ""
     }
-  ]
+  ],
+  "reportPolicy": "COA? is a verification output only. Match actual PDF content to SKU, lot and expected report filename before renaming and marking YES. Public availability comes from the verified current report feed."
 }
