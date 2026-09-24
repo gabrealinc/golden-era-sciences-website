@@ -2,7 +2,9 @@
 /** Apply the selling catalog explicitly approved by Gabby on September 16. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 define( 'GE_CATALOG_VERSION', '2026-09-16.1' );
+define( 'GE_PLACEHOLDER_VERSION', '2026-09-24.1' );
 add_action( 'init', 'ge_apply_sheet_catalog', 40 );
+add_action( 'init', 'ge_refresh_catalog_placeholder', 42 );
 
 function ge_apply_sheet_catalog() {
     if ( ! function_exists( 'wc_get_products' ) || GE_CATALOG_VERSION === get_option( 'ge_catalog_version' ) || get_transient( 'ge_catalog_lock' ) ) { return; }
@@ -133,6 +135,43 @@ function ge_catalog_placeholder() {
     update_post_meta( $id, '_wp_attachment_image_alt', 'Neutral research vial illustration; see the listed product specifications.' );
     update_option( 'ge_catalog_placeholder', $id, false );
     return $id;
+}
+
+/** Replace only missing or known placeholder images with the approved template. */
+function ge_refresh_catalog_placeholder() {
+    if ( ! function_exists( 'wc_get_products' ) || GE_PLACEHOLDER_VERSION === get_option( 'ge_catalog_placeholder_version' ) ) { return; }
+
+    $old_id = absint( get_option( 'ge_catalog_placeholder' ) );
+    $new_id = absint( get_option( 'ge_catalog_placeholder_2026_id' ) );
+    if ( ! $new_id || ! wp_attachment_is_image( $new_id ) ) {
+        $bytes = file_get_contents( GE_DIR . '/assets/images/vial-placeholder.jpg' );
+        if ( false === $bytes ) { return; }
+        $upload = wp_upload_bits( 'golden-era-product-placeholder-2026.jpg', null, $bytes );
+        if ( $upload['error'] ) { return; }
+        $new_id = wp_insert_attachment( array(
+            'post_mime_type' => 'image/jpeg',
+            'post_title'     => 'Golden Era Sciences product image placeholder',
+            'post_status'    => 'inherit',
+        ), $upload['file'], 0, true );
+        if ( is_wp_error( $new_id ) ) { return; }
+        update_post_meta( $new_id, '_wp_attachment_image_alt', 'Golden Era Sciences generic research vial; product-specific image pending.' );
+        update_option( 'ge_catalog_placeholder_2026_id', $new_id, false );
+    }
+
+    foreach ( wc_get_products( array( 'status' => 'publish', 'limit' => -1 ) ) as $product ) {
+        $image_id = absint( $product->get_image_id( 'edit' ) );
+        $is_placeholder = ! $image_id || ( $old_id && $old_id === $image_id ) || 'yes' === get_post_meta( $product->get_id(), '_ge_catalog_placeholder', true );
+        if ( $is_placeholder ) {
+            $product->set_image_id( $new_id );
+            $product->save();
+            update_post_meta( $product->get_id(), '_ge_catalog_placeholder', 'yes' );
+        } else {
+            delete_post_meta( $product->get_id(), '_ge_catalog_placeholder' );
+        }
+    }
+
+    update_option( 'ge_catalog_placeholder', $new_id, false );
+    update_option( 'ge_catalog_placeholder_version', GE_PLACEHOLDER_VERSION, false );
 }
 
 add_filter( 'woocommerce_get_price_html', function ( $html, $product ) {
