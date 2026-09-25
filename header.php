@@ -23,8 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <a class="ge-skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'golden-era' ); ?></a>
 
-<?php get_template_part( 'template-parts/age-gate' ); ?>
-
 <header class="ge-header">
 
 	<a class="ge-promo" href="<?php echo esc_url( ge_shop_url() ); ?>">

@@ -18,6 +18,7 @@ if ( isset( $_GET['ge_report'] ) && ! defined( 'DONOTCACHEPAGE' ) ) { define( 'D
 define( 'GE_DIR', get_template_directory() );
 define( 'GE_URI', get_template_directory_uri() );
 
+require_once GE_DIR . '/inc/age-gate.php';
 require_once GE_DIR . '/inc/compliance-migration.php';
 require_once GE_DIR . '/inc/catalog-migration.php';
 
@@ -104,7 +105,6 @@ function ge_assets() {
 		'subscribed'   => __( 'Subscribed.', 'golden-era' ),
 		'genericError' => __( 'Something went wrong. Please try again.', 'golden-era' ),
 		'networkError' => __( 'Network error. Please try again.', 'golden-era' ),
-		'exitUrl'      => esc_url( apply_filters( 'ge_age_gate_exit_url', 'https://www.google.com' ) ),
 	) );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -333,18 +333,3 @@ add_action( 'wp_head', function () {
 		echo '<style>.ge-header{top:32px}@media(max-width:782px){.ge-header{top:46px}}</style>';
 	}
 } );
-
-add_filter( 'body_class', function ( $classes ) {
-	if ( ge_age_gate_enabled() ) {
-		$classes[] = 'ge-has-agegate';
-	}
-	return $classes;
-} );
-
-/**
- * Age gate toggle. Filterable so it can be disabled without editing the theme:
- *   add_filter( 'ge_age_gate_enabled', '__return_false' );
- */
-function ge_age_gate_enabled() {
-	return (bool) apply_filters( 'ge_age_gate_enabled', true );
-}

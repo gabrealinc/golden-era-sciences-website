@@ -2,107 +2,10 @@
  * Golden Era Sciences — front-end behaviour.
  *
  * Vanilla JS, no dependencies, no build step.
- * Handles: age gate, mobile menu, FAQ accordion, newsletter signup.
+ * Handles: mobile menu, FAQ accordion, newsletter signup.
  */
 (function () {
   'use strict';
-
-  /* --- Age gate ---------------------------------------------------------
-   * Stored in localStorage rather than a cookie so it never varies the
-   * server response, which keeps page caching intact.
-   */
-  function initAgeGate() {
-    var gate = document.getElementById('ge-agegate');
-    if (!gate) return;
-
-    var KEY = 'ge-age-verified';
-    var verified = false;
-
-    try {
-      verified = window.localStorage.getItem(KEY) === 'yes';
-    } catch (e) {
-      // Private browsing or storage disabled: show the gate, do not trap them.
-      verified = false;
-    }
-
-    if (verified) return;
-
-    var accept = gate.querySelector('[data-ge-agegate="accept"]');
-    var decline = gate.querySelector('[data-ge-agegate="decline"]');
-    var message = gate.querySelector('[data-ge-agegate-message]');
-    var regions = [];
-
-    // The gate is an opaque full-screen overlay. Without this, Tab walks
-    // straight past it into the nav and product links underneath, which are
-    // invisible but still focusable and clickable.
-    function setInert(on) {
-      regions = regions.length
-        ? regions
-        : Array.prototype.slice.call(
-            document.querySelectorAll('body > header, body > main, body > footer, body > .ge-header')
-          );
-      regions.forEach(function (el) {
-        if (on) {
-          el.setAttribute('inert', '');
-          el.setAttribute('aria-hidden', 'true');
-        } else {
-          el.removeAttribute('inert');
-          el.removeAttribute('aria-hidden');
-        }
-      });
-    }
-
-    // Fallback for browsers without inert: cycle Tab between the two buttons.
-    function trapTab(event) {
-      if (event.key !== 'Tab' && event.keyCode !== 9) return;
-      var focusable = [accept, decline].filter(function (el) {
-        return el && !el.disabled;
-      });
-      if (!focusable.length) return;
-      var first = focusable[0];
-      var last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    }
-
-    gate.hidden = false;
-    document.body.classList.add('ge-locked');
-    setInert(true);
-    document.addEventListener('keydown', trapTab);
-
-    if (accept) {
-      accept.focus();
-      accept.addEventListener('click', function () {
-        try {
-          window.localStorage.setItem(KEY, 'yes');
-        } catch (e) {
-          /* ignore */
-        }
-        gate.hidden = true;
-        document.body.classList.remove('ge-locked');
-        setInert(false);
-        document.removeEventListener('keydown', trapTab);
-      });
-    }
-
-    if (decline) {
-      decline.addEventListener('click', function () {
-        // Send them away rather than disabling both buttons, which used to
-        // strand the visitor behind an opaque overlay with no way out.
-        if (message) message.hidden = false;
-        var exit =
-          (window.geL10n && window.geL10n.exitUrl) || 'https://www.google.com';
-        window.setTimeout(function () {
-          window.location.replace(exit);
-        }, 1200);
-      });
-    }
-  }
 
   /* --- Mobile menu ----------------------------------------------------- */
   function initMobileMenu() {
@@ -240,7 +143,6 @@
   }
 
   ready(function () {
-    initAgeGate();
     initMobileMenu();
     initFaq();
     initSubscribe();
