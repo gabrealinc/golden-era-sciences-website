@@ -19,6 +19,7 @@ define( 'GE_DIR', get_template_directory() );
 define( 'GE_URI', get_template_directory_uri() );
 
 require_once GE_DIR . '/inc/age-gate.php';
+require_once GE_DIR . '/inc/tiktok-pixel.php';
 require_once GE_DIR . '/inc/compliance-migration.php';
 require_once GE_DIR . '/inc/catalog-migration.php';
 
