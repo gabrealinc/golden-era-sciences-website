@@ -21,7 +21,10 @@ function ge_tiktok_tracking_allowed() {
 		return false;
 	}
 
-	return function_exists( 'ge_age_gate_verified' ) && ge_age_gate_verified();
+	return function_exists( 'ge_age_gate_verified' )
+		&& ge_age_gate_verified()
+		&& function_exists( 'ge_cookie_consent_allows' )
+		&& ge_cookie_consent_allows( 'marketing' );
 }
 
 /** Load the base pixel and record a page view after age verification. */
@@ -46,7 +49,7 @@ add_action( 'wp_head', 'ge_tiktok_pixel_base', 1 );
 
 /** Save an add-to-cart event for the next verified page render. */
 function ge_tiktok_capture_add_to_cart( $cart_item_key, $product_id, $quantity, $variation_id ) {
-	if ( ! function_exists( 'WC' ) || ! WC()->session ) {
+	if ( ! ge_tiktok_tracking_allowed() || ! function_exists( 'WC' ) || ! WC()->session ) {
 		return;
 	}
 

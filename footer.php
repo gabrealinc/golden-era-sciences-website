@@ -74,6 +74,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<h4><?php esc_html_e( 'Legal', 'golden-era' ); ?></h4>
 				<ul>
 					<li><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><?php esc_html_e( 'Privacy Policy', 'golden-era' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/cookie-policy/' ) ); ?>"><?php esc_html_e( 'Cookie Policy', 'golden-era' ); ?></a></li>
+					<li><button class="ge-footer__link-button" type="button" data-ge-consent-open><?php esc_html_e( 'Cookie Settings', 'golden-era' ); ?></button></li>
 					<li><a href="<?php echo esc_url( home_url( '/terms-conditions/' ) ); ?>"><?php esc_html_e( 'Terms & Conditions', 'golden-era' ); ?></a></li>
 					<li><a href="<?php echo esc_url( home_url( '/shipping-returns/' ) ); ?>"><?php esc_html_e( 'Shipping & Returns', 'golden-era' ); ?></a></li>
 				</ul>
