@@ -93,7 +93,13 @@ add_action( 'wp_footer', 'ge_tiktok_fire_add_to_cart', 99 );
 
 /** Record checkout details when a verified visitor reaches checkout. */
 function ge_tiktok_initiate_checkout() {
-	if ( ! ge_tiktok_tracking_allowed() || ! function_exists( 'WC' ) || ! WC()->cart || WC()->cart->is_empty() ) {
+	if ( ! ge_tiktok_tracking_allowed() || ! function_exists( 'is_checkout' ) || ! function_exists( 'is_order_received_page' ) ) {
+		return;
+	}
+	if ( ! is_checkout() || is_order_received_page() ) {
+		return;
+	}
+	if ( ! function_exists( 'WC' ) || ! WC()->cart || WC()->cart->is_empty() ) {
 		return;
 	}
 
@@ -125,7 +131,7 @@ function ge_tiktok_initiate_checkout() {
 	</script>
 	<?php
 }
-add_action( 'woocommerce_before_checkout_form', 'ge_tiktok_initiate_checkout', 10 );
+add_action( 'wp_footer', 'ge_tiktok_initiate_checkout', 90 );
 
 /** Record a completed order once on the WooCommerce thank-you page. */
 function ge_tiktok_complete_payment( $order_id ) {
