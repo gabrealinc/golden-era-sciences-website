@@ -52,9 +52,9 @@ function ge_cookie_consent_handle() {
 	}
 
 	$action     = sanitize_key( wp_unslash( $_POST['ge_consent_action'] ) );
-	$categories = array();
+	$categories = array( 'necessary' );
 	if ( 'accept' === $action ) {
-		$categories = array( 'analytics', 'marketing' );
+		$categories = array( 'necessary', 'analytics', 'marketing' );
 	} elseif ( 'save' === $action ) {
 		if ( ! empty( $_POST['ge_consent_analytics'] ) ) {
 			$categories[] = 'analytics';
