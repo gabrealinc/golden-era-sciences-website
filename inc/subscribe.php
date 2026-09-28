@@ -34,6 +34,12 @@ const GE_SUBSCRIBE_RATE_LIMIT = 5;
 /** Google Apps Script endpoint for the approved subscriber spreadsheet. */
 const GE_SUBSCRIBER_SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwU_e-MPeAoATB6nFT6P-Iehv0mbIMz1QUciT9ALIi2p9khMZ9mCZYlyZbZmhq9Fhp3/exec';
 
+/** Private spreadsheet where approved subscriber records are stored. */
+const GE_SUBSCRIBER_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1oqDiKJBUGQwH_zcZG35tnp2TSVlDOd6xz1zpon7AHsk/edit';
+
+/** Inbox that receives a minimal new-subscriber notification. */
+const GE_SUBSCRIBER_NOTIFICATION_EMAIL = 'info@goldenerasciences.com';
+
 add_action( 'init', 'ge_register_subscriber_cpt' );
 function ge_register_subscriber_cpt() {
 	register_post_type( 'ge_subscriber', array(
@@ -155,7 +161,31 @@ function ge_handle_subscribe() {
 		);
 	}
 
+	// The spreadsheet remains the source of truth. Email only points the team
+	// to it so subscriber personal data is not duplicated in another system.
+	if ( ! ge_notify_subscriber_signup() ) {
+		error_log( 'Golden Era subscriber notification email could not be sent.' ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+	}
+
 	wp_send_json_success( array( 'message' => __( 'You are on the list. Watch your inbox.', 'golden-era' ) ) );
+}
+
+/**
+ * Send a no-cost, minimal notification after the spreadsheet sync succeeds.
+ *
+ * A mail-delivery problem must never discard a valid subscriber record.
+ *
+ * @return bool Whether WordPress accepted the message for delivery.
+ */
+function ge_notify_subscriber_signup() {
+	$subject = __( 'New Golden Era Sciences subscriber', 'golden-era' );
+	$message = sprintf(
+		/* translators: %s is the private subscriber spreadsheet URL. */
+		__( "A new research catalog subscriber was recorded.\n\nView the subscriber sheet:\n%s", 'golden-era' ),
+		GE_SUBSCRIBER_SHEET_URL
+	);
+
+	return wp_mail( GE_SUBSCRIBER_NOTIFICATION_EMAIL, $subject, $message );
 }
 
 /**
