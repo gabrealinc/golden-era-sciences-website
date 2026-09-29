@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GE_VERSION', '1.3.1' );
+define( 'GE_VERSION', '1.3.2' );
 if ( isset( $_GET['ge_report'] ) && ! defined( 'DONOTCACHEPAGE' ) ) { define( 'DONOTCACHEPAGE', true ); }
 define( 'GE_DIR', get_template_directory() );
 define( 'GE_URI', get_template_directory_uri() );
@@ -119,6 +119,23 @@ add_action( 'wp_head', 'ge_preconnect', 1 );
 function ge_preconnect() {
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
 	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+}
+
+/** Use the bundled Golden Era mark consistently instead of WordPress' icon. */
+add_action( 'init', 'ge_replace_site_icon' );
+function ge_replace_site_icon() {
+	remove_action( 'wp_head', 'wp_site_icon', 99 );
+}
+
+add_action( 'wp_head', 'ge_favicon_links', 99 );
+function ge_favicon_links() {
+	$icon_32  = GE_URI . '/assets/images/favicon-32.png';
+	$icon_192 = GE_URI . '/assets/images/favicon-192.png';
+	$apple    = GE_URI . '/assets/images/apple-touch-icon.png';
+
+	printf( '<link rel="icon" type="image/png" sizes="32x32" href="%s">' . "\n", esc_url( $icon_32 ) );
+	printf( '<link rel="icon" type="image/png" sizes="192x192" href="%s">' . "\n", esc_url( $icon_192 ) );
+	printf( '<link rel="apple-touch-icon" sizes="180x180" href="%s">' . "\n", esc_url( $apple ) );
 }
 
 /* -------------------------------------------------------------------------
