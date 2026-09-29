@@ -52,6 +52,13 @@ the reason deploys are 40 seconds and never silently fail.
 
 ### Deploying
 
+GitHub `main` is the canonical source for production theme code. Do not make
+production-only theme edits in WordPress. Each production-affecting release
+must increment `GE_VERSION`; after deployment, verify that the live
+`golden-era-theme-version` meta tag matches the committed version on both the
+age gate and the verified full site. If an emergency WordPress edit is ever
+unavoidable, reconcile it back into this repository immediately.
+
 ```bash
 git add -A
 git commit -m "Describe the change"

@@ -101,6 +101,7 @@ function ge_age_gate_render() {
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+	<meta name="golden-era-theme-version" content="<?php echo esc_attr( GE_VERSION ); ?>">
 	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( GE_URI . '/assets/images/favicon-32.png' ); ?>">
 	<link rel="icon" type="image/png" sizes="192x192" href="<?php echo esc_url( GE_URI . '/assets/images/favicon-192.png' ); ?>">
 	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo esc_url( GE_URI . '/assets/images/apple-touch-icon.png' ); ?>">

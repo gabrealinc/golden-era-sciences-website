@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GE_VERSION', '1.3.3' );
+define( 'GE_VERSION', '1.3.4' );
 if ( isset( $_GET['ge_report'] ) && ! defined( 'DONOTCACHEPAGE' ) ) { define( 'DONOTCACHEPAGE', true ); }
 define( 'GE_DIR', get_template_directory() );
 define( 'GE_URI', get_template_directory_uri() );
@@ -120,6 +120,12 @@ add_action( 'wp_head', 'ge_preconnect', 1 );
 function ge_preconnect() {
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
 	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+}
+
+/** Public release marker used to verify GitHub and WordPress alignment. */
+add_action( 'wp_head', 'ge_release_marker', 0 );
+function ge_release_marker() {
+	printf( '<meta name="golden-era-theme-version" content="%s">' . "\n", esc_attr( GE_VERSION ) );
 }
 
 /** Use the bundled Golden Era mark consistently instead of WordPress' icon. */
