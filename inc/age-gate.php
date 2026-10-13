@@ -105,7 +105,10 @@ function ge_age_gate_render() {
 	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( GE_URI . '/assets/images/favicon-32.png' ); ?>">
 	<link rel="icon" type="image/png" sizes="192x192" href="<?php echo esc_url( GE_URI . '/assets/images/favicon-192.png' ); ?>">
 	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo esc_url( GE_URI . '/assets/images/apple-touch-icon.png' ); ?>">
-	<title><?php esc_html_e( 'Age Verification', 'golden-era' ); ?> | <?php echo esc_html( $site_name ); ?></title>
+	<title><?php echo esc_html( $site_name ); ?></title>
+	<meta property="og:title" content="<?php echo esc_attr( $site_name ); ?>">
+	<meta property="og:site_name" content="<?php echo esc_attr( $site_name ); ?>">
+	<meta name="twitter:title" content="<?php echo esc_attr( $site_name ); ?>">
 	<style>
 		:root{color-scheme:dark;--bg:#1a1208;--panel:#241a0e;--gold:#c9a45c;--cream:#f5ead7;--muted:#d8c7aa}
 		*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{display:grid;place-items:center;padding:24px;background:var(--bg);color:var(--cream);font-family:Arial,sans-serif}
