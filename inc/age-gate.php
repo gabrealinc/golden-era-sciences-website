@@ -24,9 +24,9 @@ if ( ge_age_gate_enabled() && ! is_admin() && ! defined( 'DONOTCACHEPAGE' ) ) {
 	define( 'DONOTCACHEPAGE', true );
 }
 
-/** Logged-in customers also count as age-verified for dependent theme features. */
+/** Administrators and visitors with the verification cookie may continue. */
 function ge_age_gate_verified() {
-	if ( is_user_logged_in() ) {
+	if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) {
 		return true;
 	}
 
@@ -142,6 +142,13 @@ function ge_age_gate_render() {
 
 /** Stop normal theme rendering before headers, metadata or content are emitted. */
 function ge_age_gate_enforce() {
+	// The customer login, registration and legal pages must remain reachable
+	// before age confirmation. A logged-in customer still confirms age before
+	// any catalog or product response is rendered.
+	if ( function_exists( 'ge_customer_gate_is_public_page' ) && ge_customer_gate_is_public_page() ) {
+		return;
+	}
+
 	if ( ! ge_age_gate_enabled() || ge_age_gate_verified() ) {
 		return;
 	}

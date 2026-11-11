@@ -13,9 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/* A browser-set age cookie is not customer authentication. */
-add_filter( 'ge_age_gate_enabled', '__return_false' );
-
 /** Pages that must remain reachable before a customer signs in. */
 function ge_customer_gate_is_public_page() {
 	if ( function_exists( 'is_account_page' ) && is_account_page() ) {
