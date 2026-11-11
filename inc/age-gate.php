@@ -24,9 +24,9 @@ if ( ge_age_gate_enabled() && ! is_admin() && ! defined( 'DONOTCACHEPAGE' ) ) {
 	define( 'DONOTCACHEPAGE', true );
 }
 
-/** Administrators and visitors with the verification cookie may continue. */
+/** Logged-in customers also count as age-verified for dependent theme features. */
 function ge_age_gate_verified() {
-	if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) {
+	if ( is_user_logged_in() ) {
 		return true;
 	}
 
