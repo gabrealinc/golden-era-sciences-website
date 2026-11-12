@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GE_VERSION', '1.4.6' );
+define( 'GE_VERSION', '1.4.7' );
 if ( isset( $_GET['ge_report'] ) && ! defined( 'DONOTCACHEPAGE' ) ) { define( 'DONOTCACHEPAGE', true ); }
 define( 'GE_DIR', get_template_directory() );
 define( 'GE_URI', get_template_directory_uri() );
@@ -336,6 +336,28 @@ function ge_page_title_consistency( $title ) {
 	}
 	return $title;
 }
+
+/** Use the brand name, not WooCommerce's account label, for the public gate. */
+function ge_customer_gate_document_title( $title ) {
+	if ( function_exists( 'is_account_page' ) && is_account_page() && ! is_user_logged_in() ) {
+		return get_bloginfo( 'name' );
+	}
+	return $title;
+}
+add_filter( 'pre_get_document_title', 'ge_customer_gate_document_title', 20 );
+
+/** Keep text-message and social previews on-brand for the public login URL. */
+function ge_customer_gate_share_metadata() {
+	if ( ! function_exists( 'is_account_page' ) || ! is_account_page() || is_user_logged_in() ) {
+		return;
+	}
+
+	$site_name = get_bloginfo( 'name' );
+	printf( '<meta property="og:title" content="%s">' . "\n", esc_attr( $site_name ) );
+	printf( '<meta property="og:site_name" content="%s">' . "\n", esc_attr( $site_name ) );
+	printf( '<meta name="twitter:title" content="%s">' . "\n", esc_attr( $site_name ) );
+}
+add_action( 'wp_head', 'ge_customer_gate_share_metadata', 1 );
 
 // Product categories and tags are not public browsing structures on this
 // research catalog, so do not advertise them in XML sitemaps.
