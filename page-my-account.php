@@ -72,6 +72,8 @@ while ( have_posts() ) :
 						var loginHeading = forms ? forms.querySelector( '#customer_login .u-column1 h2' ) : null;
 						var registerHeading = forms ? forms.querySelector( '#customer_login .u-column2 h2' ) : null;
 						var registerButton = forms ? forms.querySelector( '.woocommerce-form-register__submit' ) : null;
+						var registerForm = forms ? forms.querySelector( '.woocommerce-form-register' ) : null;
+						var privacyText = forms ? forms.querySelector( '.woocommerce-privacy-policy-text' ) : null;
 						var buttons = document.querySelectorAll( '[data-ge-account-view]' );
 
 						if ( ! forms || ! title || ! intro || ! buttons.length ) {
@@ -100,6 +102,10 @@ while ( have_posts() ) :
 						}
 
 						forms.classList.add( 'ge-account-choice-ready' );
+						if ( registerForm && registerButton && privacyText ) {
+							privacyText.innerHTML = '<?php echo wp_kses_post( __( 'Your data is never sold. We only use it to support and enhance your Golden Era Sciences experience, as described in our <a href="https://goldenerasciences.com/privacy-policy/" target="_blank">privacy policy</a>.', 'golden-era' ) ); ?>';
+							registerButton.parentNode.insertAdjacentElement( 'afterend', privacyText );
+						}
 						buttons.forEach( function ( button ) {
 							button.addEventListener( 'click', function () {
 								setView( button.getAttribute( 'data-ge-account-view' ) );

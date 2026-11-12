@@ -98,13 +98,13 @@ function ge_customer_gate_registration_fields() {
 	<p class="form-row form-row-wide ge-customer-gate__consent">
 		<label class="woocommerce-form__label woocommerce-form__label-for-checkbox">
 			<input class="woocommerce-form__input woocommerce-form__input-checkbox" name="ge_age_confirmed" type="checkbox" value="1" <?php checked( $age_confirmed ); ?> required>
-			<span><?php esc_html_e( 'I confirm that I am at least 21 years old.', 'golden-era' ); ?></span>
+			<span><?php esc_html_e( 'I am at least 21 years of age.', 'golden-era' ); ?></span>
 		</label>
 	</p>
 	<p class="form-row form-row-wide ge-customer-gate__consent">
 		<label class="woocommerce-form__label woocommerce-form__label-for-checkbox">
 			<input class="woocommerce-form__input woocommerce-form__input-checkbox" name="ge_marketing_opt_in" type="checkbox" value="1" <?php checked( $marketing ); ?>>
-			<span><?php esc_html_e( 'Subscribe me to Golden Era Sciences marketing emails.', 'golden-era' ); ?></span>
+			<span><?php esc_html_e( 'Subscribe to emails.', 'golden-era' ); ?></span>
 		</label>
 	</p>
 	<?php
@@ -165,8 +165,7 @@ function ge_customer_gate_customer_created( $customer_id ) {
 }
 add_action( 'woocommerce_created_customer', 'ge_customer_gate_customer_created' );
 
-/** Do not email customers or the site admin every time a password is changed. */
-add_filter( 'send_password_change_email', '__return_false' );
+/** Keep password-change notices with the affected customer, not the site admin. */
 add_filter( 'wp_password_change_notification_email', function ( $email ) {
 	$email['to'] = '';
 	return $email;
