@@ -24,9 +24,24 @@ if ( ge_age_gate_enabled() && ! is_admin() && ! defined( 'DONOTCACHEPAGE' ) ) {
 	define( 'DONOTCACHEPAGE', true );
 }
 
-/** Administrators and visitors with the verification cookie may continue. */
+/** Store an explicit age verification in the visitor's browser. */
+function ge_age_gate_set_verification_cookie() {
+	$options = array(
+		'expires'  => time() + YEAR_IN_SECONDS,
+		'path'     => defined( 'COOKIEPATH' ) && COOKIEPATH ? COOKIEPATH : '/',
+		'secure'   => is_ssl(),
+		'httponly' => true,
+		'samesite' => 'Lax',
+	);
+	if ( defined( 'COOKIE_DOMAIN' ) && COOKIE_DOMAIN ) {
+		$options['domain'] = COOKIE_DOMAIN;
+	}
+	setcookie( GE_AGE_COOKIE, 'yes', $options );
+}
+
+/** Administrators, signed-in customers and verified visitors may continue. */
 function ge_age_gate_verified() {
-	if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) {
+	if ( is_user_logged_in() ) {
 		return true;
 	}
 
@@ -61,17 +76,7 @@ function ge_age_gate_accept() {
 		return false;
 	}
 
-	$options = array(
-		'expires'  => time() + YEAR_IN_SECONDS,
-		'path'     => defined( 'COOKIEPATH' ) && COOKIEPATH ? COOKIEPATH : '/',
-		'secure'   => is_ssl(),
-		'httponly' => true,
-		'samesite' => 'Lax',
-	);
-	if ( defined( 'COOKIE_DOMAIN' ) && COOKIE_DOMAIN ) {
-		$options['domain'] = COOKIE_DOMAIN;
-	}
-	setcookie( GE_AGE_COOKIE, 'yes', $options );
+	ge_age_gate_set_verification_cookie();
 
 	$return_url = isset( $_POST['ge_age_return'] )
 		? wp_validate_redirect( esc_url_raw( wp_unslash( $_POST['ge_age_return'] ) ), home_url( '/' ) )
