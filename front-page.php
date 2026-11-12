@@ -20,7 +20,9 @@ get_header();
 <main id="main" tabindex="-1">
 
 	<?php get_template_part( 'template-parts/hero' ); ?>
-	<?php get_template_part( 'template-parts/marquee' ); ?>
+	<?php if ( is_user_logged_in() ) : ?>
+		<?php get_template_part( 'template-parts/marquee' ); ?>
+	<?php endif; ?>
 
 	<?php if ( class_exists( 'WooCommerce' ) && is_user_logged_in() ) : ?>
 		<section class="ge-section ge-bg-parchment">
@@ -64,7 +66,9 @@ get_header();
 		</section>
 	<?php endif; ?>
 
-	<?php get_template_part( 'template-parts/quality' ); ?>
+	<?php if ( is_user_logged_in() ) : ?>
+		<?php get_template_part( 'template-parts/quality' ); ?>
+	<?php endif; ?>
 
 	<?php if ( is_user_logged_in() ) : ?>
 		<?php
