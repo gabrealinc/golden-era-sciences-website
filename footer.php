@@ -45,12 +45,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php esc_html_e( 'STE R', 'golden-era' ); ?><br>
 					<?php esc_html_e( 'Sheridan, WY 82801', 'golden-era' ); ?>
 				</address>
-				<address class="ge-footer__address">
-					<?php esc_html_e( 'Drabz Holdings LLC', 'golden-era' ); ?><br>
-					<?php esc_html_e( '30 N Gould St.', 'golden-era' ); ?><br>
-					<?php esc_html_e( 'STE R', 'golden-era' ); ?><br>
-					<?php esc_html_e( 'Sheridan, WY 82801', 'golden-era' ); ?>
-				</address>
 
 				<?php
 				$socials = array(
