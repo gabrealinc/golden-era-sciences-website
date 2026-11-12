@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GE_VERSION', '1.5.7' );
+define( 'GE_VERSION', '1.5.8' );
 if ( isset( $_GET['ge_report'] ) && ! defined( 'DONOTCACHEPAGE' ) ) { define( 'DONOTCACHEPAGE', true ); }
 define( 'GE_DIR', get_template_directory() );
 define( 'GE_URI', get_template_directory_uri() );
@@ -21,6 +21,7 @@ define( 'GE_URI', get_template_directory_uri() );
 require_once GE_DIR . '/inc/age-gate.php';
 require_once GE_DIR . '/inc/customer-gate.php';
 require_once GE_DIR . '/inc/checkout-compliance.php';
+require_once GE_DIR . '/inc/content-spelling-cleanup.php';
 require_once GE_DIR . '/inc/privacy-consent.php';
 require_once GE_DIR . '/inc/security.php';
 require_once GE_DIR . '/inc/tiktok-pixel.php';
