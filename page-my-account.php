@@ -96,6 +96,7 @@ while ( have_posts() ) :
 							buttons[1].hidden = isLogin;
 							if ( lostPassword ) {
 								lostPassword.hidden = ! isLogin;
+							}
 						}
 
 						forms.classList.add( 'ge-account-choice-ready' );
