@@ -93,10 +93,10 @@ while ( have_posts() ) :
 								registerButton.textContent = '<?php echo esc_js( __( 'Create account', 'golden-era' ) ); ?>';
 								registerButton.value = '<?php echo esc_js( __( 'Create account', 'golden-era' ) ); ?>';
 							}
-							loginPrompt.hidden = ! isLogin;
-							registerPrompt.hidden = isLogin;
-							buttons[0].hidden = ! isLogin;
-							buttons[1].hidden = isLogin;
+							loginPrompt.hidden = isLogin;
+							registerPrompt.hidden = ! isLogin;
+							buttons[0].hidden = isLogin;
+							buttons[1].hidden = ! isLogin;
 						}
 
 						forms.classList.add( 'ge-account-choice-ready' );
