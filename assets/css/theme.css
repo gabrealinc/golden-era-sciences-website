@@ -494,7 +494,13 @@ button { font-family: inherit; cursor: pointer; }
 .ge-login-gate__panel { width:min(100%, 54rem); margin:0; padding:clamp(1.5rem,4vw,3.5rem); border:1px solid rgba(201,164,92,.35); border-radius:var(--ge-radius-lg); background:rgba(36,26,14,.88); box-shadow:0 2rem 5rem rgba(0,0,0,.35); backdrop-filter:blur(10px); }
 .ge-login-gate__panel h1 { margin-top:.75rem; color:var(--ge-cream); font-size:clamp(2.1rem,5vw,3.6rem); }
 .ge-login-gate__intro { max-width:34rem; margin-top:1rem; color:var(--ge-sand); }
+.ge-login-gate__switch { margin-top:1.25rem; color:var(--ge-sand); }
+.ge-login-gate__switch-button { margin-left:.2rem; padding:0; border:0; background:transparent; color:var(--ge-gold); font:inherit; font-weight:700; text-decoration:underline; text-underline-offset:.2em; cursor:pointer; }
 .ge-login-gate__forms { margin-top:2rem; }
+.ge-login-gate__forms.ge-account-choice-ready #customer_login .u-column1 { display:none; width:100%; }
+.ge-login-gate__forms.ge-account-choice-ready #customer_login .u-column2 { width:100%; }
+.ge-login-gate__forms.ge-account-choice-ready.is-login-view #customer_login .u-column1 { display:block; }
+.ge-login-gate__forms.ge-account-choice-ready.is-login-view #customer_login .u-column2 { display:none; }
 .ge-login-gate__forms .woocommerce-form-login, .ge-login-gate__forms .woocommerce-form-register { border-color:rgba(201,164,92,.35); background:rgba(26,18,8,.68); }
 .ge-login-gate__forms label, .ge-login-gate__forms p, .ge-login-gate__forms .woocommerce-privacy-policy-text { color:var(--ge-cream); }
 .ge-login-gate__forms input:not([type=checkbox]) { background:rgba(255,255,255,.96); color:var(--ge-espresso); }
