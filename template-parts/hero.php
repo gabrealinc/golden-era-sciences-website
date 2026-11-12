@@ -41,9 +41,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<a class="ge-btn ge-btn--gold" href="<?php echo esc_url( ge_shop_url() ); ?>">
 					<?php esc_html_e( 'View Research Catalog', 'golden-era' ); ?>
 				</a>
-				<a class="ge-btn ge-btn--outline" href="<?php echo esc_url( ge_coa_library_url() ); ?>" target="_blank" rel="noopener noreferrer">
-					<?php esc_html_e( 'View COAs', 'golden-era' ); ?>
-				</a>
+				<?php if ( is_user_logged_in() ) : ?>
+					<a class="ge-btn ge-btn--outline" href="<?php echo esc_url( ge_coa_library_url() ); ?>" target="_blank" rel="noopener noreferrer">
+						<?php esc_html_e( 'View COAs', 'golden-era' ); ?>
+					</a>
+				<?php endif; ?>
 			</div>
 
 		</div>

@@ -22,7 +22,7 @@ get_header();
 	<?php get_template_part( 'template-parts/hero' ); ?>
 	<?php get_template_part( 'template-parts/marquee' ); ?>
 
-	<?php if ( class_exists( 'WooCommerce' ) ) : ?>
+	<?php if ( class_exists( 'WooCommerce' ) && is_user_logged_in() ) : ?>
 		<section class="ge-section ge-bg-parchment">
 			<div class="ge-container">
 
@@ -66,12 +66,14 @@ get_header();
 
 	<?php get_template_part( 'template-parts/quality' ); ?>
 
-	<?php
-	get_template_part( 'template-parts/faq', null, array(
-		'limit'    => 5,
-		'show_all' => true,
-	) );
-	?>
+	<?php if ( is_user_logged_in() ) : ?>
+		<?php
+		get_template_part( 'template-parts/faq', null, array(
+			'limit'    => 5,
+			'show_all' => true,
+		) );
+		?>
+	<?php endif; ?>
 
 </main>
 
