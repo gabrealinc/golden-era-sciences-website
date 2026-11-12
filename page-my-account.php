@@ -69,6 +69,8 @@ while ( have_posts() ) :
 						var intro = document.querySelector( '.ge-login-gate__intro' );
 						var registerPrompt = document.querySelector( '.ge-login-gate__switch-register' );
 						var loginPrompt = document.querySelector( '.ge-login-gate__switch-login' );
+						var loginHeading = forms ? forms.querySelector( '#customer_login .u-column1 h2' ) : null;
+						var registerHeading = forms ? forms.querySelector( '#customer_login .u-column2 h2' ) : null;
 						var buttons = document.querySelectorAll( '[data-ge-account-view]' );
 
 						if ( ! forms || ! title || ! intro || ! buttons.length ) {
@@ -80,6 +82,12 @@ while ( have_posts() ) :
 							forms.classList.toggle( 'is-login-view', isLogin );
 							title.textContent = isLogin ? '<?php echo esc_js( __( 'Welcome back', 'golden-era' ) ); ?>' : '<?php echo esc_js( __( 'Create your account', 'golden-era' ) ); ?>';
 							intro.textContent = isLogin ? '<?php echo esc_js( __( 'Log in to access the private research catalog.', 'golden-era' ) ); ?>' : '<?php echo esc_js( __( 'Create an account to access the private research catalog.', 'golden-era' ) ); ?>';
+							if ( loginHeading ) {
+								loginHeading.textContent = '<?php echo esc_js( __( 'Log in', 'golden-era' ) ); ?>';
+							}
+							if ( registerHeading ) {
+								registerHeading.textContent = '<?php echo esc_js( __( 'Create an account', 'golden-era' ) ); ?>';
+							}
 							registerPrompt.hidden = isLogin;
 							loginPrompt.hidden = ! isLogin;
 							buttons[0].hidden = isLogin;
@@ -92,6 +100,7 @@ while ( have_posts() ) :
 								setView( button.getAttribute( 'data-ge-account-view' ) );
 							} );
 						} );
+						setView( 'register' );
 					}());
 				</script>
 			</section>
