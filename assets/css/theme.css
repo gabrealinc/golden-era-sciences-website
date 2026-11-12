@@ -505,6 +505,19 @@ button { font-family: inherit; cursor: pointer; }
 .ge-login-gate__forms label, .ge-login-gate__forms p, .ge-login-gate__forms .woocommerce-privacy-policy-text { color:var(--ge-cream); }
 .ge-login-gate__forms input:not([type=checkbox]) { background:rgba(255,255,255,.96); color:var(--ge-espresso); }
 .ge-login-gate__forms a { color:var(--ge-gold); }
+@media (max-width:640px) {
+  .ge-login-gate__inner { width:min(100% - 1.5rem, var(--ge-max)); min-height:100svh; padding:6.5rem 0 1.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .ge-login-gate__brand { top:1.2rem; left:50%; transform:translateX(-50%); white-space:nowrap; }
+  .ge-login-gate__brand img { width:38px; height:38px; }
+  .ge-login-gate__brand span { font-size:.95rem; }
+  .ge-login-gate__panel { width:100%; }
+  .ge-login-gate__panel > :not(.ge-login-gate__forms) { text-align:center; }
+  .ge-login-gate__forms { text-align:left; }
+  .ge-login-gate__intro { max-width:none; white-space:nowrap; font-size:clamp(.64rem,2.9vw,.9rem); }
+  .ge-login-gate__switch { display:flex; flex-wrap:wrap; justify-content:center; gap:.25rem; }
+  .ge-login-gate__switch-button { margin-left:0; }
+  .ge-login-gate__switch .woocommerce-LostPassword { flex-basis:100%; margin:1rem 0 0; }
+}
 .ge-hero__media video,
 .ge-hero__media img {
   height: 100%;
