@@ -15,10 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Pages that must remain reachable before a customer signs in. */
 function ge_customer_gate_is_public_page() {
-	if ( is_front_page() ) {
-		return true;
-	}
-
 	if ( function_exists( 'is_account_page' ) && is_account_page() ) {
 		return true;
 	}
