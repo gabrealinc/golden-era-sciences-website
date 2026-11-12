@@ -13,6 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/** Inbox for the single operational notification sent after an account is created. */
+const GE_NEW_ACCOUNT_NOTIFICATION_EMAIL = 'info@goldenerasciences.com';
+
 /** Pages that must remain reachable before a customer signs in. */
 function ge_customer_gate_is_public_page() {
 	if ( function_exists( 'is_account_page' ) && is_account_page() ) {
@@ -122,11 +125,28 @@ function ge_customer_gate_customer_created( $customer_id ) {
 	update_user_meta( $customer_id, 'ge_age_confirmed_at', current_time( 'mysql', true ) );
 	ge_age_gate_set_verification_cookie();
 
+	$user = get_userdata( $customer_id );
+	if ( $user ) {
+		wp_mail(
+			GE_NEW_ACCOUNT_NOTIFICATION_EMAIL,
+			__( 'New Golden Era Sciences account created', 'golden-era' ),
+			sprintf(
+				/* translators: %s: customer email address. */
+				__( "A new customer account was created for %s.", 'golden-era' ),
+				$user->user_email
+			)
+		);
+	}
+
 	if ( empty( $_POST['ge_marketing_opt_in'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		return;
 	}
 
-	$email = get_userdata( $customer_id )->user_email;
+	if ( ! $user ) {
+		return;
+	}
+
+	$email = $user->user_email;
 	update_user_meta( $customer_id, 'ge_marketing_opted_in_at', current_time( 'mysql', true ) );
 
 	if ( function_exists( 'ge_sync_subscriber_to_sheet' ) ) {
@@ -144,6 +164,13 @@ function ge_customer_gate_customer_created( $customer_id ) {
 	}
 }
 add_action( 'woocommerce_created_customer', 'ge_customer_gate_customer_created' );
+
+/** Do not email customers or the site admin every time a password is changed. */
+add_filter( 'send_password_change_email', '__return_false' );
+add_filter( 'wp_password_change_notification_email', function ( $email ) {
+	$email['to'] = '';
+	return $email;
+} );
 
 /** No public WooCommerce or WordPress API route may disclose catalog data. */
 function ge_customer_gate_rest( $result ) {
