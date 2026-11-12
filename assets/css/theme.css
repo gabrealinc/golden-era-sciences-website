@@ -1255,6 +1255,32 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: var(--ge-radius-md);
   padding: 1.5rem;
 }
+.ge-checkout-acknowledgment,
+.ge-checkout-acknowledgment__statement {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid var(--ge-sand-dark);
+  border-left: 3px solid var(--ge-gold);
+  background: rgba(232, 217, 192, 0.35);
+  color: var(--ge-stone);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+.ge-checkout-acknowledgment .woocommerce-form__label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+.ge-checkout-acknowledgment input {
+  flex: 0 0 auto;
+  margin-top: 0.25rem;
+}
+.ge-checkout-acknowledgment a,
+.ge-checkout-acknowledgment__statement a {
+  color: var(--ge-gold-deep);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
 
 /* WooCommerce Cart and Checkout blocks use a separate class system from the
    classic templates. Bring both flows into the same visual language. */
