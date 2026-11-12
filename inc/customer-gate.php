@@ -111,6 +111,21 @@ function ge_customer_gate_registration_fields() {
 }
 add_action( 'woocommerce_register_form', 'ge_customer_gate_registration_fields' );
 
+/** Use clearer password-setup copy on the public account-creation form. */
+function ge_customer_gate_registration_copy( $translated, $text, $domain ) {
+	if (
+		'woocommerce' === $domain
+		&& 'A link to set a new password will be sent to your email address.' === $text
+		&& function_exists( 'is_account_page' )
+		&& is_account_page()
+	) {
+		return __( 'We will send a link to your inbox where you can set up your password.', 'golden-era' );
+	}
+
+	return $translated;
+}
+add_filter( 'gettext', 'ge_customer_gate_registration_copy', 10, 3 );
+
 /** A new customer cannot be created until they confirm they are of age. */
 function ge_customer_gate_validate_registration( $errors, $username, $email ) {
 	if ( empty( $_POST['ge_age_confirmed'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
